@@ -1,0 +1,7 @@
+{
+  "globals": {
+    "APPNAME": "Yebo",
+    "SITENAME": "The name of the site",
+    "ROOTURL": "http://localhost:3001"
+  }
+}

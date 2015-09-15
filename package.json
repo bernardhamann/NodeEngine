@@ -1,0 +1,43 @@
+{
+  "name": "yebo",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon app/server.js",
+    "nginxsetup": "scp nginx root@lobby.yebolocal.me:/etc/nginx/sites-enabled/yebo",
+    "nginxreload": "ssh root@lobby.yebolocal.me && sudo service nginx reload"
+  },
+  "dependencies": {
+    "axios": "^0.5.4",
+    "body-parser": "^1.13.3",
+    "cors": "^2.7.1",
+    "debug": "~2.2.0",
+    "express": "~4.13.1",
+    "mongoose": "^4.1.5",
+    "react": "^0.13.3",
+    "react-engine": "^2.1.0",
+    "react-router": "^0.13.3"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.0.2",
+    "babel-core": "^5.8.21",
+    "babel-loader": "^5.3.2",
+    "csswring": "^4.0.0",
+    "del": "^1.2.0",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^5.2.0",
+    "gulp-nodemon": "^2.0.4",
+    "gulp-postcss": "^6.0.0",
+    "gulp-stylus": "~2.0.0",
+    "jeet": "^6.1.2",
+    "json-loader": "^0.5.2",
+    "lost": "^6.6.0",
+    "nib": "~1.1.0",
+    "nodemon": "^1.4.1",
+    "precss": "^1.1.2",
+    "rupture": "~0.6.1",
+    "webpack": "^1.11.0",
+    "webpack-stream": "^2.1.0"
+  }
+}
