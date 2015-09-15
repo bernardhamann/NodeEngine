@@ -3,18 +3,17 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var mongooseRest = require('./mongoose-rest');
 
-var pageSchema = {
-    path:{type: String, required: true},
-    title:{type: String, required: true},
-    description:{type: String, required: true},
+var emailsSchema = {
+    firstName:{type: String, required: true},
+    lastName:{type: String, required: true},
+    email:{type: String, required: true},
     createdAt:{type: String, required: true}
 };
 
 var Model = mongoose.model(
-    'Page',
-    pageSchema,
-    'page');
-
+    'Emails',
+    emailsSchema,
+    'emails');
 
 router.get('/', function (req, res){
 
@@ -30,7 +29,7 @@ router.get('/:_id', function (req, res){
 
 router.delete('/', function (req, res){
 
-    mongooseRest.delete(req, res, Model);
+    mongooseRest.post(req, res, Model);
 
 });
 
@@ -40,29 +39,16 @@ router.delete('/:_id', function (req, res){
 
 });
 
-router.put('/', function (req, res){
-
-    mongooseRest.put(req, res, Model);
-
-});
-
-router.put('/:_id', function (req, res){
-
-    mongooseRest.putById(req, res, Model);
-
-});
-
 router.post('/', function (req, res){
 
     var obj = {};
-    obj.path = req.body.path;
-    obj.title = req.body.title;
-    obj.description = req.body.description;
+    obj.firstName = req.body.firstName;
+    obj.lastName = req.body.lastName;
+    obj.email = req.body.email;
     obj.createdAt = new Date();
 
-    mongooseRest.post(req, res, Model, obj);
+    mongooseRest.delete(req, res, Model, obj);
 
 });
-
 
 module.exports = router;

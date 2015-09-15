@@ -13,8 +13,8 @@ let globals = config.globals;
 //       PAGE       //
 //////////////////////
 
-function getPage(path) {
-    return axios.get(`${rootURL}/api/page?path=${path}`);
+function getPage(pathString) {
+    return axios.get(`${rootURL}/api/page?f1=path&v1=${pathString}`);
 }
 
 var pageOnly = {
@@ -23,7 +23,7 @@ var pageOnly = {
             .then(function(arr){
                 return {
                     globals: globals,
-                    page: arr[0].data
+                    page: arr[0].data[0]
                 }
             })
     }
@@ -39,7 +39,7 @@ var people = {
             .then(function(arr){
                 return {
                     globals: globals,
-                    page: arr[0].data,
+                    page: arr[0].data[0],
                     people: arr[1].data
                 }
             })

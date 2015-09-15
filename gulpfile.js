@@ -4,7 +4,7 @@ var nodemon = require('gulp-nodemon');
 
 // Style
 var stylus = require('gulp-stylus');
-var nib = require('nib');
+//var nib = require('nib');
 var jeet = require('jeet');
 var rupture = require('rupture');
 var postcss = require('gulp-postcss');
@@ -63,6 +63,19 @@ gulp.task('ServerJS', function() {
 
     gulp.watch('src/server.js', [
         'ServerJS'
+    ]);
+
+});
+
+// Copy the ServerNodeEngine file
+gulp.task('ServerNodeEngineJS', function() {
+
+    gulp.src('src/NodeEngine.js')
+        .pipe(babel())
+        .pipe(gulp.dest('./app/'));
+
+    gulp.watch('src/server.js', [
+        'ServerNodeEngineJS'
     ]);
 
 });
@@ -128,7 +141,6 @@ gulp.task('UniversalCSS', function () {
     gulp.src('src/universal/css/*.styl')
         .pipe(stylus({
             use: [
-                nib(),
                 rupture(),
                 jeet()
             ]
@@ -212,6 +224,7 @@ gulp.task('default', [
     'hello',
     'ServerJS',
     'ServerSupJS',
+    'ServerNodeEngineJS',
     'UniversalCSS',
     'UniversalJS',
     'StaticPages',
