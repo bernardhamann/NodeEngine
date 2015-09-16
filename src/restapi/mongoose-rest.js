@@ -1,5 +1,5 @@
-var bodyParser = require("body-parser");
-var cors = require('cors');
+//var bodyParser = require("body-parser");
+//var cors = require('cors');
 
 var mongooseRest = {};
 
@@ -197,6 +197,8 @@ mongooseRest.post = function(req, res, Model, obj) {
 
 };
 
+/*
+
 mongooseRest.init = function(server, developmentMongoUrl, currentEnv){
 
     // this is for use in the server.js file
@@ -217,6 +219,7 @@ mongooseRest.init = function(server, developmentMongoUrl, currentEnv){
         mongoose.connect(process.env.MONGO_URL);
     }
 };
+*/
 
 
 module.exports = mongooseRest;

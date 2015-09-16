@@ -1,7 +1,10 @@
 #!/usr/bin/env node
 
-var nodeEngine = require('./nodeEngine');
+var nodeEngine = require('node-engine-core');
 var data = require('../pm2.json');
+
+var path = require('path');
+var express = require('express');
 
 ////////////////////////
 // Create the Server  //
@@ -37,7 +40,12 @@ nodeEngine.reactViews(server);
 ////////////////////
 
 var cacheTime = 100;
-nodeEngine.static(server, cacheTime);
+//nodeEngine.static(server, cacheTime);
+
+server.use(express.static('media',{ maxAge: cacheTime }));
+server.use(express.static(path.join(__dirname, '/static'),{ maxAge: cacheTime }));
+server.use(express.static(path.join(__dirname, '/universal/css'),{ maxAge: cacheTime }));
+server.use(express.static(path.join(__dirname, '/universal/js'),{ maxAge: cacheTime }));
 
 
 /////////////

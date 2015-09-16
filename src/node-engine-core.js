@@ -127,6 +127,8 @@ nodeEngine.static = function (server, cacheTime){
     server.use(express.static(path.join(__dirname, '/universal/css'),{ maxAge: cacheTime }));
     server.use(express.static(path.join(__dirname, '/universal/js'),{ maxAge: cacheTime }));
 
+    console.log(path.join(__dirname, '/static'));
+
 };
 
-export default nodeEngine
+module.exports = nodeEngine;

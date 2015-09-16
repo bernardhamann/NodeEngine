@@ -70,7 +70,7 @@ gulp.task('ServerJS', function() {
 // Copy the ServerNodeEngine file
 gulp.task('ServerNodeEngineJS', function() {
 
-    gulp.src('src/NodeEngine.js')
+    gulp.src('src/node-engine-core.js')
         .pipe(babel())
         .pipe(gulp.dest('./app/'));
 
