@@ -22,6 +22,8 @@ router.get('*', function (req, res) {
 
         function renderPage (data){
             state.data = data;
+            state.query = req.query;
+            console.log(state);
             console.log(`Rendering <${pathString}> from Server - START`);
             var html = React.renderToStaticMarkup(React.createElement(Root, state));
             var fullHtml = doctype + html;
