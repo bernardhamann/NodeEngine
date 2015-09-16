@@ -1,5 +1,3 @@
-'use strict';
-
 var express = require('express');
 var debug = require('debug')('express:server');
 var path = require('path');
@@ -10,15 +8,15 @@ var cors = require('cors');
 
 var nodeEngine = {};
 
-nodeEngine.init = function () {
-    return express();
+nodeEngine.init = function(){
+    return express()
 };
 
-nodeEngine.reactViews = function (server) {
+nodeEngine.reactViews = function(server){
 
     // create an engine instance
     var engine = ReactEngine.server.create({
-        reactRoutes: './routes.jsx'
+        reactRoutes:'./routes.jsx'
     });
 
     // view engine setup react engine
@@ -34,9 +32,10 @@ nodeEngine.reactViews = function (server) {
 
     // finally, set the custom view
     server.set('view', require('react-engine/lib/expressView'));
+
 };
 
-nodeEngine.serverSetup = function (server, data) {
+nodeEngine.serverSetup = function(server, data){
 
     // Get port from environment and store in Express.
     var port = normalizePort(process.env.PORT || data.env.PORT || '3000');
@@ -60,10 +59,12 @@ nodeEngine.serverSetup = function (server, data) {
         return false;
     }
 
+
     // Listen on provided port, on all network interfaces.
     server.listen(port);
     server.on('error', onError);
     server.on('listening', onListening);
+
 
     // Event listener for HTTP server "error" event.
     function onError(error) {
@@ -71,7 +72,8 @@ nodeEngine.serverSetup = function (server, data) {
             throw error;
         }
 
-        var bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
+        var bind = typeof port === 'string' ? 'Pipe ' + port
+            : 'Port ' + port;
 
         // handle specific listen errors with friendly messages
         switch (error.code) {
@@ -91,12 +93,14 @@ nodeEngine.serverSetup = function (server, data) {
     // Event listener for HTTP server "listening" event.
     function onListening() {
         var addr = server.address();
-        var bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
+        var bind = typeof addr === 'string' ? 'pipe ' + addr
+            : 'port ' + addr.port;
         debug('Listening on ' + bind);
     }
+
 };
 
-nodeEngine.mongo = function (server, developmentMongoUrl, currentEnv) {
+nodeEngine.mongo = function(server, developmentMongoUrl, currentEnv){
 
     // This is used for mongodb and the api stuff cross origin resource sharing
     server.use(cors());
@@ -116,14 +120,15 @@ nodeEngine.mongo = function (server, developmentMongoUrl, currentEnv) {
     }
 };
 
-nodeEngine['static'] = function (server, cacheTime) {
+nodeEngine.static = function (server, cacheTime){
 
-    server.use(express['static']('media', { maxAge: cacheTime }));
-    server.use(express['static'](path.join(__dirname, '/static'), { maxAge: cacheTime }));
-    server.use(express['static'](path.join(__dirname, '/universal/css'), { maxAge: cacheTime }));
-    server.use(express['static'](path.join(__dirname, '/universal/js'), { maxAge: cacheTime }));
+    server.use(express.static('media',{ maxAge: cacheTime }));
+    server.use(express.static(path.join(__dirname, '/static'),{ maxAge: cacheTime }));
+    server.use(express.static(path.join(__dirname, '/universal/css'),{ maxAge: cacheTime }));
+    server.use(express.static(path.join(__dirname, '/universal/js'),{ maxAge: cacheTime }));
 
     console.log(path.join(__dirname, '/static'));
+
 };
 
 module.exports = nodeEngine;
