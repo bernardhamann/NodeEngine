@@ -1,19 +1,41 @@
 'use strict';
 
-import express from 'express';
-import React from 'react';
-import Router from 'react-router';
-import routes from '../universal/routes'
-import axios from 'axios';
-import preData from '../universal/ne-data-pre';
+var express = require('express');
+var axios = require ('axios');
+var React = require('react');
+var Router = require('react-router');
 
+var routes = require ('../universal/routes');
+var preData = require('../universal/ne-data-pre');
 
-import config from './../../config.json';
-let rootURL = config.globals.ROOTURL;
-let globals = config.globals;
+var globals = require ('../../config-globals.json');
+var configDevelopment = require('../../config.json');
+var configProduction = require('../../config-pm2.json');
+
+////////////////////////
+// Setup the config
+////////////////////////
+
+var currentEnv = process.env.NODE_ENV || 'development';
+
+if ('development' == currentEnv) {
+    var config = configDevelopment.env;
+    console.log('Using Development CONFIG');
+}
+
+if ('production' == currentEnv) {
+    var config = configProduction.env;
+    console.log('Using Production CONFIG');
+}
+
+let rootURL = config.ROOTURL;
 console.log('rootURL');
 console.log(rootURL);
 
+
+////////////////////////
+//
+////////////////////////
 
 var router = express.Router();
 
@@ -46,7 +68,4 @@ router.get('*', function (req, res) {
     });
 });
 
-export default router
-
-
-// Rename this to node-engine/react-universal.server
+module.exports = router;
