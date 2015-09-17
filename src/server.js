@@ -52,4 +52,7 @@ server.use('/api/page', require('./restapi/page'));
 server.use('/api/emails', require('./restapi/emails'));
 
 // Server Rendering with React Router
+server.use('/express', require('./server/express'));
+
+// Server Rendering with React Router
 server.use('/', require('./server/ne-render-server'));

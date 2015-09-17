@@ -4,9 +4,10 @@ var express = require('express');
 var axios = require ('axios');
 var React = require('react');
 var Router = require('react-router');
+var router = express.Router();
 
 var routes = require ('../universal/routes');
-var preData = require('../universal/ne-data-pre');
+var beforeData = require('../universal/ne-data-before');
 
 var globals = require ('../../config/globals.json');
 var configDevelopment = require('../../config/config.json');
@@ -20,24 +21,24 @@ var currentEnv = process.env.NODE_ENV || 'development';
 
 if ('development' == currentEnv) {
     var config = configDevelopment.env;
-    console.log('Using Development CONFIG');
+    console.log('Using Development CONFIG for pageAPIPath');
 }
 
 if ('production' == currentEnv) {
     var config = configProduction.env;
-    console.log('Using Production CONFIG');
+    console.log('Using Production CONFIG for pageAPIPath');
 }
 
-let rootURL = config.ROOTURL;
-console.log('rootURL');
-console.log(rootURL);
+var pageAPIPath = config.PAGEAPIPATH;
+console.log('pageAPIPath');
+console.log(pageAPIPath);
 
 
 ////////////////////////
 //
 ////////////////////////
 
-var router = express.Router();
+
 
 router.get('/express', function(req, res) {
     res.render('ExpressHandler', {
@@ -61,7 +62,7 @@ router.get('*', function (req, res) {
             console.log(`Rendering <${pathString}> from Server - DONE`);
         }
 
-        preData.fetch(rootURL, pathString)
+        beforeData.fetch(pageAPIPath, pathString)
             .then((data)=> {
                 renderPage(data);
             })
