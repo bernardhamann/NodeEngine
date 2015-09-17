@@ -5,7 +5,6 @@ var nodemon = require('gulp-nodemon');
 // Style
 var stylus = require('gulp-stylus');
 //var nib = require('nib');
-var jeet = require('jeet');
 var rupture = require('rupture');
 var postcss = require('gulp-postcss');
 //var csswring = require('csswring');
@@ -141,8 +140,7 @@ gulp.task('UniversalCSS', function () {
     gulp.src('src/universal/css/*.styl')
         .pipe(stylus({
             use: [
-                rupture(),
-                jeet()
+                rupture()
             ]
         }))
         .pipe(postcss([
@@ -167,7 +165,7 @@ gulp.task('UniversalCSS', function () {
 gulp.task('ClientJS', function(){
 
     gulp.src('src/client.js')
-        .pipe(webpack( require('./webpack.config.js') ))
+        .pipe(webpack( require('./config-webpack.js') ))
         .pipe(gulp.dest('./app/universal/js/'));
 
     gulp.watch('src/universal/**/**/*.js', [
