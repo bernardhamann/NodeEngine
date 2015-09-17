@@ -14,3 +14,23 @@ Remove Jeet and use PostCSS with Lost instead. Lost can do what Jeet can do, and
 
 20150913-1805
 Lost gid for post css has a error when running it, i think the error will be soved soon, but now im just goign to keep using jeet.
+
+20150917-0526
+
+ne-server-render
+ne-pre-data
+
+If a package uses the node engine file structure then it is a ne-somename package
+
+-media
+-src
+--client
+--reastapi
+--server
+--static
+--universal
+----css
+----handlers
+----partials
+----sections
+-app

@@ -3,8 +3,7 @@ import Router from 'react-router';
 import routes from '../universal/routes';
 
 // note sure about these
-
-import getData from '../universal/getData';
+import preData from '../universal/ne-pre-data'
 import { BrowserHistory, Route } from 'react-router';
 var data = {};
 
@@ -26,7 +25,7 @@ var clientRender = {
             }
 
             // Get data before render for some components
-            getData.forPath(pathString)
+            preData.forPath(pathString)
                 .then((data)=>{
                     renderPage(data);
                 })

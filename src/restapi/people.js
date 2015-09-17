@@ -54,13 +54,10 @@ router.put('/:_id', function (req, res){
 
 router.post('/', function (req, res){
 
-    var obj = {};
-    obj.firstName = req.body.firstName;
-    obj.lastName = req.body.lastName;
-    obj.email = req.body.email;
+    var obj = req.body;
     obj.createdAt = new Date();
 
-    ModelREST.post(req, res, Model, obj);
+    mongooseRest.post(req, res, Model, obj);
 
 });
 

@@ -5,7 +5,15 @@ import React from 'react';
 import Router from 'react-router';
 import routes from '../universal/routes'
 import axios from 'axios';
-import getData from '../universal/getData';
+import preData from '../universal/ne-pre-data';
+
+
+import config from './../../config.json';
+let rootURL = config.globals.ROOTURL;
+let globals = config.globals;
+console.log('rootURL');
+console.log(rootURL);
+
 
 var router = express.Router();
 
@@ -21,9 +29,9 @@ router.get('*', function (req, res) {
         var pathString = state.routes[1].path.substr(1);
 
         function renderPage (data){
+            data.globals = globals;
             state.data = data;
             state.query = req.query;
-            console.log(state);
             console.log(`Rendering <${pathString}> from Server - START`);
             var html = React.renderToStaticMarkup(React.createElement(Root, state));
             var fullHtml = doctype + html;
@@ -31,24 +39,14 @@ router.get('*', function (req, res) {
             console.log(`Rendering <${pathString}> from Server - DONE`);
         }
 
-        // Get data before render for some components
-        getData.forPath(pathString)
-            .then((data)=>{
+        preData.fetch(rootURL, pathString)
+            .then((data)=> {
                 renderPage(data);
             })
     });
 });
 
 export default router
-
-/*
-
-           axios.get('http://localhost:3001/api/people')
-                .then((dataRes)=>{
-                    data.people = dataRes.data;
-                    renderPage(data)
-                });
- */
 
 
 // Rename this to node-engine/react-universal.server

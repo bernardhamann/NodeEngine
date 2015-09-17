@@ -7,7 +7,14 @@ var pageSchema = {
     path:{type: String, required: true},
     title:{type: String, required: true},
     description:{type: String, required: true},
+    pd:{
+        pdNumber:{type: Number, required: false, default: '0'},
+        pd1:{
+            path: {type: String, required: false}
+        }
+    },
     createdAt:{type: String, required: true}
+
 };
 
 var Model = mongoose.model(
@@ -54,10 +61,7 @@ router.put('/:_id', function (req, res){
 
 router.post('/', function (req, res){
 
-    var obj = {};
-    obj.path = req.body.path;
-    obj.title = req.body.title;
-    obj.description = req.body.description;
+    var obj = req.body;
     obj.createdAt = new Date();
 
     mongooseRest.post(req, res, Model, obj);
