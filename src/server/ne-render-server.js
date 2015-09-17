@@ -8,9 +8,9 @@ var Router = require('react-router');
 var routes = require ('../universal/routes');
 var preData = require('../universal/ne-data-pre');
 
-var globals = require ('../../config-globals.json');
-var configDevelopment = require('../../config.json');
-var configProduction = require('../../config-pm2.json');
+var globals = require ('../../config/globals.json');
+var configDevelopment = require('../../config/config.json');
+var configProduction = require('../../config/pm2.json');
 
 ////////////////////////
 // Setup the config

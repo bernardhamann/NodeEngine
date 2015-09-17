@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 var nodeEngine = require('ne-server');
-var configDevelopment = require('../config.json');
-var configProduction = require('../config-pm2.json');
+var configDevelopment = require('../config/config.json');
+var configProduction = require('../config/pm2.json');
 var path = require('path');
 var express = require('express');
 

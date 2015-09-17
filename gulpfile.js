@@ -165,7 +165,7 @@ gulp.task('UniversalCSS', function () {
 gulp.task('ClientJS', function(){
 
     gulp.src('src/client.js')
-        .pipe(webpack( require('./config-webpack.js') ))
+        .pipe(webpack( require('./config/webpack.js') ))
         .pipe(gulp.dest('./app/universal/js/'));
 
     gulp.watch('src/universal/**/**/*.js', [

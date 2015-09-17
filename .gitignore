@@ -1,4 +1,4 @@
 node_modules
 app
-config-pm2.json
-config.json
+config/pm2.json
+config/config.json
