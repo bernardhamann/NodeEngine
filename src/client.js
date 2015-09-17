@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import clientRender from './client/clientRender';
+import clientRender from './client/ne-client-render';
 
 console.log("Client JS is Active");
 
