@@ -20,7 +20,7 @@ Lost gid for post css has a error when running it, i think the error will be sov
 ne-server-render
 ne-pre-data
 
-If a package uses the node engine file structure then it is a ne-somename package
+If a package uses the node engine file structure then it can be a ne-somename package
 
 -media
 -src
@@ -34,3 +34,6 @@ If a package uses the node engine file structure then it is a ne-somename packag
 ----partials
 ----sections
 -app
+
+
+If a package uses a node engine approach it can be a ne-somename package
