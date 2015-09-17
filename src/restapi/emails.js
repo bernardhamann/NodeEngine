@@ -29,7 +29,7 @@ router.get('/:_id', function (req, res){
 
 router.delete('/', function (req, res){
 
-    mongooseRest.post(req, res, Model);
+    mongooseRest.delete(req, res, Model);
 
 });
 
@@ -41,13 +41,10 @@ router.delete('/:_id', function (req, res){
 
 router.post('/', function (req, res){
 
-    var obj = {};
-    obj.firstName = req.body.firstName;
-    obj.lastName = req.body.lastName;
-    obj.email = req.body.email;
+    var obj = req.body;
     obj.createdAt = new Date();
 
-    mongooseRest.delete(req, res, Model, obj);
+    mongooseRest.post(req, res, Model, obj);
 
 });
 
