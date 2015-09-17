@@ -3,7 +3,7 @@ import Router from 'react-router';
 import routes from '../universal/routes';
 
 // note sure about these
-import preData from '../universal/ne-pre-data'
+import preData from '../universal/ne-data-pre'
 import { BrowserHistory, Route } from 'react-router';
 var data = {};
 

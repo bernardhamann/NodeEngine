@@ -5,7 +5,7 @@ import React from 'react';
 import Router from 'react-router';
 import routes from '../universal/routes'
 import axios from 'axios';
-import preData from '../universal/ne-pre-data';
+import preData from '../universal/ne-data-pre';
 
 
 import config from './../../config.json';

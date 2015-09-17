@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var mongooseRest = require('./mongoose-rest');
+var mongooseRest = require('./ne-rest-mongoose');
 
 var pageSchema = {
     path:{type: String, required: true},

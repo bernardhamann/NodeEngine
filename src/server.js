@@ -57,4 +57,4 @@ server.use('/api/page', require('./restapi/page'));
 server.use('/api/emails', require('./restapi/emails'));
 
 // Setup the redirect to the react router
-server.use('/', require('./server/ne-server-render'));
+server.use('/', require('./server/ne-render-server'));
