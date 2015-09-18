@@ -15,6 +15,7 @@
     "mongoose": "^4.1.5",
     "ne-data-before": "^1.0.0",
     "ne-render-server": "^1.1.0",
+    "ne-rest-mongoose": "^1.0.1",
     "ne-server": "^1.1.1",
     "react": "^0.13.3",
     "react-router": "^0.13.3"

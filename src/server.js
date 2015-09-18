@@ -13,7 +13,6 @@ var globals = require('../config/globals.json');
 var routes = require ('./universal/routes');
 
 
-
 ////////////////////////
 // Config
 ////////////////////////
@@ -46,6 +45,8 @@ server.locals.globals = globals;
 // View Engine Setup
 /////////////////////////
 
+// Optional
+
 
 //////////////////////
 // Static Assets
@@ -61,20 +62,30 @@ server.use(express.static(path.join(__dirname, '/universal/js'),{ maxAge: cacheT
 
 
 ///////////////
-// Routes
+// REST API
 ///////////////
 
 // People Rest API
-server.use('/api/people', require('./restapi/people'));
+server.use('/api/people', require('./api/people'));
 
 // Page Rest API
-server.use('/api/page', require('./restapi/page'));
+server.use('/api/page', require('./api/page'));
 
 // Emails Rest API
-server.use('/api/emails', require('./restapi/emails'));
+server.use('/api/emails', require('./api/emails'));
+
+
+//////////////////////////////
+// Express Test
+//////////////////////////////
 
 // Server Rendering with React Router
 server.use('/express', require('./server/express'));
+
+
+////////////////////////////////////////////////////////////
+// Rendering React-Router with Pre-Render Data
+////////////////////////////////////////////////////////////
 
 // Server Rendering with React Router but after getting data from a api request.
 // This version stores the data request in the page object for that path

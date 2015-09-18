@@ -192,11 +192,11 @@ gulp.task('ClientSupJS', function() {
 
 gulp.task('RestAPIJS', function() {
 
-    gulp.src('src/restAPI/**/**/*.js')
+    gulp.src('src/api/**/**/*.js')
         .pipe(babel())
-        .pipe(gulp.dest('./app/restAPI/'));
+        .pipe(gulp.dest('./app/api/'));
 
-    gulp.watch('src/restAPI/**/**/*.js', [
+    gulp.watch('src/api/**/**/*.js', [
         'RestAPIJS'
     ]);
 

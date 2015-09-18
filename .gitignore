@@ -1,4 +1,5 @@
 node_modules
 app
+arc
 config/pm2.json
 config/config.json
