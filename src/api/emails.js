@@ -1,7 +1,7 @@
 var router = require('express').Router();
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var mongooseRest = require('ne-rest-mongoose');
+var restMongoose = require('ne-rest-mongoose');
 
 var emailsSchema = new Schema({
     firstName:{type: String, required: true},
@@ -13,13 +13,13 @@ var emailsSchema = new Schema({
 
 var Model = mongoose.model(
     // Name of the model
-    'Emails',
+    'emails',
     // Schema of the model
     emailsSchema,
     // ?? Collection name
     'emails');
 
 
-mongooseRest.init(router, Model);
+restMongoose.init(router, Model);
 
 module.exports = router;
