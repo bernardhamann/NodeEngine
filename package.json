@@ -14,8 +14,8 @@
     "express": "~4.13.1",
     "mongoose": "^4.1.5",
     "ne-data-before": "^1.0.0",
+    "ne-mongo-rest": "^1.0.5",
     "ne-render-server": "^1.1.0",
-    "ne-rest-mongoose": "^1.0.4",
     "ne-server": "^1.2.0",
     "react": "^0.13.3",
     "react-router": "^0.13.3"
