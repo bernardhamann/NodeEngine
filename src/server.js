@@ -4,7 +4,7 @@ var express = require('express');
 var path = require('path');
 
 var nodeEngineServer = require('ne-server');
-var renderServer = require('ne-render-server');
+var neRender = require('ne-render');
 var mongoRest = require('ne-mongo-rest');
 
 var configDevelopment = require('../config/config.json');
@@ -83,6 +83,4 @@ server.use('/express', require('./server/express'));
 // Server Rendering with React Router but after getting data from a api request.
 // This version stores the data request in the page object for that path
 var pageAPIPath = "http://localhost:3001/api/page?f1=path&v1=";
-renderServer(server, routes, pageAPIPath, globals);
-
-
+neRender.serverRender(server, routes, pageAPIPath, globals);
