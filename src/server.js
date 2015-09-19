@@ -5,7 +5,7 @@ var path = require('path');
 
 var nodeEngineServer = require('ne-server');
 var renderServer = require('ne-render-server');
-var mongooseRest = require('ne-rest-mongoose');
+var mongoRest = require('ne-mongo-rest');
 
 var configDevelopment = require('../config/config.json');
 var configProduction = require('../config/pm2.json');
@@ -65,7 +65,7 @@ server.use(express.static(path.join(__dirname, '/universal/js'),{ maxAge: cacheT
 
 var dirName = __dirname;
 var apiPath = "/api";
-mongooseRest.server(server, dirName, apiPath);
+mongoRest.server(server, dirName, apiPath);
 
 
 //////////////////////////////
