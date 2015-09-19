@@ -7,15 +7,12 @@
     "dev": "gulp"
   },
   "dependencies": {
-    "axios": "^0.5.4",
-    "body-parser": "^1.13.3",
-    "cors": "^2.7.1",
-    "debug": "^2.2.0",
     "express": "~4.13.1",
     "mongoose": "^4.1.5",
+    "ne-data": "^1.0.2",
     "ne-data-before": "^1.0.0",
     "ne-mongo-rest": "^1.0.5",
-    "ne-render": "^1.1.1",
+    "ne-render": "^1.1.4",
     "ne-server": "^1.2.0",
     "react": "^0.13.3",
     "react-router": "^0.13.3"

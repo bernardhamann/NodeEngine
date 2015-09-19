@@ -3,7 +3,7 @@ import Router from 'react-router';
 import routes from '../universal/routes';
 
 // note sure about these
-import preData from 'ne-data-before'
+import neData from 'ne-data'
 import { BrowserHistory, Route } from 'react-router';
 var data = {};
 
@@ -25,7 +25,7 @@ var clientRender = {
             }
 
             // Get data before render for some components
-            preData.forPath(pageAPIPath, pathString)
+            neData.before(pageAPIPath, pathString)
                 .then((data)=>{
                     renderPage(data);
                 })
