@@ -15,6 +15,6 @@ var Model = mongoose.model(
     peopleSchema,
     'people');
 
-restMongoose.init(router, Model);
+restMongoose.model(router, Model);
 
 module.exports = router;

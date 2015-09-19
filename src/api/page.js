@@ -17,13 +17,11 @@ var pageSchema = new Schema({
 
 });
 
-var Model = mongoose.model(
+var pageModel = mongoose.model(
     'page',
     pageSchema,
     'page');
 
-
-restMongoose.init(router, Model);
-
+restMongoose.model(router, pageModel);
 
 module.exports = router;

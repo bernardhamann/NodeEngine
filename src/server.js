@@ -5,6 +5,7 @@ var path = require('path');
 
 var nodeEngineServer = require('ne-server');
 var renderServer = require('ne-render-server');
+var mongooseRest = require('ne-rest-mongoose');
 
 var configDevelopment = require('../config/config.json');
 var configProduction = require('../config/pm2.json');
@@ -58,19 +59,13 @@ server.use(express.static(path.join(__dirname, '/static'),{ maxAge: cacheTime })
 server.use(express.static(path.join(__dirname, '/universal/css'),{ maxAge: cacheTime }));
 server.use(express.static(path.join(__dirname, '/universal/js'),{ maxAge: cacheTime }));
 
-
 ///////////////
 // REST API
 ///////////////
 
-// People Rest API
-server.use('/api/people', require('./api/people'));
-
-// Page Rest API
-server.use('/api/page', require('./api/page'));
-
-// Emails Rest API
-server.use('/api/emails', require('./api/emails'));
+var dirName = __dirname;
+var apiPath = "/api";
+mongooseRest.server(server, dirName, apiPath);
 
 
 //////////////////////////////
@@ -89,3 +84,5 @@ server.use('/express', require('./server/express'));
 // This version stores the data request in the page object for that path
 var pageAPIPath = "http://localhost:3001/api/page?f1=path&v1=";
 renderServer(server, routes, pageAPIPath, globals);
+
+

@@ -20,6 +20,6 @@ var Model = mongoose.model(
     'emails');
 
 
-restMongoose.init(router, Model);
+restMongoose.model(router, Model);
 
 module.exports = router;
