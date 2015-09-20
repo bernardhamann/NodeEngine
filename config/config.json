@@ -1,0 +1,9 @@
+{
+  "env": {
+    "NODE_ENV"         : "development",
+    "ROOTURL"          : "http://localhost:3001",
+    "PORT"             : 3001,
+    "MONGO_URL"        : "mongodb://username:password@domain.com:27004/databaseaname",
+    "SENDGRID_APIKEY"  : "xxx",
+  }
+}
