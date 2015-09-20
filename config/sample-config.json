@@ -3,5 +3,6 @@
   "ROOTURL"          : "http://localhost:3001",
   "PORT"             : 3001,
   "MONGO_URL"        : "mongodb://username:password@domain.com:27004/databaseaname",
-  "SENDGRID_APIKEY"  : "xxx"
+  "SENDGRID_APIKEY"  : "xxx",
+  "EMAIL"            : "info@node-engine.com"
 }

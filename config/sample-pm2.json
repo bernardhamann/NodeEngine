@@ -22,6 +22,7 @@
     "MONGO_URL"        : "mongodb://username:password@domain.com:27000/databasename",
     "SENDGRID_APIKEY"  : "xxx",
     "CLICKATELL_APIKEY"  : "xxx",
+    "EMAIL"            : "info@node-engine.com",
     "LINKTOSOURCE"     : "http://pm2.keymetrics.io/docs/usage/application-declaration/"
 
   }
