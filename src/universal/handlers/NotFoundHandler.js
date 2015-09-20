@@ -10,7 +10,7 @@ class NotFoundHandler extends React.Component {
             <body>
                 <Header />
                 <h1 id="main-title">Route not Found</h1>
-                <p>{self.props.data.meta.title}</p>
+                <p>{self.props.meta.title}</p>
                 <Footer />
             </body>
         )

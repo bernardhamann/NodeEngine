@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var del = require('del');
 var nodemon = require('gulp-nodemon');
+var env = require('gulp-env');
 
 // Style
 var stylus = require('gulp-stylus');
@@ -210,9 +211,18 @@ gulp.task('RestAPIJS', function() {
 
 
 gulp.task('Nodemon', function () {
+
+    env({
+        file: 'config/config.json',
+        vars: {
+            // any variables you want to overwrite
+        }
+    });
+
     nodemon({
         script: 'app/server.js',
-        ext: 'js'
+        ext: 'js',
+        env: { 'NODE_ENV': 'development' }
     });
 });
 
