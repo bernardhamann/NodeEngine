@@ -6,8 +6,8 @@ class Head extends React.Component {
 
         return (
             <head>
-                <title>{`${this.props.data.page.title} - ${this.props.data.globals.SITENAME}`}</title>
-                <meta name="description" content={this.props.data.page.description}/>
+                <title>{`${this.props.meta.title} - ${this.props.meta.globals.SITENAME}`}</title>
+                <meta name="description" content={this.props.meta.description}/>
                 <link rel='stylesheet' href='/style.css' />
                 <link href='http://fonts.googleapis.com/css?family=Holtwood+One+SC|Asap:400,700|Fjalla+One' rel='stylesheet' type='text/css' />
                 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
@@ -21,14 +21,3 @@ class Head extends React.Component {
 }
 
 export default Head;
-
-
-
-
-
-
-
-
-
-
-

@@ -7,7 +7,7 @@ class PeopleHandler extends React.Component {
     render() {
         var self = this;
 
-        var people = self.props.data.pd1.map((person, index)=>{
+        var people = self.props.data.nedb1.map((person, index)=>{
             return (
                 <p key={index}>
                     {person.firstName} <br/>

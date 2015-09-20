@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var mongoRest = require('ne-mongo-rest');
 
-var pageSchema = new Schema({
+var modelSchema = new Schema({
     path:{type: String, required: true},
     title:{type: String, required: true},
     description:{type: String, required: true},
@@ -13,15 +13,16 @@ var pageSchema = new Schema({
             path: {type: String, required: false}
         }
     },
-    createdAt:{type: String, required: true}
+    createdAt:{type: String, required: true, default: new Date()}
 
 });
 
-var pageModel = mongoose.model(
+var Model = mongoose.model(
     'page',
-    pageSchema,
-    'page');
+    modelSchema,
+    'page'
+    );
 
-mongoRest.model(router, pageModel);
+mongoRest.model(router, Model);
 
 module.exports = router;

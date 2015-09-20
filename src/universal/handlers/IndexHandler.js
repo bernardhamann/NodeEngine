@@ -10,7 +10,7 @@ class IndexHandler extends React.Component {
             <body>
                 <Header />
                 <h1 id="main-title">This is the IndexHandler</h1>
-                <h2>{self.state.name}</h2>
+                <h2>{self.props.meta.title}</h2>
                 <Footer />
             </body>
         )

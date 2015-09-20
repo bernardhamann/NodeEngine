@@ -11,10 +11,9 @@ var modelSchema = new Schema({
 });
 
 var Model = mongoose.model(
-    'people',
-    modelSchema,
-    'people'
-    );
+    'users',
+    modelSchema
+);
 
 mongoRest.model(router, Model);
 

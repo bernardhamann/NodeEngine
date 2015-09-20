@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var mongoRest = require('ne-mongo-rest');
 
-var emailsSchema = new Schema({
+var modelSchema = new Schema({
     firstName:{type: String, required: true},
     lastName:{type: String, required: true},
     email:{type: String, required: true},
@@ -12,12 +12,9 @@ var emailsSchema = new Schema({
 });
 
 var Model = mongoose.model(
-    // Name of the model
     'emails',
-    // Schema of the model
-    emailsSchema,
-    // ?? Collection name
-    'emails');
+    modelSchema
+    );
 
 
 mongoRest.model(router, Model);

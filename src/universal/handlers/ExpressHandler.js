@@ -6,10 +6,6 @@ import Header from '../sections/Header';
 import Footer from '../sections/Footer';
 
 
-
-
-
-
 class ExpressHandler extends React.Component {
 
     constructor(props){

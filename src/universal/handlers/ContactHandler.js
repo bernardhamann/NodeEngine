@@ -10,7 +10,7 @@ class ContactHandler extends React.Component {
             <body>
                 <Header />
                 <h2 id="main-title">This is the ContactHandler</h2>
-                <p>{self.props.data.page.title}</p>
+                <p>{self.props.meta.title}</p>
                 <Footer />
             </body>
 

@@ -3,3 +3,4 @@ app
 arc
 config/pm2.json
 config/config.json
+log.md
