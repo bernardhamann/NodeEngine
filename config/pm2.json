@@ -1,0 +1,28 @@
+{
+  "name"               : "ne-sample",
+  "cwd"                : "/deploy/app/",
+  "script"             : "server.js",
+  "log_date_format"    : "YYYY-MM-DD HH:mm Z",
+  "error_file"         : "/deploy/app/error.log",
+  "out_file"           : "/deploy/app/output.log",
+  "instances"          : 1,
+  "min_uptime"         : "1000s",
+  "max_restarts"       : 20,
+  "max_memory_restart" : "200M",
+  "watch"              : true,
+  "ignore_watch"       : ["[\\/\\\\]\\./", "node_modules"],
+  "merge_logs"         : true,
+  "exec_interpreter"   : "node",
+  "exec_mode"          : "fork",
+  "autorestart"        : true,
+  "env": {
+    "NODE_ENV"         : "production",
+    "ROOTURL"          : "http://domain.com",
+    "PORT"             : 3001,
+    "MONGO_URL"        : "mongodb://username:password@domain.com:27000/databasename",
+    "SENDGRID_APIKEY"  : "xxx",
+    "CLICKATELL_APIKEY"  : "xxx",
+    "LINKTOSOURCE"     : "http://pm2.keymetrics.io/docs/usage/application-declaration/"
+
+  }
+}
