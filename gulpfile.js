@@ -51,6 +51,122 @@ gulp.task('clear', function () {
 
 
 //////////////////////
+//     REST API     //
+//////////////////////
+
+gulp.task('RestAPIJS', function() {
+
+    gulp.src('src/api/**/**/*.js')
+        .pipe(babel())
+        .pipe(gulp.dest('./app/api/'));
+
+    gulp.watch('src/api/**/**/*.js', [
+        'RestAPIJS'
+    ]);
+
+});
+
+
+//////////////////////
+//      Client      //
+//////////////////////
+
+
+gulp.task('ClientJS', function(){
+
+    gulp.src('src/client.js')
+        .pipe(webpack( require('./config/webpack.js') ))
+        .pipe(gulp.dest('./app/js/'));
+
+    gulp.watch('src/client.js', [
+        'ClientJS'
+    ]);
+
+    gulp.watch('src/components/**/**/*.js', [
+        'ClientJS'
+    ]);
+    gulp.watch('src/client/**/**/*.js', [
+        'ClientJS'
+    ]);
+
+});
+
+gulp.task('ClientSupJS', function() {
+
+    gulp.src('src/client/**/**/*.js')
+        .pipe(babel())
+        .pipe(gulp.dest('./app/client/'));
+
+    gulp.watch('src/client/**/**/*.js', [
+        'ClientSupJS'
+    ]);
+});
+
+
+//////////////////////
+//   Components     //
+//////////////////////
+
+// Use babel to compile jsx components into javascript
+// Compile the universal files to app folder with babel
+// Use babel to compile jsx components into javascript
+// So that when rendering components on the server you don't need to worry about the JSX transpiling
+gulp.task('components', function() {
+
+    gulp.src('src/components/**/**/*.js')
+        .pipe(babel())
+        .pipe(gulp.dest('./app/components/'));
+
+    gulp.watch('src/components/**/**/*.js', [
+        'components'
+    ]);
+});
+
+
+// Compile Stylus files
+gulp.task('CSS', function () {
+    gulp.src('src/css/*.styl')
+        .pipe(stylus({
+            use: [
+                rupture()
+            ]
+        }))
+        .pipe(postcss([
+            precss({}),
+            lost(),
+            autoprefixer({})
+            //csswring
+        ]))
+        .pipe(gulp.dest('./app/css/'));
+
+    gulp.watch('src/css/*.styl', [
+        'CSS'
+    ]);
+});
+
+
+//////////////////////
+//     Handlers     //
+//////////////////////
+
+// Use babel to compile jsx components into javascript
+// Compile the universal files to app folder with babel
+// Use babel to compile jsx components into javascript
+// So that when rendering components on the server you don't need to worry about the JSX transpiling
+gulp.task('handlers', function() {
+
+    gulp.src('src/handlers/**/*.js')
+        .pipe(babel())
+        .pipe(gulp.dest('./app/handlers/'));
+
+    gulp.watch('src/handlers/**/*.js', [
+        'handlers'
+    ]);
+});
+
+
+
+//////////////////////
 //      Server      //
 //////////////////////
 
@@ -67,18 +183,6 @@ gulp.task('ServerJS', function() {
 
 });
 
-// Copy the ServerNodeEngine file
-gulp.task('ServerNodeEngineJS', function() {
-
-    gulp.src('src/node-engine-core.js')
-        .pipe(babel())
-        .pipe(gulp.dest('./app/'));
-
-    gulp.watch('src/server.js', [
-        'ServerNodeEngineJS'
-    ]);
-
-});
 
 // Copy the Server Support files
 gulp.task('ServerSupJS', function() {
@@ -113,92 +217,34 @@ gulp.task('StaticPages', function() {
 });
 
 
-
-
 //////////////////////
-//    Universal     //
+//       src        //
 //////////////////////
 
 
-// Use babel to compile jsx components into javascript
-// Compile the universal files to app folder with babel
-// Use babel to compile jsx components into javascript
-// So that when rendering components on the server you don't need to worry about the JSX transpiling
-gulp.task('UniversalJS', function() {
+// convert the appConfig File
+gulp.task('appConfig', function() {
 
-    gulp.src('src/universal/**/**/*.js')
+    gulp.src('src/appConfig.js')
         .pipe(babel())
-        .pipe(gulp.dest('./app/universal/'));
+        .pipe(gulp.dest('./app/'));
 
-    gulp.watch('src/universal/**/**/*.js', [
-        'UniversalJS'
-    ]);
-});
-
-
-// Compile Stylus files
-gulp.task('UniversalCSS', function () {
-    gulp.src('src/universal/css/*.styl')
-        .pipe(stylus({
-            use: [
-                rupture()
-            ]
-        }))
-        .pipe(postcss([
-            precss({}),
-            lost(),
-            autoprefixer({})
-            //csswring
-        ]))
-        .pipe(gulp.dest('./app/universal/css/'));
-
-    gulp.watch('src/universal/css/*.styl', [
-        'UniversalCSS'
-    ]);
-});
-
-
-//////////////////////
-//      Client      //
-//////////////////////
-
-
-gulp.task('ClientJS', function(){
-
-    gulp.src('src/client.js')
-        .pipe(webpack( require('./config/webpack.js') ))
-        .pipe(gulp.dest('./app/universal/js/'));
-
-    gulp.watch('src/universal/**/**/*.js', [
-        'ClientJS'
+    gulp.watch('src/appConfig.js', [
+        'appConfig'
     ]);
 
 });
 
-gulp.task('ClientSupJS', function() {
 
-    gulp.src('src/client/**/**/*.js')
+// convert the routes file
+gulp.task('routes', function() {
+
+    gulp.src('src/routes.js')
         .pipe(babel())
-        .pipe(gulp.dest('./app/client/'));
+        .pipe(gulp.dest('./app/'));
 
-    gulp.watch('src/client/**/**/*.js', [
-        'ClientSupJS'
-    ]);
-});
-
-
-//////////////////////
-//     REST API     //
-//////////////////////
-
-gulp.task('RestAPIJS', function() {
-
-    gulp.src('src/api/**/**/*.js')
-        .pipe(babel())
-        .pipe(gulp.dest('./app/api/'));
-
-    gulp.watch('src/api/**/**/*.js', [
-        'RestAPIJS'
+    gulp.watch('src/routes.js', [
+        'routes'
     ]);
 
 });
@@ -230,15 +276,17 @@ gulp.task('Nodemon', function () {
 
 gulp.task('default', [
     'hello',
-    'ServerJS',
-    'ServerSupJS',
-    'ServerNodeEngineJS',
-    'UniversalCSS',
-    'UniversalJS',
-    'StaticPages',
+    'RestAPIJS',
     'ClientJS',
     'ClientSupJS',
-    'RestAPIJS',
+    'components',
+    'handlers',
+    'ServerJS',
+    'ServerSupJS',
+    'StaticPages',
+    'CSS',
+    'appConfig',
+    'routes',
     'Nodemon'
 ]);
 

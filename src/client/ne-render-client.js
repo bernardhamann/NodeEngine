@@ -1,6 +1,5 @@
 import React from 'react';
 import Router from 'react-router';
-import routes from '../universal/routes';
 
 // note sure about these
 import neData from 'ne-data'

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Router, RouteHandler } from 'react-router';
-import Head from '../partials/Head';
-import Foot from '../partials/Foot';
+import Head from '../components/partials/Head';
+import Foot from '../components/partials/Foot';
 
 
 class MainHandler extends React.Component {

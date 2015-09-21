@@ -1,9 +1,9 @@
 import React from 'react';
-import config from '../../../config.js';
-import Head from '../partials/Head';
-import Foot from '../partials/Foot';
-import Header from '../sections/Header';
-import Footer from '../sections/Footer';
+import config from '../../config.js';
+import Head from '../components/partials/Head';
+import Foot from '../components/partials/Foot';
+import Header from '../components/sections/Header';
+import Footer from '../components/sections/Footer';
 
 
 class ExpressHandler extends React.Component {

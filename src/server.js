@@ -56,8 +56,8 @@ var cacheTime = 100;
 
 server.use(express.static('media',{ maxAge: cacheTime }));
 server.use(express.static(path.join(__dirname, '/static'),{ maxAge: cacheTime }));
-server.use(express.static(path.join(__dirname, '/universal/css'),{ maxAge: cacheTime }));
-server.use(express.static(path.join(__dirname, '/universal/js'),{ maxAge: cacheTime }));
+server.use(express.static(path.join(__dirname, '/css'),{ maxAge: cacheTime }));
+server.use(express.static(path.join(__dirname, '/js'),{ maxAge: cacheTime }));
 
 ///////////////
 // REST API
@@ -84,7 +84,7 @@ server.use('/express', require('./server/express'));
 ////////////////////////////////////////////////////////////
 
 var neRender = require('ne-render');
-var appConfig = require ('./universal/appConfig');
-var routes = require ('./universal/routes');
+var appConfig = require ('./appConfig');
+var routes = require ('./routes');
 
 neRender.serverRender(server, appConfig, routes);
