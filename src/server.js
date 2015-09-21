@@ -16,7 +16,7 @@ if ('development' == currentEnv) {
 }
 
 if ('production' == currentEnv) {
-    var config = configProduction.env;
+    var config = configProduction;
     console.log('Using Production CONFIG');
 }
 
@@ -75,6 +75,8 @@ mongoRest.server(server, dirName, apiPath);
 //////////////////////////////
 
 server.use('/express', require('./server/express'));
+
+
 
 
 ////////////////////////////////////////////////////////////
