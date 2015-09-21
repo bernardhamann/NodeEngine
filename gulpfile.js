@@ -75,7 +75,7 @@ gulp.task('RestAPIJS', function() {
 gulp.task('ClientJS', function(){
 
     gulp.src('src/client.js')
-        .pipe(webpack( require('./config/webpack.js') ))
+        .pipe(webpack( require('./webpack.js') ))
         .pipe(gulp.dest('./app/js/'));
 
     gulp.watch('src/client.js', [
