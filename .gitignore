@@ -1,6 +1,6 @@
-node_modules
+config-p.json
+config-d.json
 app
+node_modules
 arc
-config/pm2.json
-config/config.json
 log.md
