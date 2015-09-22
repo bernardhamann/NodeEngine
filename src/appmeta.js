@@ -1,4 +1,4 @@
-var appConfig = {
+var appmeta = {
 
     globals: {
         "APPNAME": "Node Engine Sample",
@@ -30,7 +30,7 @@ var appConfig = {
                 number: 1,
                 nedb1:
                 {
-                    path: "http://localhost:3001/api/people"
+                    path: process.env.ROOTURL + "/api/people"
                 }
             }
         },
@@ -73,8 +73,7 @@ var appConfig = {
         return meta
 
     }
-
 };
 
-module.exports = appConfig;
+module.exports = appmeta;
 
