@@ -13,14 +13,14 @@ import PeopleHandler from './handlers/PeopleHandler.js';
 import NotFoundHandler from './handlers/NotFoundHandler.js';
 
 var Routes = (
-    <Route name="MainRoute" path="/" handler={MainHandler}>
-        <Route name="about" path="about" handler={AboutHandler}></Route>
-        <Route name="contact" path="contact" handler={ContactHandler}></Route>
-        <Route name="posts" path="posts" handler={PostsHandler}></Route>
-        <Route name="posts/:id" path="posts/:id" handler={PostsHandler}></Route>
-        <Route name="people" path="people" handler={PeopleHandler}></Route>
-        <DefaultRoute name="IndexRoute" handler={IndexHandler}></DefaultRoute>
-        <NotFoundRoute name="NotFoundRoute" handler={NotFoundHandler}></NotFoundRoute>
+    <Route path="/" handler={MainHandler}>
+        <Route path="about" handler={AboutHandler}></Route>
+        <Route path="contact" handler={ContactHandler}></Route>
+        <Route path="posts" handler={PostsHandler}></Route>
+        <Route path="posts/:id" handler={PostsHandler}></Route>
+        <Route path="people" handler={PeopleHandler}></Route>
+        <DefaultRoute handler={IndexHandler}></DefaultRoute>
+        <NotFoundRoute handler={NotFoundHandler}></NotFoundRoute>
     </Route>
 );
 

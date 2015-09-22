@@ -225,11 +225,11 @@ gulp.task('StaticPages', function() {
 // convert the appConfig File
 gulp.task('appConfig', function() {
 
-    gulp.src('src/appConfig.js')
+    gulp.src('src/appmeta.js')
         .pipe(babel())
         .pipe(gulp.dest('./app/'));
 
-    gulp.watch('src/appConfig.js', [
+    gulp.watch('src/appmeta.js', [
         'appConfig'
     ]);
 
@@ -259,7 +259,7 @@ gulp.task('routes', function() {
 gulp.task('Nodemon', function () {
 
     env({
-        file: 'config/config.json',
+        file: './config-d.json',
         vars: {
             // any variables you want to overwrite
         }
