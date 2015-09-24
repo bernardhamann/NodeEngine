@@ -252,6 +252,25 @@ gulp.task('routes', function() {
 
 
 //////////////////////
+//  Passport
+//////////////////////
+
+
+// Copy the passport files
+gulp.task('passport', function() {
+
+    gulp.src('src/ne-passport.js')
+        .pipe(gulp.dest('./app/'));
+
+    gulp.watch('src/ne-passport.js', [
+        'passport'
+    ]);
+
+});
+
+
+
+//////////////////////
 //       Start      //
 //////////////////////
 
@@ -287,6 +306,7 @@ gulp.task('default', [
     'CSS',
     'appConfig',
     'routes',
+    'passport',
     'Nodemon'
 ]);
 

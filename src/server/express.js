@@ -5,6 +5,10 @@ var neSendgrid = require('./ne-sendgrid');
 
 router.get('/', function(req, res) {
 
+    console.log('req.cookies before');
+    console.log(req.cookies);
+    console.log(req.session);
+
     var email = {
         to:       'bernard@yebolocal.com',
         subject:  'Test Sendgrid',

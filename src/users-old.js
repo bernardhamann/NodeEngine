@@ -4,6 +4,10 @@ var Schema = mongoose.Schema;
 var mongoRest = require('ne-mongo-rest');
 
 var modelSchema = new Schema({
+    local: {
+        username: String,
+        password: String
+    },
     firstName:{type: String, required: true},
     lastName:{type: String, required: true},
     email:{type: String, required: true},

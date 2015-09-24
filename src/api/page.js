@@ -1,4 +1,4 @@
-var router = require('express').Router();
+//var router = require('express').Router();
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var mongoRest = require('ne-mongo-rest');
@@ -23,6 +23,12 @@ var Model = mongoose.model(
     'page'
     );
 
-mongoRest.model(router, Model);
 
-module.exports = router;
+module.exports = function (router, passport){
+
+    mongoRest.get(router, Model);
+    mongoRest.putWithPassport(router, Model, passport);
+    mongoRest.postWithPassport(router, Model, passport);
+    mongoRest.deleteWithPassport(router, Model, passport);
+
+};
