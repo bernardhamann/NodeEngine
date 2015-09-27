@@ -6,17 +6,14 @@ class Head extends React.Component {
 
         return (
             <head>
-                <title>{`${this.props.meta.title} - ${this.props.meta.globals.SITENAME}`}</title>
+                <title>{`${this.props.meta.title} - ${this.props.meta.appname}`}</title>
                 <meta name="description" content={this.props.meta.description}/>
                 <link rel='stylesheet' href='/style.css' />
-                <link href='http://fonts.googleapis.com/css?family=Holtwood+One+SC|Asap:400,700|Fjalla+One' rel='stylesheet' type='text/css' />
-                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
                 <meta charSet="UTF-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
             </head>
         )
-
     }
 }
 

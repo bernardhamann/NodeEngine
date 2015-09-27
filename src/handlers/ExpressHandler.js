@@ -30,11 +30,10 @@ var handler = React.createClass({
         var self = this;
         return (
             <html id="react-mount">
-                <Head title={self.state.title} siteName={self.props.siteName} />
+                <Head title={self.state.title} siteName={self.props.globals.appname} />
                 <body>
                     <Header {...self.props} />
                     <h2 id="main-title">This is the ExpressHandler</h2>
-                    <p>{self.state.name}</p>
                     <Footer />
                 </body>
                 <Foot />

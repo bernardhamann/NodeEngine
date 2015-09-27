@@ -20,10 +20,13 @@ var webpack = require('webpack-stream');
 // var browserSync = require('browser-sync');
 
 var fs = require('fs');
-var gulpNeRoutes = require('gulp-ne-routes');
+var neRoutes = require('gulp-ne-routes');
 var rename = require("gulp-rename");
 var wait = require('gulp-wait');
 var next= require('gulp-next');
+
+var neMeta = require('gulp-ne-meta');
+
 
 
 //////////////////////
@@ -250,17 +253,6 @@ gulp.task('passport', function() {
 //////////////////////
 
 
-var neGulp = {
-
-    compileAppMeta: function(destFilePath){
-
-    },
-    compileAppRoutes: function(destFilePath){
-
-
-
-    }
-};
 
 
 //////////////////////
@@ -273,21 +265,21 @@ var neGulp = {
 // So that when rendering components on the server you don't need to worry about the JSX transpiling
 gulp.task('handlers', function() {
 
-    return gulp.src('src/handlers/**/*.js')
+    gulp.src('src/handlers/**/*.js')
         .pipe(babel())
         .pipe(gulp.dest('./app/handlers/'))
         .pipe(next(function(){
             console.log('handlers done');
-            gulp.start('rc');
+            gulp.start('rc1');
         }));
 
-    //gulp.watch('src/handlers/**/*.js', [
-    //    'handlers'
-    //]);
+    return gulp.watch('src/handlers/**/*.js', [
+        'handlers'
+    ]);
 });
 
 
-gulp.task('rc', function() {
+gulp.task('rc1', function() {
 
     var dirName = __dirname;
     var handlersFolder = "app/handlers/";
@@ -295,11 +287,35 @@ gulp.task('rc', function() {
     return gulp.src('src/appmeta.js')
         .pipe(rename('routes.js'))
         .pipe(wait(1000))
-        .pipe(gulpNeRoutes(dirName, handlersFolder))
+        .pipe(neRoutes(dirName, handlersFolder))
         .pipe(gulp.dest('./src/'))
         .pipe(gulp.dest('./app/'))
         .pipe(next(function(){
-            console.log('rc done');
+            console.log('rc1 done');
+            gulp.start('rc2');
+        }));
+
+    // gulp.start('default');
+
+    //gulp.watch('src/handlers/**/*.js', [
+    //    'rc'
+    //]);
+
+});
+
+gulp.task('rc2', function() {
+
+    var dirName = __dirname;
+    var handlersFolder = "app/handlers/";
+
+    return gulp.src('src/client.js')
+        .pipe(rename('appmeta.js'))
+        .pipe(wait(1000))
+        .pipe(neMeta(dirName, handlersFolder))
+        .pipe(gulp.dest('./src/'))
+        .pipe(gulp.dest('./app/'))
+        .pipe(next(function(){
+            console.log('rc2 done');
             gulp.start('ClientJS');
         }));
 

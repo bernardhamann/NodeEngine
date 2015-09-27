@@ -1,3 +1,2 @@
-var test = require('./handlers/startRoutes');
-
-console.log(test.dirname);
+var appMetaFileFoot = "{}\n];\nmodule.exports = appmeta;";
+console.log(appMetaFileFoot);

@@ -4,8 +4,8 @@ var Footer = require('../components/sections/Footer');
 
 var meta = {
     path: "/contact",
-    title: "About Us",
-    description: "This is About Us page"
+    title: "Contact Us",
+    description: "This is Contact Us page"
 };
 
 var handler = React.createClass({
