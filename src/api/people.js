@@ -17,11 +17,11 @@ var Model = mongoose.model(
     );
 
 
-module.exports = function (router, passport){
+module.exports = function (router, passport, strategyName){
 
     mongoRest.get(router, Model);
     mongoRest.put(router, Model);
-    mongoRest.postWithPassport(router, Model, passport);
-    mongoRest.deleteWithPassport(router, Model, passport);
+    mongoRest.postWithPassport(router, Model, passport, strategyName);
+    mongoRest.deleteWithPassport(router, Model, passport, strategyName);
 
 };
