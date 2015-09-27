@@ -3,41 +3,44 @@ var Header = require('../components/sections/Header');
 var Footer = require('../components/sections/Footer');
 
 var meta = {
-    path: "/people",
+    path: "/admin/users",
     title: "About Us",
     description: "This is About Us page"
 };
 
 var handler = React.createClass({
 
-
     render: function() {
         var self = this;
 
-        // self.props.meta.func();
+        console.log(self.props);
 
-        var people;
+        var users;
         if (self.props.data.message){
-
-            people = self.props.data.message;
-
+            users = self.props.data.message;
         }
         else {
-            people = self.props.data.nedb1.map((person, index)=>{
+            users = self.props.data.nedb1.map((user, index)=>{
                 return (
                     <p key={index}>
-                        {person.firstName} <br/>
-                        {person.lastName}<br/>
-                        {person.email}
+                        {user.profile.nameFirst} {user.profile.nameLast}
+                        <br/>
+                        {user.tokens.neEditor}
+                        <br/>
+                        {user.tokens.neAdmin}
                     </p>
                 )
             });
         }
+
         return (
             <body>
                 <Header {...self.props} />
-                <h2 id="main-title">This is the PeopleHandler</h2>
-                {people}
+                <h2 id="main-title">This is the Users Handler</h2>
+
+                {users}
+
+
                 <Footer />
             </body>
         )

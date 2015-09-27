@@ -54,29 +54,37 @@ server.use(cookieParser());
 var passport = require ('passport');
 var nePassport = require ('./ne-passport');
 
-// Create the User model
-var neUser = nePassport.neUser();
 
 // Configure strategies
+nePassport.neSuperStrategyConfig(passport);
+nePassport.neAdminStrategyConfig(passport);
+nePassport.neEditorStrategyConfig(passport);
 
-// neLocal Strategy
-
-// neMongoRest Strategy
-var mongoRest = require('ne-mongo-rest');
-mongoRest.passportConfig(passport, neUser);
+nePassport.localStrategyConfig(passport);
 
 // Initialize passport
 // can not use passport before this and all config must be above this
-server.use(passport.initialize());
+nePassport.init(server, passport);
+
+// Strategy routes
+nePassport.neSuperStrategyRoutes(server, passport);
+nePassport.neAdminStrategyUsersRoutes(server, passport);
+nePassport.neAdminStrategyEditorTokensRoutes(server, passport);
+
+nePassport.localStrategyRoutes(server, passport);
 
 
 ///////////////
-// REST API
+// Content API
 ///////////////
+
+var mongoRest = require('ne-mongo-rest');
 
 var dirNameRest = __dirname;
 var apiPath = "/api";
-mongoRest.routesConfig(server, dirNameRest, apiPath, passport);
+
+var strategyName = "neEditorTokens";
+mongoRest.routesConfig(server, dirNameRest, apiPath, passport, strategyName);
 
 
 //////////////////////////////
@@ -103,23 +111,14 @@ neRender.serverRender(server, appmeta, routes);
 
 /*
 
- var flash = require ('connect-flash');
- server.use(flash());
+
 
  */
 
 /*
- // var session = require('express-session');
- // secret:'anystring'
- server.use(session(
- {
- secret: 'thesecret',
- saveUninitialized: true,
- resave: false
- }
  ));
 
- server.use(passport.session());
+
 
  */
 

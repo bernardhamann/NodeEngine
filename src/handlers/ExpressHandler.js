@@ -1,13 +1,18 @@
-import React from 'react';
-import config from '../../config.js';
-import Head from '../components/partials/Head';
-import Foot from '../components/partials/Foot';
-import Header from '../components/sections/Header';
-import Footer from '../components/sections/Footer';
+var React = require('react');
+var Head = require('../components/partials/Head');
+var Foot = require('../components/partials/Foot');
+var Header = require('../components/sections/Header');
+var Footer = require('../components/sections/Footer');
 
+var meta = {
+    path: "/express",
+    title: "About Us",
+    description: "This is About Us page"
+};
 
-class ExpressHandler extends React.Component {
+var handler = React.createClass({
 
+    /*
     constructor(props){
         super(props);
         this.state = {
@@ -15,18 +20,19 @@ class ExpressHandler extends React.Component {
             name: "Name from Express Handler State"
         }
     }
+    */
 
-    static componentDidMount() {
+    componentDidMount: function () {
         console.log('ExpressHandler Mounted');
-    }
+    },
 
-    render() {
+    render: function() {
         var self = this;
         return (
             <html id="react-mount">
                 <Head title={self.state.title} siteName={self.props.siteName} />
                 <body>
-                    <Header />
+                    <Header {...self.props} />
                     <h2 id="main-title">This is the ExpressHandler</h2>
                     <p>{self.state.name}</p>
                     <Footer />
@@ -35,15 +41,20 @@ class ExpressHandler extends React.Component {
             </html>
         )
     }
-}
+});
 
-ExpressHandler.propTypes = {
+/*
+
+handler.propTypes = {
     title: React.PropTypes.string,
     siteName: React.PropTypes.string
 };
 
-ExpressHandler.defaultProps = {
-    siteName: config.SITENAME
+handler.defaultProps = {
+    siteName: "Sitename"
 };
 
-export default ExpressHandler
+*/
+
+exports.handler = handler;
+exports.meta = meta;

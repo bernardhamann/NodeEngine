@@ -19,6 +19,12 @@ var webpack = require('webpack-stream');
 
 // var browserSync = require('browser-sync');
 
+var fs = require('fs');
+var gulpNeRoutes = require('gulp-ne-routes');
+var rename = require("gulp-rename");
+var wait = require('gulp-wait');
+var next= require('gulp-next');
+
 
 //////////////////////
 //    Hello World   //
@@ -60,7 +66,7 @@ gulp.task('RestAPIJS', function() {
         .pipe(babel())
         .pipe(gulp.dest('./app/api/'));
 
-    gulp.watch('src/api/**/**/*.js', [
+    return gulp.watch('src/api/**/**/*.js', [
         'RestAPIJS'
     ]);
 
@@ -89,6 +95,10 @@ gulp.task('ClientJS', function(){
         'ClientJS'
     ]);
 
+    return gulp.watch('src/routes.js', [
+        'ClientJS'
+    ]);
+
 });
 
 gulp.task('ClientSupJS', function() {
@@ -97,9 +107,11 @@ gulp.task('ClientSupJS', function() {
         .pipe(babel())
         .pipe(gulp.dest('./app/client/'));
 
-    gulp.watch('src/client/**/**/*.js', [
+    return gulp.watch('src/client/**/**/*.js', [
         'ClientSupJS'
     ]);
+
+
 });
 
 
@@ -117,7 +129,7 @@ gulp.task('components', function() {
         .pipe(babel())
         .pipe(gulp.dest('./app/components/'));
 
-    gulp.watch('src/components/**/**/*.js', [
+    return gulp.watch('src/components/**/**/*.js', [
         'components'
     ]);
 });
@@ -139,31 +151,10 @@ gulp.task('CSS', function () {
         ]))
         .pipe(gulp.dest('./app/css/'));
 
-    gulp.watch('src/css/*.styl', [
+    return gulp.watch('src/css/*.styl', [
         'CSS'
     ]);
 });
-
-
-//////////////////////
-//     Handlers     //
-//////////////////////
-
-// Use babel to compile jsx components into javascript
-// Compile the universal files to app folder with babel
-// Use babel to compile jsx components into javascript
-// So that when rendering components on the server you don't need to worry about the JSX transpiling
-gulp.task('handlers', function() {
-
-    gulp.src('src/handlers/**/*.js')
-        .pipe(babel())
-        .pipe(gulp.dest('./app/handlers/'));
-
-    gulp.watch('src/handlers/**/*.js', [
-        'handlers'
-    ]);
-});
-
 
 
 //////////////////////
@@ -177,7 +168,7 @@ gulp.task('ServerJS', function() {
         .pipe(babel())
         .pipe(gulp.dest('./app/'));
 
-    gulp.watch('src/server.js', [
+    return gulp.watch('src/server.js', [
         'ServerJS'
     ]);
 
@@ -191,7 +182,7 @@ gulp.task('ServerSupJS', function() {
         .pipe(babel())
         .pipe(gulp.dest('./app/server/'));
 
-    gulp.watch('src/server/**/**/*.js', [
+    return gulp.watch('src/server/**/**/*.js', [
         'ServerSupJS'
     ]);
 
@@ -210,7 +201,7 @@ gulp.task('StaticPages', function() {
     gulp.src('src/static/**/**/**/*.html')
         .pipe(gulp.dest('./app/static/'));
 
-    gulp.watch('src/static/**/**/**/*.html', [
+    return gulp.watch('src/static/**/**/**/*.html', [
         'StaticPages'
     ]);
 
@@ -229,26 +220,11 @@ gulp.task('appConfig', function() {
         .pipe(babel())
         .pipe(gulp.dest('./app/'));
 
-    gulp.watch('src/appmeta.js', [
+    return gulp.watch('src/appmeta.js', [
         'appConfig'
     ]);
 
 });
-
-
-// convert the routes file
-gulp.task('routes', function() {
-
-    gulp.src('src/routes.js')
-        .pipe(babel())
-        .pipe(gulp.dest('./app/'));
-
-    gulp.watch('src/routes.js', [
-        'routes'
-    ]);
-
-});
-
 
 
 //////////////////////
@@ -262,9 +238,76 @@ gulp.task('passport', function() {
     gulp.src('src/ne-passport.js')
         .pipe(gulp.dest('./app/'));
 
-    gulp.watch('src/ne-passport.js', [
+    return gulp.watch('src/ne-passport.js', [
         'passport'
     ]);
+
+});
+
+
+//////////////////////
+//  Compile Routes
+//////////////////////
+
+
+var neGulp = {
+
+    compileAppMeta: function(destFilePath){
+
+    },
+    compileAppRoutes: function(destFilePath){
+
+
+
+    }
+};
+
+
+//////////////////////
+//     Handlers     //
+//////////////////////
+
+// Use babel to compile jsx components into javascript
+// Compile the universal files to app folder with babel
+// Use babel to compile jsx components into javascript
+// So that when rendering components on the server you don't need to worry about the JSX transpiling
+gulp.task('handlers', function() {
+
+    return gulp.src('src/handlers/**/*.js')
+        .pipe(babel())
+        .pipe(gulp.dest('./app/handlers/'))
+        .pipe(next(function(){
+            console.log('handlers done');
+            gulp.start('rc');
+        }));
+
+    //gulp.watch('src/handlers/**/*.js', [
+    //    'handlers'
+    //]);
+});
+
+
+gulp.task('rc', function() {
+
+    var dirName = __dirname;
+    var handlersFolder = "app/handlers/";
+
+    return gulp.src('src/appmeta.js')
+        .pipe(rename('routes.js'))
+        .pipe(wait(1000))
+        .pipe(gulpNeRoutes(dirName, handlersFolder))
+        .pipe(gulp.dest('./src/'))
+        .pipe(gulp.dest('./app/'))
+        .pipe(next(function(){
+            console.log('rc done');
+            gulp.start('ClientJS');
+        }));
+
+    // gulp.start('default');
+
+    //gulp.watch('src/handlers/**/*.js', [
+    //    'rc'
+    //]);
 
 });
 
@@ -284,7 +327,7 @@ gulp.task('Nodemon', function () {
         }
     });
 
-    nodemon({
+    return nodemon({
         script: 'app/server.js',
         ext: 'js',
         env: { 'NODE_ENV': 'development' }
@@ -295,17 +338,15 @@ gulp.task('Nodemon', function () {
 
 gulp.task('default', [
     'hello',
+    'handlers',
     'RestAPIJS',
-    'ClientJS',
     'ClientSupJS',
     'components',
-    'handlers',
+    'CSS',
     'ServerJS',
     'ServerSupJS',
     'StaticPages',
-    'CSS',
     'appConfig',
-    'routes',
     'passport',
     'Nodemon'
 ]);
