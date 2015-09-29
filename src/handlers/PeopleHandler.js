@@ -4,17 +4,40 @@ var Footer = require('../components/sections/Footer');
 
 var meta = {
     path: "/people",
-    title: "About Us",
-    description: "This is About Us page"
+    title: "People",
+    description: "This is People page",
+    neDataBefore: 1,
+    nedb1: {
+        path: process.env.ROOTURL + "/api/people",
+        pathFunction: function (_id) {
+            if (_id){
+                path = process.env.ROOTURL + "/api/people" + "/" + _id;
+            }else {
+                var path = process.env.ROOTURL + "/api/people";
+            }
+            return path
+        },
+        cycle: false,
+        search: false
+    },
+    cycle: {
+        limit: "query.limit",
+        batch: "query.batch"
+    },
+    search: {
+        field1: "query.limit",
+        value2: "query.batch"
+    }
+
 };
 
-var handler = React.createClass({
 
+var handler = React.createClass({
 
     render: function() {
         var self = this;
 
-        // self.props.meta.func();
+        // var dd = self.props.data.nedb1.func();
 
         var people;
         if (self.props.data.message){

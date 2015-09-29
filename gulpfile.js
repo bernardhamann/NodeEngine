@@ -284,10 +284,10 @@ gulp.task('rc1', function() {
     var dirName = __dirname;
     var handlersFolder = "app/handlers/";
 
-    return gulp.src('src/appmeta.js')
-        .pipe(rename('routes.js'))
+    return gulp.src('src/client.js')
+        .pipe(rename('appmeta.js'))
         .pipe(wait(1000))
-        .pipe(neRoutes(dirName, handlersFolder))
+        .pipe(neMeta(dirName, handlersFolder))
         .pipe(gulp.dest('./src/'))
         .pipe(gulp.dest('./app/'))
         .pipe(next(function(){
@@ -303,15 +303,16 @@ gulp.task('rc1', function() {
 
 });
 
+
 gulp.task('rc2', function() {
 
     var dirName = __dirname;
     var handlersFolder = "app/handlers/";
 
-    return gulp.src('src/client.js')
-        .pipe(rename('appmeta.js'))
+    return gulp.src('src/appmeta.js')
+        .pipe(rename('routes.js'))
         .pipe(wait(1000))
-        .pipe(neMeta(dirName, handlersFolder))
+        .pipe(neRoutes(dirName, handlersFolder))
         .pipe(gulp.dest('./src/'))
         .pipe(gulp.dest('./app/'))
         .pipe(next(function(){
@@ -326,7 +327,6 @@ gulp.task('rc2', function() {
     //]);
 
 });
-
 
 
 //////////////////////

@@ -3,9 +3,14 @@ var Header = require('../components/sections/Header');
 var Footer = require('../components/sections/Footer');
 
 var meta = {
-    path: "/admin/users",
-    title: "About Us",
-    description: "This is About Us page"
+        path: "/admin/users",
+        title: "Users",
+        description: "This is Users page",
+
+        neDataBefore: 1,
+        nedb1: {
+            path: process.env.ROOTURL + "/admin/api/users?access_token=admin"
+        }
 };
 
 var handler = React.createClass({
