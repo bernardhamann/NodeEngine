@@ -15,7 +15,7 @@
     "mongoose": "^4.1.5",
     "morgan": "^1.6.1",
     "ne-data": "^1.3.2",
-    "ne-mongo-rest": "^1.2.1",
+    "ne-mongo": "^1.2.1",
     "ne-render": "^1.4.3",
     "ne-server": "^1.4.4",
     "passport": "^0.3.0",

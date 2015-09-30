@@ -78,7 +78,7 @@ nePassport.localStrategyRoutes(server, passport);
 // Content API
 ///////////////
 
-var mongoRest = require('ne-mongo-rest');
+var mongoRest = require('ne-mongo');
 
 var dirNameRest = __dirname;
 var apiPath = "/api";

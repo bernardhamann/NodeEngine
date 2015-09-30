@@ -1,7 +1,7 @@
 //var router = require('express').Router();
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var mongoRest = require('ne-mongo-rest');
+var mongoRest = require('ne-mongo');
 
 var modelSchema = new Schema({
     path:{type: String, required: true},
