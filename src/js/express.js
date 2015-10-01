@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var neSendgrid = require('./ne-sendgrid');
+var neSendgrid = require('../ne-sendgrid');
 
 router.get('/', function(req, res) {
 

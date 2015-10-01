@@ -91,7 +91,7 @@ mongoRest.routesConfig(server, dirNameRest, apiPath, passport, strategyName);
 // Express Test
 //////////////////////////////
 
-server.use('/express', require('./server/express'));
+server.use('/express', require('./js/express'));
 
 
 ////////////////////////////////////////////////////////////
@@ -109,18 +109,6 @@ neRender.serverRender(server, appmeta, routes);
 // Passport
 ////////////////////////
 
-/*
-
-
-
- */
-
-/*
- ));
-
-
-
- */
 
 /*
 

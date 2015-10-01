@@ -59,7 +59,7 @@ var handler = React.createClass({
         return (
             <body>
                 <Header {...self.props} />
-                <h2 id="main-title">This is the PeopleHandler</h2>
+                <h2 id="main-title">This is the People Handler</h2>
                 {people}
                 <Footer />
             </body>

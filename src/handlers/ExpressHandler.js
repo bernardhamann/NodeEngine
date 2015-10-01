@@ -33,7 +33,7 @@ var handler = React.createClass({
                 <Head title={self.state.title} siteName={self.props.globals.appname} />
                 <body>
                     <Header {...self.props} />
-                    <h2 id="main-title">This is the ExpressHandler</h2>
+                    <h2 id="main-title">This is the Express Handler</h2>
                     <Footer />
                 </body>
                 <Foot />

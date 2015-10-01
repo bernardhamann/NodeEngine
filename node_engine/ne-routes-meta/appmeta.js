@@ -13,8 +13,8 @@ var appmeta = [
   description: "This is About Us page"
 },{
   path: "/",
-  title: "About Us",
-  description: "This is About Us page"
+  title: "Home",
+  description: "Home"
 },{
   path: "/login",
   title: "Login",

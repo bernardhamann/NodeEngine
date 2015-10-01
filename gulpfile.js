@@ -111,10 +111,6 @@ gulp.task('babel', function() {
     return gulp.src('src/**/**/**/*.js')
         .pipe(babel())
         .pipe(gulp.dest('./app/'));
-        //.pipe(next(function(){
-        //    console.log('handlers done');
-        //    gulp.start('neMeta');
-        //}));
 
 });
 

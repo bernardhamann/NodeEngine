@@ -15,7 +15,7 @@ var handler = React.createClass({
         return (
             <body>
                 <Header {...self.props} />
-                <h2 id="main-title">This is the PostsHandler</h2>
+                <h2 id="main-title">This is the Posts Handler</h2>
                 <p>id: {self.props.params.id}</p>
                 <Footer />
             </body>
