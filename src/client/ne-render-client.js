@@ -1,6 +1,6 @@
 import React from 'react';
 import Router from 'react-router';
-var routes = require('../routes');
+var routes = require('../../node_engine/ne-routes-meta/routes');
 
 // note sure about these
 import neData from 'ne-data'

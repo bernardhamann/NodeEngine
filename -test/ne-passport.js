@@ -7,6 +7,9 @@ var Schema = mongoose.Schema;
 var expressSession = require('express-session');
 var flash = require ('connect-flash');
 
+var fs = require ('fs');
+
+
 
 
 //////////////////////////////
@@ -231,7 +234,7 @@ var nePassport = {
         var strategyName = "neSuperTokens";
         var populatePath = "";
 
-        this.adminRoutesTemplate(router, passport, strategyName, neAdminTokens, populatePath);
+        this.routesTemplate(router, passport, strategyName, neAdminTokens, populatePath);
 
         server.use('/admin/api/tokens/admin', router);
 
@@ -266,7 +269,7 @@ var nePassport = {
         var strategyName = "neAdminTokens";
         var populatePath = "";
 
-        this.adminRoutesTemplate(router, passport, strategyName, neUsers, populatePath);
+        this.routesTemplate(router, passport, strategyName, neUsers, populatePath);
 
         server.use('/admin/api/users', router);
 
@@ -278,7 +281,7 @@ var nePassport = {
         var strategyName = "neAdminTokens";
         var populatePath = "";
 
-        this.adminRoutesTemplate(router, passport, strategyName, neEditorTokens, populatePath);
+        this.routesTemplate(router, passport, strategyName, neEditorTokens, populatePath);
 
         server.use('/admin/api/tokens/editor', router);
 
@@ -384,12 +387,24 @@ var nePassport = {
 // Passport Strategies for other ne Modules
 ////////////////////////////////////////////////
 
+    handlers: function (){
+
+        var gulp = require('gulp');
+        var babel = require('gulp-babel');
+
+        gulp.src('./tt.js')
+            .pipe(babel())
+            .pipe(gulp.dest('./app/'));
+
+        return undefined
+
+    },
 
 //////////////////////////////
 // routes Template
 //////////////////////////////
 
-    adminRoutesTemplate: function (router, passport, strategy, model, populatePath){
+    routesTemplate: function (router, passport, strategy, model, populatePath){
 
         // var router = express.Router();
 

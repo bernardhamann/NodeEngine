@@ -19,14 +19,11 @@ var webpack = require('webpack-stream');
 
 // var browserSync = require('browser-sync');
 
+// Node Engine
 var fs = require('fs');
-var neRoutes = require('gulp-ne-routes');
 var rename = require("gulp-rename");
 var wait = require('gulp-wait');
-var next= require('gulp-next');
-
-var neMeta = require('gulp-ne-meta');
-
+// var next= require('gulp-next');
 
 
 //////////////////////
@@ -107,44 +104,17 @@ gulp.task('static', function() {
 
 gulp.task('babel', function() {
 
-    gulp.watch('src/api/**/**/*.js', [
-        'babel'
-    ]);
-    gulp.watch('src/client/**/**/*.js', [
-        'babel'
-    ]);
-    gulp.watch('src/components/**/**/*.js', [
-        'babel'
-    ]);
-    gulp.watch('src/handlers/**/**/*.js', [
-        'babel'
-    ]);
-    gulp.watch('src/js/**/**/*.js', [
-        'babel'
-    ]);
-    gulp.watch('src/server/**/**/*.js', [
-        'babel'
-    ]);
-    gulp.watch('src/static/**/**/*.js', [
-        'babel'
-    ]);
-    gulp.watch('src/client.js', [
-        'babel'
-    ]);
-    gulp.watch('src/server.js', [
-        'babel'
-    ]);
-    gulp.watch('src/ne-passport.js', [
+    gulp.watch('src/**/**/**/*.js', [
         'babel'
     ]);
 
     return gulp.src('src/**/**/**/*.js')
         .pipe(babel())
-        .pipe(gulp.dest('./app/'))
-        .pipe(next(function(){
-            console.log('handlers done');
-            gulp.start('neMeta');
-        }));
+        .pipe(gulp.dest('./app/'));
+        //.pipe(next(function(){
+        //    console.log('handlers done');
+        //    gulp.start('neMeta');
+        //}));
 
 });
 
@@ -153,41 +123,26 @@ gulp.task('babel', function() {
 //  Node Engine
 //////////////////////
 
+gulp.task('neCompile',['babel'], function() {
 
-gulp.task('neMeta', function() {
+    var nePassport = require ('ne-passport');
+    nePassport.handlers();
 
-    var dirName = __dirname;
-    var handlersFolder = "app/handlers/";
 
-    return gulp.src('src/client.js')
-        .pipe(rename('appmeta.js'))
-        .pipe(wait(1000))
-        .pipe(neMeta(dirName, handlersFolder))
-        .pipe(gulp.dest('./src/'))
-        .pipe(gulp.dest('./app/'))
-        .pipe(next(function(){
-            console.log('neMeta done');
-            gulp.start('neRoutes');
-        }));
+
+    return undefined
 
 });
 
+gulp.task('neGulp',['neCompile'], function() {
 
-gulp.task('neRoutes', function() {
-
+    var neGulp = require ('ne-gulp');
     var dirName = __dirname;
     var handlersFolder = "app/handlers/";
 
-    return gulp.src('src/appmeta.js')
-        .pipe(rename('routes.js'))
-        .pipe(wait(1000))
-        .pipe(neRoutes(dirName, handlersFolder))
-        .pipe(gulp.dest('./src/'))
-        .pipe(gulp.dest('./app/'))
-        .pipe(next(function(){
-            console.log('neRoutes done');
-            gulp.start('webpack');
-        }));
+    neGulp(dirName,handlersFolder);
+
+    return undefined
 
 });
 
@@ -196,27 +151,11 @@ gulp.task('neRoutes', function() {
 //  Webpack
 //////////////////////
 
-gulp.task('webpack', function(){
+gulp.task('webpack', ['neCompile','neGulp'], function(){
 
     gulp.src('src/**/**/**/*.js')
         .pipe(webpack( require('./webpack.js') ))
         .pipe(gulp.dest('./app/js/'));
-
-});
-
-
-//////////////////////
-//  Node Engine
-//////////////////////
-
-gulp.task('passport', function() {
-
-    gulp.watch('src/ne-passport.js', [
-        'passport'
-    ]);
-
-    return gulp.src('src/ne-passport.js')
-        .pipe(gulp.dest('./app/'));
 
 });
 
@@ -252,7 +191,9 @@ gulp.task('default', [
     'style',
     'static',
     'babel',
-    'passport',
+    'neCompile',
+    'neGulp',
+    'webpack',
     'Nodemon'
 ]);
 
@@ -280,4 +221,48 @@ gulp.task('default', [
 var nodemon = require('gulp-nodemon');
 
 
+
+
+
+gulp.task('neMeta',['babel'], function() {
+
+    var dirName = __dirname;
+    var handlersFolder = "app/handlers/";
+
+    return gulp.src('node_engine/blank.js')
+        .pipe(rename('appmeta.js'))
+        .pipe(wait(1000))
+        .pipe(neMeta(dirName, handlersFolder))
+        .pipe(gulp.dest('./node_engine/gulp-ne-meta/'));
+        //.pipe(next(function(){
+        //    console.log('neMeta done');
+        //    gulp.start('neRoutes');
+        //}));
+
+});
+
+
+gulp.task('neRoutes',['babel'], function() {
+
+    var dirName = __dirname;
+    var handlersFolder = "app/handlers/";
+
+    return gulp.src('node_engine/blank.js')
+        .pipe(rename('routes.js'))
+        .pipe(wait(1000))
+        .pipe(neRoutes(dirName, handlersFolder))
+        .pipe(gulp.dest('./node_engine/gulp-ne-routes/'));
+        //.pipe(next(function(){
+        //    console.log('neRoutes done');
+        //    gulp.start('webpack');
+        //}));
+
+});
+
+
+
 */
+
+// Use this to setup the tasks to run one after the other
+// https://github.com/gulpjs/gulp/blob/master/docs/recipes/running-tasks-in-series.md
+//

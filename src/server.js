@@ -52,7 +52,7 @@ server.use(cookieParser());
 
 // Import passport
 var passport = require ('passport');
-var nePassport = require ('./ne-passport');
+var nePassport = require ('ne-passport');
 
 
 // Configure strategies
@@ -99,8 +99,8 @@ server.use('/express', require('./server/express'));
 ////////////////////////////////////////////////////////////
 
 var neRender = require('ne-render');
-var appmeta = require ('./appmeta');
-var routes = require ('./routes');
+var appmeta = require ('../node_engine/ne-routes-meta/appmeta');
+var routes = require ('../node_engine/ne-routes-meta/routes');
 
 neRender.serverRender(server, appmeta, routes);
 
