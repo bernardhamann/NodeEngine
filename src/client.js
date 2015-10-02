@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-var routes = require ('../node_engine/ne-routes-meta/routes');
+var routes = require ('../node_engine/ne-gulp/routes');
 import clientRender from './ne-render-client';
 
 console.log("Client JS is Active");

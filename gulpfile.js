@@ -119,24 +119,20 @@ gulp.task('babel', function() {
 //  Node Engine
 //////////////////////
 
-gulp.task('neCompile',['babel'], function() {
+gulp.task('neGulp',['babel'], function() {
 
+    // Run custom Node Engine modules here
     var nePassport = require ('ne-passport');
     nePassport.handlers();
 
-
-
-    return undefined
-
-});
-
-gulp.task('neGulp',['neCompile'], function() {
-
-    var neGulp = require ('ne-gulp');
-    var dirName = __dirname;
-    var handlersFolder = "app/handlers/";
-
-    neGulp(dirName,handlersFolder);
+    // Compile the routes.js and the appmeta.js files
+    var compileNow = function(){
+        var neGulp = require ('ne-gulp');
+        var dirName = __dirname;
+        var handlersFolder = "app/handlers/";
+        neGulp(dirName,handlersFolder);
+    };
+    setTimeout(compileNow, 2000);
 
     return undefined
 
@@ -147,7 +143,7 @@ gulp.task('neGulp',['neCompile'], function() {
 //  Webpack
 //////////////////////
 
-gulp.task('webpack', ['neCompile','neGulp'], function(){
+gulp.task('webpack', ['neGulp'], function(){
 
     gulp.src('src/**/**/**/*.js')
         .pipe(webpack( require('./webpack.js') ))
@@ -159,11 +155,6 @@ gulp.task('webpack', ['neCompile','neGulp'], function(){
 //////////////////////
 //  Nodemon
 //////////////////////
-
-
-gulp.task('watch', function() {
-
-});
 
 
 gulp.task('Nodemon', function () {
@@ -187,7 +178,6 @@ gulp.task('default', [
     'style',
     'static',
     'babel',
-    'neCompile',
     'neGulp',
     'webpack',
     'Nodemon'

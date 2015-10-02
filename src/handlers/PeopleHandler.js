@@ -9,9 +9,9 @@ var meta = {
     neDataBefore: 1,
     nedb1: {
         path: process.env.ROOTURL + "/api/people",
-        pathFunction: function (_id) {
-            if (_id){
-                path = process.env.ROOTURL + "/api/people" + "/" + _id;
+        pathFunction: function (meta) {
+            if (meta.params._id){
+                path = process.env.ROOTURL + "/api/people" + "/" + meta.params._id;
             }else {
                 var path = process.env.ROOTURL + "/api/people";
             }

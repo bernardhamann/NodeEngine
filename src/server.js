@@ -71,6 +71,10 @@ nePassport.neSuperStrategyRoutes(server, passport);
 nePassport.neAdminStrategyUsersRoutes(server, passport);
 nePassport.neAdminStrategyEditorTokensRoutes(server, passport);
 
+nePassport.neSuperStrategyRoutesUserAssign(server, passport);
+
+
+
 nePassport.localStrategyRoutes(server, passport);
 
 
@@ -99,8 +103,8 @@ server.use('/express', require('./js/express'));
 ////////////////////////////////////////////////////////////
 
 var neRender = require('ne-render');
-var appmeta = require ('../node_engine/ne-routes-meta/appmeta');
-var routes = require ('../node_engine/ne-routes-meta/routes');
+var appmeta = require ('../node_engine/ne-gulp/appmeta');
+var routes = require ('../node_engine/ne-gulp/routes');
 
 neRender.serverRender(server, appmeta, routes);
 
