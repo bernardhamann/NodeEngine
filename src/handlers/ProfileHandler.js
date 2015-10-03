@@ -17,8 +17,8 @@ var handler = React.createClass({
         console.log(self.props);
 
         var users;
-        if (self.props.user && self.props.user.profile.nameFirst && self.props.user.profile.nameLast ){
-            var name = self.props.user.profile.nameFirst + " " + self.props.user.profile.nameLast;
+        if (self.props.user && self.props.user.profile.nameFirst){
+            var name = self.props.user.profile.nameFirst;
             users = (
                 <div>
                     <p>Welcome {name} </p>
