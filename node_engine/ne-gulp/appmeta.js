@@ -62,6 +62,10 @@ var appmeta = [
     path: "http://localhost:3001/admin/api/users?access_token=admin"
   }
 },{
+  path: "/login",
+  title: "Login",
+  description: "Login page"
+},{
   path: "/super",
   title: "Super Admin Page",
   description: "Use the super admin key to create admin tokens and assign them to users",
@@ -102,10 +106,6 @@ var appmeta = [
             return path;
         }
   }
-},{
-  path: "/login",
-  title: "Login",
-  description: "Login page"
 }
 ]; 
 module.exports = appmeta;
