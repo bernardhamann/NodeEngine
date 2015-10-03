@@ -123,7 +123,7 @@ gulp.task('neGulp',['babel'], function() {
 
     // Run custom Node Engine modules here
     var nePassport = require ('ne-passport');
-    nePassport.handlers();
+    nePassport.gulpCompileHandlers();
 
     // Compile the routes.js and the appmeta.js files
     var compileNow = function(){
