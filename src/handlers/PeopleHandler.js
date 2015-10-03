@@ -49,9 +49,7 @@ var handler = React.createClass({
             people = self.props.data.nedb1.map((person, index)=>{
                 return (
                     <p key={index}>
-                        {person.firstName} <br/>
-                        {person.lastName}<br/>
-                        {person.email}
+                        {person.nameFirst} <br/>
                     </p>
                 )
             });
