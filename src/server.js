@@ -56,11 +56,10 @@ var nePassport = require ('ne-passport');
 
 
 // Configure strategies
-nePassport.neSuperStrategyConfig(passport);
-nePassport.neAdminStrategyConfig(passport);
-nePassport.neEditorStrategyConfig(passport);
-
-nePassport.localStrategyConfig(passport);
+//nePassport.neSuperStrategyConfig(passport);
+//nePassport.neAdminStrategyConfig(passport);
+//nePassport.neEditorStrategyConfig(passport);
+//nePassport.localStrategyConfig(passport);
 
 // Initialize passport
 // can not use passport before this and all config must be above this
