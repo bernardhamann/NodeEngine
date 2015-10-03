@@ -54,27 +54,17 @@ server.use(cookieParser());
 var passport = require ('passport');
 var nePassport = require ('ne-passport');
 
-
-// Configure strategies
-//nePassport.neSuperStrategyConfig(passport);
-//nePassport.neAdminStrategyConfig(passport);
-//nePassport.neEditorStrategyConfig(passport);
-//nePassport.localStrategyConfig(passport);
+// Configure additional strategies before init
 
 // Initialize passport
-// can not use passport before this and all config must be above this
 nePassport.init(server, passport);
+// Now you can use passport
 
-// Strategy routes
-nePassport.neSuperStrategyRoutes(server, passport);
-nePassport.neAdminStrategyUsersRoutes(server, passport);
-nePassport.neAdminStrategyEditorTokensRoutes(server, passport);
+// Use passport on routes
 
+nePassport.authRoutes(server, passport);
+nePassport.apiRoutes(server, passport);
 nePassport.neSuperStrategyRoutesUserAssign(server, passport);
-
-
-
-nePassport.localStrategyRoutes(server, passport);
 
 
 ///////////////
