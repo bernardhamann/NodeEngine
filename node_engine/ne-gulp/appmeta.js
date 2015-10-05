@@ -51,8 +51,8 @@ var appmeta = [
   description: "This is About Us page"
 },{
   path: "/profile",
-  title: "About Us",
-  description: "This is About Us page"
+  title: "Profile Page",
+  description: "User profile page"
 },{
   path: "/admin/users",
   title: "Users",
@@ -65,6 +65,10 @@ var appmeta = [
   path: "/login",
   title: "Login",
   description: "Login page"
+},{
+  path: "/signup",
+  title: "Signup",
+  description: "Signup page"
 },{
   path: "/super",
   title: "Super Admin Page",
