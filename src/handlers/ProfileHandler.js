@@ -4,8 +4,8 @@ var Footer = require('../components/sections/Footer');
 
 var meta = {
     path: "/profile",
-    title: "About Us",
-    description: "This is About Us page"
+    title: "Profile Page",
+    description: "User profile page"
 };
 
 var handler = React.createClass({
@@ -16,30 +16,54 @@ var handler = React.createClass({
 
         console.log(self.props);
 
-        var users;
-        if (self.props.user && self.props.user.profile.nameFirst){
-            var name = self.props.user.profile.nameFirst;
-            users = (
+        var facebook;
+        if (self.props.user){
+            if(self.props.user.facebook.active === false){
+
+                facebook = (
+                    <div>
+                        <h3>Facebook</h3>
+                        <p>You are not connected to facebook</p>
+                    </div>
+                )
+            }
+            else {
+                var facebookId = self.props.user.facebook.id;
+                var facebookToken = self.props.user.facebook.token;
+                facebook = (
+                    <div>
+                        <h3>Facebook</h3>
+
+                        <p>Id: <br/>{facebookId}</p>
+
+                        <p>Token: <br/>{facebookToken}</p>
+                    </div>
+                )
+            }
+        }
+        var profile;
+        if (self.props.user && self.props.user.profile.name.displayName){
+            var name = self.props.user.profile.name.displayName;
+            profile = (
                 <div>
                     <p>Welcome {name} </p>
+                    {facebook}
                 </div>
             )
         }
         else {
-            users = (
+            profile = (
                 <div>
                     <p>Please login to view your profile page</p>
                 </div>
             )
         }
-
         return (
             <body>
             <Header {...self.props} />
             <h2 id="main-title">This is the Profile Handler</h2>
 
-            {users}
-
+            {profile}
 
             <Footer />
             </body>
