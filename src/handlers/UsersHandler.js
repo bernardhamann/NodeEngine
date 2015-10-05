@@ -1,4 +1,5 @@
 var React = require('react');
+var neHandler = require('../ne-handler');
 var Header = require('../components/sections/Header');
 var Footer = require('../components/sections/Footer');
 
@@ -21,30 +22,27 @@ var handler = React.createClass({
         console.log(self.props);
 
         var users;
-        if (self.props.data.message){
-            users = self.props.data.message;
-        }
-        else {
+        if(self.props.data.nedb1){
             users = self.props.data.nedb1.map((user, index)=>{
                 return (
-                    <p key={index}>
-                        {user.profile.nameFirst} {user.profile.nameLast}
-                        <br/>
-                        {user.tokens.neEditor}
-                        <br/>
-                        {user.tokens.neAdmin}
-                    </p>
+                    <div key={index}>
+                        {user.profile.name.displayName && <p>{user.profile.name.displayName}<br/></p> }
+                        {user.tokens && user.tokens.neEditor && <p>{user.tokens.neEditor}<br/></p>}
+                        {user.tokens && user.tokens.neAdmin && <p>{user.tokens.neAdmin}</p>}
+                    </div>
                 )
             });
         }
+
+
 
         return (
             <body>
                 <Header {...self.props} />
                 <h2 id="main-title">This is the Users Handler</h2>
 
+                {neHandler.msg(self)}
                 {users}
-
 
                 <Footer />
             </body>
