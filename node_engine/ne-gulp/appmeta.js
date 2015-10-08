@@ -64,7 +64,16 @@ var appmeta = [
 },{
   path: "/profile",
   title: "Profile Page",
-  description: "User profile page"
+  description: "User profile page",
+  neDataBefore: 1,
+  nedb1: {
+    pathFunction: function pathFunction(meta) {
+            path = process.env.ROOTURL + "/api/users" + "/" + meta.claims.user + "?token=" + meta.token;
+            return path;
+        },
+    cycle: false,
+    search: false
+  }
 },{
   path: "/signup",
   title: "Signup",
