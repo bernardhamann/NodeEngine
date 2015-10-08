@@ -50,17 +50,6 @@ var appmeta = [
   title: "About Us",
   description: "This is About Us page"
 },{
-  path: "/admin/users",
-  title: "Users",
-  description: "This is Users page",
-  neDataBefore: 1,
-  nedb1: {
-    pathFunction: function pathFunction(meta) {
-            path = process.env.ROOTURL + "/api/users?token=" + meta.token;
-            return path;
-        }
-  }
-},{
   path: "/login",
   title: "Login",
   description: "Login page"
@@ -119,6 +108,28 @@ var appmeta = [
                 var path = process.env.ROOTURL + "/admin/api/tokens/admin";
             }
 
+            return path;
+        }
+  }
+},{
+  path: "/admin/users",
+  title: "Users",
+  description: "This is Users page",
+  neDataBefore: 1,
+  nedb1: {
+    pathFunction: function pathFunction(meta) {
+            path = process.env.ROOTURL + "/api/users?token=" + meta.token;
+            return path;
+        }
+  }
+},{
+  path: "/admin/users/:id",
+  title: "Edit User",
+  description: "Editing user",
+  neDataBefore: 1,
+  nedb1: {
+    pathFunction: function pathFunction(meta) {
+            path = process.env.ROOTURL + "/api/users/" + meta.params.id + "?token=" + meta.token;
             return path;
         }
   }
