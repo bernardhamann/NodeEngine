@@ -28,9 +28,9 @@ var appmeta = [
     path: "http://localhost:3001/api/people",
     pathFunction: function pathFunction(meta) {
             if (meta.params._id) {
-                path = process.env.ROOTURL + "/api/people" + "/" + meta.params._id;
+                path = process.env.ROOTURL + "/api/people" + "/" + meta.params._id + "?token=" + meta.token;
             } else {
-                var path = process.env.ROOTURL + "/api/people";
+                var path = process.env.ROOTURL + "/api/people" + "?token=" + meta.token;
             }
             return path;
         },
