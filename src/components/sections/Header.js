@@ -8,7 +8,7 @@ class Header extends React.Component {
 
         var user;
         if (self.props.user){
-            var text = self.props.user.profile.name.displayName;
+            var text = 'bla';
             user =
                 <ul>
                     <li><a href="/profile">{text}</a></li>
