@@ -55,7 +55,10 @@ var appmeta = [
   description: "This is Users page",
   neDataBefore: 1,
   nedb1: {
-    path: "http://localhost:3001/admin/api/users?access_token=admin"
+    pathFunction: function pathFunction(meta) {
+            path = process.env.ROOTURL + "/api/users?token=" + meta.token;
+            return path;
+        }
   }
 },{
   path: "/login",
