@@ -122,8 +122,8 @@ gulp.task('babel', function() {
 gulp.task('neGulp',['babel'], function() {
 
     // Run custom Node Engine modules here
-    var nePassport = require ('ne-passport');
-    nePassport.gulpCompileHandlers();
+    var neAuth = require ('ne-auth');
+    neAuth.gulpCompileHandlers();
 
     // Compile the routes.js and the appmeta.js files
     var compileNow = function(){
