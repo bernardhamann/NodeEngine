@@ -123,13 +123,13 @@ var appmeta = [
         }
   }
 },{
-  path: "/admin/users/:id",
+  path: "/admin/users/:_id",
   title: "Edit User",
   description: "Editing user",
   neDataBefore: 1,
   nedb1: {
     pathFunction: function pathFunction(meta) {
-            path = process.env.ROOTURL + "/api/users/" + meta.params.id + "?token=" + meta.token;
+            path = process.env.ROOTURL + "/api/users/" + meta.params._id + "?token=" + meta.token;
             return path;
         }
   }
