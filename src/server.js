@@ -52,32 +52,46 @@ server.use(cookieParser());
 
 // Import passport
 var passport = require ('passport');
-var nePassport = require ('ne-passport');
+var neAuth = require ('ne-auth');
 
 // Configure additional strategies before init
 
 // Initialize passport
-nePassport.init(server, passport);
+neAuth.init(server, passport);
 // Now you can use passport
 
 // Use passport on routes
+neAuth.authRoutes(server, passport);
+neAuth.apiRoutes(server, passport);
+neAuth.neSuperStrategyRoutesUserAssign(server, passport);
 
-nePassport.authRoutes(server, passport);
-nePassport.apiRoutes(server, passport);
-nePassport.neSuperStrategyRoutesUserAssign(server, passport);
+
+
+server.use ('/api', neAuth.validateToken()
+);
+
+server.use ('/about', neAuth.validateToken(), neAuth.checkPermissions(['reader', 'readerss']), function(req, res, next){
+    next();
+});
+
+server.use('/api/reader', neAuth.checkPermissions(['reader']), function(req, res){
+    res.send("reader is Ok")
+});
+
+
+
 
 
 ///////////////
 // Content API
 ///////////////
 
-var mongoRest = require('ne-mongo');
+var neMongo = require('ne-mongo');
 
 var dirNameRest = __dirname;
 var apiPath = "/api";
-
 var strategyName = "neEditorTokens";
-mongoRest.routesConfig(server, dirNameRest, apiPath, passport, strategyName);
+neMongo.routesConfig(server, dirNameRest, apiPath, passport, strategyName);
 
 
 //////////////////////////////
