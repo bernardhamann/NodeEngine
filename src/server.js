@@ -62,23 +62,8 @@ neAuth.init(server, passport);
 
 // Use passport on routes
 neAuth.authRoutes(server, passport);
-neAuth.apiRoutes(server, passport);
-neAuth.neSuperStrategyRoutesUserAssign(server, passport);
-
-
-
-server.use ('/api', neAuth.validateToken()
-);
-
-server.use ('/about', neAuth.validateToken(), neAuth.checkPermissions(['reader', 'readerss']), function(req, res, next){
-    next();
-});
-
-server.use('/api/reader', neAuth.checkPermissions(['reader']), function(req, res){
-    res.send("reader is Ok")
-});
-
-
+neAuth.apiRoutes(server, passport, {userDetail: false});
+// If userDetail is set to true you must define a user details models with the name of 'neuserdetail'
 
 
 
@@ -112,15 +97,13 @@ var routes = require ('../node_engine/ne-gulp/routes');
 neRender.serverRender(server, appmeta, routes);
 
 
-////////////////////////
-// Passport
-////////////////////////
+////////////////////////////////////////////////////////////
+// ne-auth custom error handling
+////////////////////////////////////////////////////////////
 
 
-/*
-
- var nePassport = require('./passport');
- nePassport.config(passport);
- nePassport.routes(server, passport);
-
- */
+server.use(function (err, req, res, next) {
+    if (err.name === 'UnauthorizedError') {
+        res.redirect('/login?message=AccessDenied:InsufficientPermissions').status(401);
+    }
+});
