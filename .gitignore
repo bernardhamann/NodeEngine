@@ -1,7 +1,14 @@
+/node_modules/*
+/node_modules/*/node_modules
+!/node_modules/ne-auth
+!/node_modules/ne-data
+!/node_modules/ne-gulp
+!/node_modules/ne-mongo
+!/node_modules/ne-render
+!/node_modules/ne-server
+.idea
 config-p.json
 config-d.json
 app
-node_modules
 arc
 log.md
-.idea
