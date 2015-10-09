@@ -112,6 +112,17 @@ var appmeta = [
         }
   }
 },{
+  path: "/admin/users/:_id",
+  title: "Edit User",
+  description: "Editing user",
+  neDataBefore: 1,
+  nedb1: {
+    pathFunction: function pathFunction(meta) {
+            path = process.env.ROOTURL + "/api/users/" + meta.params._id + "?token=" + meta.token;
+            return path;
+        }
+  }
+},{
   path: "/admin/users",
   title: "Users",
   description: "This is Users page",
