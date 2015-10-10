@@ -1,7 +1,7 @@
 //var router = require('express').Router();
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var mongoRest = require('ne-mongo');
+var neData = require('ne-data');
 
 var modelSchema = new Schema({
     nameFirst:{type: String, required: true},
@@ -22,9 +22,9 @@ module.exports = function (router, passport, strategyName){
     var permissionsArray = ['reader'];
 
     //mongoRest.get(router, Model);
-    mongoRest.getWithPermissions(router, Model, permissionsArray);
-    mongoRest.putWithPermissions(router, Model, permissionsArray);
-    mongoRest.postWithPermissions(router, Model, permissionsArray);
-    mongoRest.deleteWithPermissions(router, Model, permissionsArray);
+    neData.getWithPermissions(router, Model, permissionsArray);
+    neData.putWithPermissions(router, Model, permissionsArray);
+    neData.postWithPermissions(router, Model, permissionsArray);
+    neData.deleteWithPermissions(router, Model, permissionsArray);
 
 };
