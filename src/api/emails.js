@@ -16,7 +16,7 @@ var Model = mongoose.model(
     modelSchema
     );
 
-module.exports = function (router, passport, strategyName){
+module.exports = function (router){
 
     var permissionsArray = ['reader'];
 
