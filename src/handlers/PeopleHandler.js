@@ -8,7 +8,6 @@ var meta = {
     description: "This is People page",
     neDataBefore: 1,
     nedb1: {
-        path: process.env.ROOTURL + "/api/people",
         pathFunction: function (meta) {
             if (meta.params._id){
                 path = process.env.ROOTURL + "/api/people" + "/" + meta.params._id +"?token="+ meta.token;
