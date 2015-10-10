@@ -119,11 +119,21 @@ gulp.task('babel', function() {
 //  Node Engine
 //////////////////////
 
-gulp.task('neGulp',['babel'], function() {
+gulp.task('neCustom',['babel'], function() {
 
     // Run custom Node Engine modules here
     var neAuth = require ('ne-auth');
     neAuth.gulpCompileHandlers();
+    var neAdmin = require ('ne-admin');
+    neAdmin.gulpCompileHandlers();
+    neAdmin.gulpCompileComponents();
+
+    return undefined
+
+});
+
+gulp.task('neGulp',['neCustom'], function() {
+
 
     // Compile the routes.js and the appmeta.js files
     var compileNow = function(){
@@ -132,7 +142,7 @@ gulp.task('neGulp',['babel'], function() {
         var handlersFolder = "app/handlers/";
         neGulp(dirName,handlersFolder);
     };
-    setTimeout(compileNow, 1000);
+    setTimeout(compileNow, 2000);
 
     return undefined
 
@@ -178,6 +188,7 @@ gulp.task('default', [
     'style',
     'static',
     'babel',
+    'neCustom',
     'neGulp',
     'webpack',
     'Nodemon'
