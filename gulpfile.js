@@ -132,7 +132,7 @@ gulp.task('neGulp',['babel'], function() {
         var handlersFolder = "app/handlers/";
         neGulp(dirName,handlersFolder);
     };
-    setTimeout(compileNow, 3000);
+    setTimeout(compileNow, 1000);
 
     return undefined
 
