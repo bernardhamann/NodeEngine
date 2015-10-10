@@ -7,11 +7,19 @@ var Foot = require('../components/partials/Foot');
 var handler = React.createClass({
 
     render: function() {
+
+        console.log('');
+        console.log('');
+        console.log('aaRoot: this.props');
+        console.log(this.props);
+        console.log('');
+        console.log('');
+
         return (
             <html id="react-mount">
-            <Head {...this.props} />
-            <RouteHandler {...this.props}  />
-            <Foot />
+                <Head {...this.props} />
+                <RouteHandler {...this.props}  />
+                <Foot />
             </html>
         )
     }
