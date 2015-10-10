@@ -17,3 +17,41 @@ var neHandler = {
 
 
 module.exports = neHandler;
+
+/*
+
+ var neHandler = require('../ne-handler');
+
+
+ var handler = React.createClass({
+
+    render: function() {
+        var self = this;
+
+        console.log(self.props);
+
+        var users;
+        if(self.props.data.nedb1){
+            users = self.props.data.nedb1.map((user, index)=>{
+                return (
+                    <div key={index}>
+                        {user.profile.name.displayName && <p>{user.profile.name.displayName}<br/></p> }
+                    </div>
+                )
+            });
+        }
+
+        return (
+            <body>
+                <Header {...self.props} />
+                    <h2 id="main-title">This is the Users Handler</h2>
+                    {neHandler.msg(self)}
+                    {users}
+                <Footer />
+            </body>
+        )
+    }
+});
+
+
+ */
