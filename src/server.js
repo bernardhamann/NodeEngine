@@ -47,24 +47,24 @@ server.use(cookieParser());
 
 
 ///////////////
-// Passport
+// neAuth
 ///////////////
 
 // Import passport
 var passport = require ('passport');
 var neAuth = require ('ne-auth');
 
-// Configure additional strategies before init
+// Configure additional passport here strategies before init
+neAuth.config(passport);
 
 // Initialize passport
 neAuth.init(server, passport);
-// Now you can use passport
 
-// Use passport on routes
-neAuth.authRoutes(server, passport);
-neAuth.apiRoutes(server, passport, {userDetail: false});
-// If userDetail is set to true you must define a user details models with the name of 'neuserdetail'
-
+// Setup the routes
+neAuth.routes(server, passport,{usersDetail: false, insecure: false });
+// If usersDetail is set to true you must define a user details models with the name of 'neuserdetail'
+// If insecure is set to true then all users can edit users
+// Now you can use passport configure additional routes here
 
 
 ///////////////
