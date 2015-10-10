@@ -1,0 +1,3 @@
+/*
+Events link to users and to collections and has a timestamp event type category and event tags
+*/
