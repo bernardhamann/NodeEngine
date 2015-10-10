@@ -4,17 +4,16 @@ class Header extends React.Component {
 
     render(){
         var self = this;
-        console.log(self.props);
 
         var user;
-        if (self.props.user){
-            var text = 'bla';
+        if (self.props.meta && self.props.meta.claims && self.props.meta.claims.user){
+            var text = self.props.meta.claims.displayName;
             user =
                 <ul>
                     <li><a href="/profile">{text}</a></li>
-                    <li><a href="/admin">admin home</a></li>
-                    <li><a href="/admin/users"> Users</a></li>
-                    <li><a href="/admin/tokens"> Tokens</a></li>
+                    <li><a href="/admin">Admin</a></li>
+                    <li><a href="/admin/users">Users</a></li>
+                    <li><a href="/auth/logout">Logout</a></li>
                 </ul>
         }
         else {
