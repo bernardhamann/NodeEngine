@@ -1,4 +1,5 @@
 /node_modules/*
+!/node_modules/ne-admin
 !/node_modules/ne-auth
 !/node_modules/ne-data
 !/node_modules/ne-gulp
