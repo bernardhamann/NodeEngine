@@ -71,12 +71,12 @@ neAuth.routes(server, passport,{usersDetail: false, insecure: false });
 // Content API
 ///////////////
 
-var neMongo = require('ne-mongo');
+var neData = require('ne-data');
 
 var dirNameRest = __dirname;
 var apiPath = "/api";
 var strategyName = "neEditorTokens";
-neMongo.routesConfig(server, dirNameRest, apiPath, passport, strategyName);
+neData.routesConfig(server, dirNameRest, apiPath, passport, strategyName);
 
 
 //////////////////////////////
