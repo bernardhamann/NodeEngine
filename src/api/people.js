@@ -22,7 +22,7 @@ module.exports = function (router, passport, strategyName){
     var permissionsArray = ['reader'];
 
     //mongoRest.get(router, Model);
-    neData.getWithPermissions(router, Model, permissionsArray);
+    neData.get(router, Model);
     neData.putWithPermissions(router, Model, permissionsArray);
     neData.postWithPermissions(router, Model, permissionsArray);
     neData.deleteWithPermissions(router, Model, permissionsArray);

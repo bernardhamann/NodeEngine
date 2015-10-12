@@ -7,12 +7,6 @@ var modelSchema = new Schema({
     path:{type: String, required: true},
     title:{type: String, required: true},
     description:{type: String, required: true},
-    pd:{
-        pdNumber:{type: Number, required: false, default: '0'},
-        pd1:{
-            path: {type: String, required: false}
-        }
-    },
     createdAt:{type: String, required: true, default: new Date()}
 
 });
