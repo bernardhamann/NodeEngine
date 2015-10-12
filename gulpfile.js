@@ -119,32 +119,42 @@ gulp.task('babel', function() {
 //  Node Engine
 //////////////////////
 
-gulp.task('neCustom',['babel'], function() {
+gulp.task('neCustom', function() {
 
     // Run custom Node Engine modules here
     var neAuth = require ('ne-auth');
     neAuth.gulpCompileHandlers();
-    var neAdmin = require ('ne-admin');
-    neAdmin.gulpCompileHandlers();
-    neAdmin.gulpCompileComponents();
-
-    return undefined
+    //var neAdmin = require ('ne-admin');
+    //neAdmin.gulpCompileHandlers();
+    //neAdmin.gulpCompileComponents();
+    return undefined;
 
 });
 
-gulp.task('neGulp',['neCustom'], function() {
-
+gulp.task('neGulp',['neCustom', 'babel'], function() {
 
     // Compile the routes.js and the appmeta.js files
     var compileNow = function(){
+
+        console.log('======================================');
+        console.log('======================================');
+        console.log('neGulp Compile: START');
+        console.log('======================================');
+        console.log('======================================');
+
         var neGulp = require ('ne-gulp');
         var dirName = __dirname;
         var handlersFolder = "app/handlers/";
         neGulp(dirName,handlersFolder);
+
+        console.log('======================================');
+        console.log('======================================');
+        console.log('neGulp Compile: END');
+        console.log('======================================');
+        console.log('======================================');
+        return undefined
     };
     setTimeout(compileNow, 2000);
-
-    return undefined
 
 });
 
@@ -153,9 +163,9 @@ gulp.task('neGulp',['neCustom'], function() {
 //  Webpack
 //////////////////////
 
-gulp.task('webpack', ['neGulp'], function(){
+gulp.task('webpack',['neGulp'], function(){
 
-    gulp.src('src/**/**/**/*.js')
+    gulp.src('src/client.js')
         .pipe(webpack( require('./webpack.js') ))
         .pipe(gulp.dest('./app/js/'));
 
@@ -167,7 +177,7 @@ gulp.task('webpack', ['neGulp'], function(){
 //////////////////////
 
 
-gulp.task('Nodemon', function () {
+gulp.task('nodemon', function () {
 
     env({
         file: './config-d.json',
@@ -191,7 +201,7 @@ gulp.task('default', [
     'neCustom',
     'neGulp',
     'webpack',
-    'Nodemon'
+    'nodemon'
 ]);
 
 
