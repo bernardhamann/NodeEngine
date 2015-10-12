@@ -3,31 +3,23 @@ var Header = require('../components/sections/Header');
 var Footer = require('../components/sections/Footer');
 
 var meta = {
+
     path: "/people",
     title: "People",
     description: "This is People page",
-    neDataBefore: 1,
-    nedb1: {
-        pathFunction: function (meta) {
-            if (meta.params._id){
-                path = process.env.ROOTURL + "/api/people" + "/" + meta.params._id +"?token="+ meta.token;
-            }else {
-                var path = process.env.ROOTURL + "/api/people"+"?token="+ meta.token;
+    nerbArray: [
+        {
+            nerbName: 'people',
+            pathFunction: function (meta) {
+                if (meta.params._id){
+                    path = process.env.ROOTURL + "/api/people" + "/" + meta.params._id +"?token="+ meta.token;
+                }else {
+                    var path = process.env.ROOTURL + "/api/people"+"?token="+ meta.token;
+                }
+                return path
             }
-            return path
-        },
-        cycle: false,
-        search: false
-    },
-    cycle: {
-        limit: "query.limit",
-        batch: "query.batch"
-    },
-    search: {
-        field1: "query.limit",
-        value2: "query.batch"
-    }
-
+        }
+    ]
 };
 
 
@@ -38,14 +30,14 @@ var handler = React.createClass({
 
         // var dd = self.props.data.nedb1.func();
 
-        var people;
+        var peopleList;
         if (self.props.data.message){
 
-            people = self.props.data.message;
+            peopleList = self.props.data.message;
 
         }
         else {
-            people = self.props.data.nedb1.map((person, index)=>{
+            peopleList = self.props.data.people.map((person, index)=>{
                 return (
                     <p key={index}>
                         {person.nameFirst} <br/>
@@ -57,7 +49,7 @@ var handler = React.createClass({
             <body>
                 <Header {...self.props} />
                 <h2 id="main-title">This is the People Handler</h2>
-                {people}
+                {peopleList}
                 <Footer />
             </body>
         )
