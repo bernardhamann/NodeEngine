@@ -23,27 +23,41 @@ var appmeta = [
   path: "/people",
   title: "People",
   description: "This is People page",
-  neDataBefore: 1,
-  nedb1: {
-    pathFunction: function pathFunction(meta) {
+  nerbArray: [
+    {
+      nerbName: "people",
+      pathFunction: function pathFunction(meta) {
             if (meta.params._id) {
                 path = process.env.ROOTURL + "/api/people" + "/" + meta.params._id + "?token=" + meta.token;
             } else {
                 var path = process.env.ROOTURL + "/api/people" + "?token=" + meta.token;
             }
             return path;
-        },
-    cycle: false,
-    search: false
-  },
-  cycle: {
-    limit: "query.limit",
-    batch: "query.batch"
-  },
-  search: {
-    field1: "query.limit",
-    value2: "query.batch"
-  }
+        }
+    },
+    {
+      nerbName: "people2",
+      pathFunction: function pathFunction(meta) {
+            if (meta.params._id) {
+                path = process.env.ROOTURL + "/api/people" + "/" + meta.params._id + "?token=" + meta.token;
+            } else {
+                var path = process.env.ROOTURL + "/api/people" + "?token=" + meta.token;
+            }
+            return path;
+        }
+    },
+    {
+      nerbName: "people3",
+      pathFunction: function pathFunction(meta) {
+            if (meta.params._id) {
+                path = process.env.ROOTURL + "/api/people" + "/" + meta.params._id + "?token=" + meta.token;
+            } else {
+                var path = process.env.ROOTURL + "/api/people" + "?token=" + meta.token;
+            }
+            return path;
+        }
+    }
+  ]
 },{
   path: "/posts/:id",
   title: "About Us",
