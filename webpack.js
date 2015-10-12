@@ -10,7 +10,7 @@ var config = {
 
         // Since react is installed as a node module, node_modules/react,
         // we can point to it directly, just like require('react');
-        vendors: ['react']
+        vendors: ['react', 'react-router']
     },
     output: {
         // path: path.resolve(__dirname, 'dist'),
@@ -24,13 +24,12 @@ var config = {
         ]
     },
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js')
-
-        //,new webpack.optimize.UglifyJsPlugin({
-        //    compress: {
-        //        warnings: false
-        //    }
-        //})
+        new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            }
+        })
     ]
 };
 
