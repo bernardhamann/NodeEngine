@@ -1,12 +1,20 @@
 'use strict';
 
 import React from 'react';
+var neRender = require('ne-render');
+var appmeta = require ('../node_engine/ne-gulp/appmeta');
 var routes = require ('../node_engine/ne-gulp/routes');
-import clientRender from './ne-render-client';
+var apiref = require ('../apiref');
 
 console.log("Client JS is Active");
 
 var object = document.getElementById("about-link");
-object.addEventListener("click", function(){
-    clientRender.run(routes, "/about");
-});
+if(object){
+    console.log('client: About link found');
+    object.addEventListener("click", function(){
+        neRender.clientRender(null, "/about", routes);
+    });
+}
+else{
+    console.log('client: About link not found');
+}
