@@ -70,47 +70,6 @@ var appmeta = [
   title: "Signup",
   description: "Signup page"
 },{
-  path: "/super",
-  title: "Super Admin Page",
-  description: "Use the super admin key to create admin tokens and assign them to users",
-  neDataBefore: 2,
-  nedb1: {
-    pathFunction: function pathFunction(meta) {
-
-            console.log(meta);
-
-            if (meta.query) {
-                if (meta.query.super_token) {
-                    var path = process.env.ROOTURL + "/admin/api/tokens/admin" + "?access_token=" + meta.query.super_token;
-                } else {
-                    var path = process.env.ROOTURL + "/admin/api/tokens/admin";
-                }
-            } else {
-                var path = process.env.ROOTURL + "/admin/api/tokens/admin";
-            }
-
-            return path;
-        }
-  },
-  nedb2: {
-    pathFunction: function pathFunction(meta) {
-
-            console.log(meta);
-
-            if (meta.query) {
-                if (meta.query.admin_token) {
-                    var path = process.env.ROOTURL + "/admin/api/users" + "?access_token=" + meta.query.admin_token;
-                } else {
-                    var path = process.env.ROOTURL + "/admin/api/users";
-                }
-            } else {
-                var path = process.env.ROOTURL + "/admin/api/tokens/admin";
-            }
-
-            return path;
-        }
-  }
-},{
   path: "/admin/users/:_id",
   title: "Edit User",
   description: "Editing user",
