@@ -25,7 +25,7 @@ var clientRender = {
             }
 
             // Get data before render for some components
-            neData.before(pageAPIPath, pathString)
+            neRender.before(pageAPIPath, pathString)
                 .then((data)=>{
                     renderPage(data);
                 })
