@@ -124,9 +124,9 @@ gulp.task('neCustom', function() {
     // Run custom Node Engine modules here
     var neAuth = require ('ne-auth');
     neAuth.gulpCompileHandlers();
-    //var neAdmin = require ('ne-admin');
-    //neAdmin.gulpCompileHandlers();
-    //neAdmin.gulpCompileComponents();
+    var neAdmin = require ('ne-admin');
+    neAdmin.gulpCompileHandlers();
+    neAdmin.gulpCompileComponents();
     return undefined;
 
 });
