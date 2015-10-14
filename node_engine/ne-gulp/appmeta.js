@@ -34,34 +34,37 @@ var appmeta = [
             }
             return path;
         }
-    },
-    {
-      nerbName: "people2",
-      pathFunction: function pathFunction(meta) {
-            if (meta.params._id) {
-                path = process.env.ROOTURL + "/api/people" + "/" + meta.params._id + "?token=" + meta.token;
-            } else {
-                var path = process.env.ROOTURL + "/api/people" + "?token=" + meta.token;
-            }
-            return path;
-        }
-    },
-    {
-      nerbName: "people3",
-      pathFunction: function pathFunction(meta) {
-            if (meta.params._id) {
-                path = process.env.ROOTURL + "/api/people" + "/" + meta.params._id + "?token=" + meta.token;
-            } else {
-                var path = process.env.ROOTURL + "/api/people" + "?token=" + meta.token;
-            }
-            return path;
-        }
     }
   ]
 },{
   path: "/posts/:id",
   title: "About Us",
   description: "This is About Us page"
+},{
+  path: "/admin/:apiName",
+  title: "Admin page",
+  description: "Add, edit, delete and view content",
+  nerbArray: [
+    {
+      nerbName: "apiData",
+      pathFunction: function pathFunction(meta) {
+            if (meta.query) {
+                if (meta.query.limit) {
+                    if (meta.query.batch) {
+                        var path = process.env.ROOTURL + "/api/" + meta.params.apiName + "?limit=" + meta.query.limit + "&batch=" + meta.query.batch;
+                    } else {
+                        var path = process.env.ROOTURL + "/api/" + meta.params.apiName + "?limit=" + meta.query.limit;
+                    }
+                } else {
+                    var path = process.env.ROOTURL + "/api/" + meta.params.apiName;
+                }
+            } else {
+                var path = process.env.ROOTURL + "/api/" + meta.params.apiName;
+            }
+            return path;
+        }
+    }
+  ]
 },{
   path: "/login",
   title: "Login",
@@ -70,15 +73,15 @@ var appmeta = [
   path: "/profile",
   title: "Profile Page",
   description: "User profile page",
-  neDataBefore: 1,
-  nedb1: {
-    pathFunction: function pathFunction(meta) {
+  nerbArray: [
+    {
+      nerbName: "users",
+      pathFunction: function pathFunction(meta) {
             path = process.env.ROOTURL + "/api/users" + "/" + meta.claims.user + "?token=" + meta.token;
             return path;
-        },
-    cycle: false,
-    search: false
-  }
+        }
+    }
+  ]
 },{
   path: "/signup",
   title: "Signup",
@@ -87,24 +90,28 @@ var appmeta = [
   path: "/admin/users/:_id",
   title: "Edit User",
   description: "Editing user",
-  neDataBefore: 1,
-  nedb1: {
-    pathFunction: function pathFunction(meta) {
+  nerbArray: [
+    {
+      nerbName: "users",
+      pathFunction: function pathFunction(meta) {
             path = process.env.ROOTURL + "/api/users/" + meta.params._id + "?token=" + meta.token;
             return path;
         }
-  }
+    }
+  ]
 },{
   path: "/admin/users",
   title: "Users",
   description: "This is Users page",
-  neDataBefore: 1,
-  nedb1: {
-    pathFunction: function pathFunction(meta) {
+  nerbArray: [
+    {
+      nerbName: "users",
+      pathFunction: function pathFunction(meta) {
             path = process.env.ROOTURL + "/api/users?token=" + meta.token;
             return path;
         }
-  }
+    }
+  ]
 }
 ]; 
 module.exports = appmeta;
