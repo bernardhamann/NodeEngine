@@ -79,6 +79,14 @@ var strategyName = "neEditorTokens";
 neData.routesConfig(server, dirNameRest, apiPath, passport, strategyName);
 
 
+///////////////
+// Admin Api
+///////////////
+
+var neAdmin = require('ne-admin');
+neAdmin.routes(server);
+
+
 //////////////////////////////
 // Express Test
 //////////////////////////////
