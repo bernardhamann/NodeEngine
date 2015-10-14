@@ -144,8 +144,7 @@ gulp.task('neGulp',['neCustom', 'babel'], function() {
 
         var neGulp = require ('ne-gulp');
         var dirName = __dirname;
-        var handlersFolder = "app/handlers/";
-        neGulp(dirName,handlersFolder);
+        neGulp(dirName);
 
         console.log('======================================');
         console.log('======================================');
