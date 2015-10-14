@@ -21,6 +21,12 @@ var neAdmin = {
 
         return undefined
 
+    },
+
+    routes: function (server){
+
+        var routes = require('./routes/neAdminRoutes')
+        routes(server);
     }
 
 }
