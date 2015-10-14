@@ -3,7 +3,7 @@
 !/node_modules/ne-auth
 !/node_modules/ne-data
 !/node_modules/ne-gulp
-!/node_modules/ne-mongo
+!/node_modules/ne-handler
 !/node_modules/ne-render
 !/node_modules/ne-server
 /node_modules/*/node_modules
