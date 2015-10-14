@@ -72,11 +72,8 @@ neAuth.routes(server, passport,{usersDetail: false, insecure: false });
 ///////////////
 
 var neData = require('ne-data');
-
-var dirNameRest = __dirname;
-var apiPath = "/api";
-var strategyName = "neEditorTokens";
-neData.routesConfig(server, dirNameRest, apiPath, passport, strategyName);
+var dirNameNeData = __dirname;
+neData.routesConfig(server, dirNameNeData);
 
 
 ///////////////
