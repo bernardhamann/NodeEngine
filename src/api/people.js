@@ -7,6 +7,9 @@ var modelSchema = new Schema({
     nameFirst:{type: String, required: true},
     nameLast:{type: String, required: false},
     email:{type: String, required: false},
+    second:{
+        level: {type: String, required: false}
+    },
     createdAt:{type: String, required: true, default: new Date()}
 });
 
@@ -21,7 +24,6 @@ module.exports = function (router, passport, strategyName){
 
     var permissionsArray = ['reader'];
 
-    //mongoRest.get(router, Model);
     neData.get(router, Model);
     neData.putWithPermissions(router, Model, permissionsArray);
     neData.postWithPermissions(router, Model, permissionsArray);
