@@ -19,6 +19,7 @@ var modelSchema = new Schema({
 });
 
 /*
+
 Later in the handler you just call a function similar to this
 {self.props.nerb1 && self.props.nerb1.testField && neHandler(self.props.nerb1.testField)}
 
@@ -32,7 +33,7 @@ also in the handler you need to say wheter it is a map or wheter just one object
 
  {neHandler(self.props, {field: "nerb1.testField", map: true})}
 
- */
+*/
 
 var Model = mongoose.model(
     'emails',
@@ -90,6 +91,4 @@ If (dataObject.renderType === dp){
 
 -----
 
-
-
- */
+*/
