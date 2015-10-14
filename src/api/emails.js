@@ -3,8 +3,8 @@ var Schema = mongoose.Schema;
 var neData = require('ne-data');
 
 var modelSchema = new Schema({
-    firstName:{type: String, required: true},
-    lastName:{type: String, required: true},
+    nameFirst:{type: String, required: true},
+    nameLast:{type: String, required: true},
     email:{type: String, required: true},
     user:{type: Schema.ObjectId},
     createdAt:{type: String, required: true},
@@ -17,6 +17,19 @@ var modelSchema = new Schema({
         type: {type: String, default: "img"}
     }
 });
+
+var dataRef = {
+    "name": "email",
+    "slug": "/admin/email",
+    "apiSlug": "/api/email",
+    "interfaceType": "default",
+    "cycleByDefault": false,
+    "batchSize": 10,
+    "categories": [],
+    "tags": [],
+    "fields": ["nameFirst", "nameLast", "email", "user"]
+};
+
 
 /*
 
@@ -38,9 +51,9 @@ also in the handler you need to say wheter it is a map or wheter just one object
 var Model = mongoose.model(
     'emails',
     modelSchema
-    );
+);
 
-module.exports = function (router){
+var routes = function (router){
 
     var permissionsArray = ['reader'];
 
@@ -50,6 +63,9 @@ module.exports = function (router){
     neData.deleteWithPermissions(router, Model, permissionsArray);
 
 };
+
+exports.routes = routes;
+exports.dataRef = dataRef;
 
 
 /*

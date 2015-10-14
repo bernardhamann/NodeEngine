@@ -11,14 +11,27 @@ var modelSchema = new Schema({
 
 });
 
+var dataRef = {
+    "name": "page",
+    "slug": "/admin/page",
+    "apiSlug": "/api/page",
+    "interfaceType": "default",
+    "cycleByDefault": false,
+    "batchSize": 10,
+    "categories": [],
+    "tags": [],
+    "fields": ["path", "title", "description"]
+};
+
+
 var Model = mongoose.model(
     'page',
     modelSchema,
     'page'
-    );
+);
 
 
-module.exports = function (router, passport, strategyName){
+var routes = function (router, passport, strategyName){
 
     var permissionsArray = ['reader'];
 
@@ -28,3 +41,6 @@ module.exports = function (router, passport, strategyName){
     neData.deleteWithPermissions(router, Model, permissionsArray);
 
 };
+
+exports.routes = routes;
+exports.dataRef = dataRef;

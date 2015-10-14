@@ -1,4 +1,3 @@
-//var router = require('express').Router();
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var neData = require('ne-data');
@@ -13,14 +12,27 @@ var modelSchema = new Schema({
     createdAt:{type: String, required: true, default: new Date()}
 });
 
+var dataRef = {
+    "name": "people",
+    "slug": "/admin/people",
+    "apiSlug": "/api/people",
+    "interfaceType": "default",
+    "cycleByDefault": false,
+    "batchSize": 10,
+    "categories": [],
+    "tags": [],
+    "fields": ["nameFirst", "nameLast", "email", "second.level"]
+};
+
+
 var Model = mongoose.model(
     'people',
     modelSchema,
     'people'
-    );
+);
 
 
-module.exports = function (router, passport, strategyName){
+var routes = function (router, passport, strategyName){
 
     var permissionsArray = ['reader'];
 
@@ -30,3 +42,6 @@ module.exports = function (router, passport, strategyName){
     neData.deleteWithPermissions(router, Model, permissionsArray);
 
 };
+
+exports.routes = routes;
+exports.dataRef = dataRef;
