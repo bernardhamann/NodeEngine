@@ -9,10 +9,22 @@ var dataRef = [
   categories: [],
   tags: [],
   fields: [
-    "nameFirst",
-    "nameLast",
-    "email",
-    "user"
+    {
+      name: "p1",
+      data: "nameFirst"
+    },
+    {
+      name: "p2",
+      data: "nameLast"
+    },
+    {
+      name: "p3",
+      data: "email"
+    },
+    {
+      name: "p3",
+      data: "user"
+    }
   ]
 },{
   name: "page",
@@ -24,9 +36,18 @@ var dataRef = [
   categories: [],
   tags: [],
   fields: [
-    "path",
-    "title",
-    "description"
+    {
+      name: "p1",
+      data: "path"
+    },
+    {
+      name: "p2",
+      data: "title"
+    },
+    {
+      name: "p3",
+      data: "description"
+    }
   ]
 },{
   name: "people",
@@ -38,10 +59,22 @@ var dataRef = [
   categories: [],
   tags: [],
   fields: [
-    "nameFirst",
-    "nameLast",
-    "email",
-    "second.level"
+    {
+      name: "p1",
+      data: "nameFirst"
+    },
+    {
+      name: "p2",
+      data: "nameLast"
+    },
+    {
+      name: "p3",
+      data: "email"
+    },
+    {
+      name: "p4",
+      data: "second.level"
+    }
   ]
 }
 ]; 
