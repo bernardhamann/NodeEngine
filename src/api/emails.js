@@ -27,7 +27,24 @@ var dataRef = {
     "batchSize": 10,
     "categories": [],
     "tags": [],
-    "fields": ["nameFirst", "nameLast", "email", "user"]
+    "fields": [
+        {
+            name: "p1",
+            data: "nameFirst"
+        },
+        {
+            name: "p2",
+            data: "nameLast"
+        },
+        {
+            name: "p3",
+            data: "email"
+        },
+        {
+            name: "p3",
+            data: "user"
+        }
+    ]
 };
 
 

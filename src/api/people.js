@@ -12,7 +12,7 @@ var modelSchema = new Schema({
     createdAt:{type: String, required: true, default: new Date()}
 });
 
-var dataRef = {
+var dataRefOld = {
     "name": "people",
     "slug": "/admin/people",
     "apiSlug": "/api/people",
@@ -22,6 +22,35 @@ var dataRef = {
     "categories": [],
     "tags": [],
     "fields": ["nameFirst", "nameLast", "email", "second.level"]
+};
+
+var dataRef = {
+    "name": "people",
+    "slug": "/admin/people",
+    "apiSlug": "/api/people",
+    "interfaceType": "default",
+    "cycleByDefault": false,
+    "batchSize": 10,
+    "categories": [],
+    "tags": [],
+    "fields": [
+        {
+            name: "p1",
+            data: "nameFirst"
+        },
+        {
+            name: "p2",
+            data: "nameLast"
+        },
+        {
+            name: "p3",
+            data: "email"
+        },
+        {
+            name: "p4",
+            data: "second.level"
+        }
+    ]
 };
 
 

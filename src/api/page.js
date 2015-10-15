@@ -20,7 +20,20 @@ var dataRef = {
     "batchSize": 10,
     "categories": [],
     "tags": [],
-    "fields": ["path", "title", "description"]
+    "fields": [
+        {
+            name: "p1",
+            data: "path"
+        },
+        {
+            name: "p2",
+            data: "title"
+        },
+        {
+            name: "p3",
+            data: "description"
+        }
+    ]
 };
 
 
