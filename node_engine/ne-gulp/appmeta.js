@@ -23,6 +23,9 @@ var appmeta = [
   path: "/people",
   title: "People",
   description: "This is People page",
+  css: [
+    "/test.css"
+  ],
   nerbArray: [
     {
       nerbName: "people",
@@ -44,6 +47,10 @@ var appmeta = [
   path: "/admin/:apiName",
   title: "Admin page",
   description: "Add, edit, delete and view content",
+  css: [
+    "https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.css",
+    "/ne-admin.css"
+  ],
   nerbArray: [
     {
       nerbName: "apiData",
