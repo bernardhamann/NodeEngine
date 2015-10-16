@@ -13,6 +13,18 @@ var neHandler = {
             )
     },
 
+    message: function (self) {
+        return self.props.data.message && React.createElement(
+                'div',
+                { className: 'state-message-div' },
+                React.createElement(
+                    'p',
+                    { className: 'state-message-p' },
+                    self.props.data.message
+                )
+            )
+    },
+
     flattenObject: function(ob) {
         var self = this
 
