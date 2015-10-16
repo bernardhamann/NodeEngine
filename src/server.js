@@ -98,9 +98,9 @@ server.use('/express', require('./js/express'));
 var neRender = require('ne-render');
 var appmeta = require ('../node_engine/ne-gulp/appmeta');
 var routes = require ('../node_engine/ne-gulp/routes');
-var apiref = require ('../apiref');
+var dataRef = require('../node_engine/ne-gulp/dataRef');
 
-neRender.serverRender(server, appmeta, routes, apiref);
+neRender.serverRender(server, appmeta, routes, dataRef);
 
 
 ////////////////////////////////////////////////////////////
