@@ -12,6 +12,7 @@ var postcss = require('gulp-postcss');
 var autoprefixer = require('autoprefixer');
 var precss = require('precss');
 var lost = require('lost');
+var rucksack = require('rucksack-css');
 
 // JS
 var babel = require('gulp-babel');
@@ -74,7 +75,8 @@ gulp.task('style', function () {
         .pipe(postcss([
             precss({}),
             lost(),
-            autoprefixer({})
+            autoprefixer({}),
+            rucksack
             //csswring
         ]))
         .pipe(gulp.dest('./app/css/'));
@@ -127,6 +129,7 @@ gulp.task('neCustom', function() {
     var neAdmin = require ('ne-admin');
     neAdmin.gulpCompileHandlers();
     neAdmin.gulpCompileComponents();
+    neAdmin.gulpCompileCss();
     return undefined;
 
 });
