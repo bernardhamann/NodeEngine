@@ -1,29 +1,34 @@
 var dataRef = [
 {
-  name: "email",
-  slug: "/admin/email",
-  apiSlug: "/api/email",
+  name: "emails",
+  slug: "/admin/emails",
+  apiSlug: "/api/emails",
   interfaceType: "default",
   cycleByDefault: false,
   batchSize: 10,
+  type: "noEdit",
   categories: [],
   tags: [],
   fields: [
     {
       name: "p1",
-      data: "nameFirst"
+      data: "nameFirst",
+      type: "noEdit"
     },
     {
       name: "p2",
-      data: "nameLast"
+      data: "nameLast",
+      type: "noEdit"
     },
     {
       name: "p3",
-      data: "email"
+      data: "email",
+      type: "noEdit"
     },
     {
       name: "p3",
-      data: "user"
+      data: "user",
+      type: "ObjectId"
     }
   ]
 },{

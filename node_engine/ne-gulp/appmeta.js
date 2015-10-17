@@ -48,7 +48,6 @@ var appmeta = [
   title: "Admin page",
   description: "Add, edit, delete and view content",
   css: [
-    "https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.css",
     "/ne-admin.css"
   ],
   nerbArray: [
@@ -71,6 +70,13 @@ var appmeta = [
             return path;
         }
     }
+  ]
+},{
+  path: "/admin",
+  title: "Admin page",
+  description: "Add, edit, delete and view content",
+  css: [
+    "/ne-admin.css"
   ]
 },{
   path: "/login",
