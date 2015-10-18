@@ -9,7 +9,6 @@ var neServer = require('ne-server');
 var port = process.env.PORT;
 var server = neServer.init(port);
 
-
 ////////////////////////
 // Logging
 ////////////////////////
@@ -75,20 +74,11 @@ var dirNameNeData = __dirname;
 neData.routesConfig(server, dirNameNeData);
 
 
-///////////////
-// Admin Api
-///////////////
-
-/*
-var neAdmin = require('ne-admin');
-neAdmin.routes(server);
-*/
-
-
 //////////////////////
 // Routes
 //////////////////////
 
+// Must be after auth
 var dirNameRoutes = __dirname;
 neServer.routes(server, dirNameRoutes);
 
