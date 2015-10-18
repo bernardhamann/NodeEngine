@@ -4,45 +4,42 @@ var neData = require('ne-data');
 
 var modelSchema = new Schema({
     nameFirst:{type: String, required: true},
-    nameLast:{type: String, required: true},
+    nameLast:{type: String},
     email:{type: String, required: true},
     user:{type: Schema.ObjectId},
-    createdAt:{type: String, required: true},
-    testField: {
-        data: {type: String, default: "This is the data part"},
-        type: {type: String, default: "p"}
-    },
-    testField2: {
-        data: {type: String, default: "/images/fvdfsvsf.png"},
-        type: {type: String, default: "img"}
-    }
+    createdAt:{type: String, required: true, default: new Date()}
 });
 
 var dataRef = {
-    "name": "email",
-    "slug": "/admin/email",
-    "apiSlug": "/api/email",
+    "name": "emails",
+    "slug": "/admin/emails",
+    "apiSlug": "/api/emails",
     "interfaceType": "default",
     "cycleByDefault": false,
     "batchSize": 10,
+    "type": "noEdit",
     "categories": [],
     "tags": [],
     "fields": [
         {
             name: "p1",
-            data: "nameFirst"
+            data: "nameFirst",
+            type: "noEdit"
         },
         {
             name: "p2",
-            data: "nameLast"
+            data: "nameLast",
+            type: "noEdit"
         },
         {
             name: "p3",
-            data: "email"
+            data: "email",
+            type: "noEdit"
         },
         {
             name: "p3",
-            data: "user"
+            data: "user",
+            type: "ObjectId"
         }
     ]
 };
@@ -72,7 +69,7 @@ var Model = mongoose.model(
 
 var routes = function (router){
 
-    var permissionsArray = ['reader'];
+    var permissionsArray = ['reader', 'admin'];
 
     neData.get(router, Model);
     neData.putWithPermissions(router, Model, permissionsArray);
