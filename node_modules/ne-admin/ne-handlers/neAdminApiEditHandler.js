@@ -4,7 +4,7 @@ var neHandler = require('ne-handler');
 var _ = require("lodash");
 
 var meta = {
-    path: "/admin/:apiName",
+    path: "/admin/:dataName",
     title: "Admin page",
     description: "Add, edit, delete and view content",
     css: [
@@ -13,23 +13,23 @@ var meta = {
     ],
     nerbArray: [
         {
-            nerbName: 'apiData',
+            nerbName: 'adminData',
             pathFunction: function (meta) {
                 if(meta.query){
                     if(meta.query.limit){
                         if(meta.query.batch){
-                            var path = process.env.ROOTURL + "/api/" + meta.params.apiName + "?limit=" + meta.query.limit + "&batch=" + meta.query.batch;
+                            var path = process.env.ROOTURL + "/data/" + meta.params.dataName + "?limit=" + meta.query.limit + "&batch=" + meta.query.batch;
                         }
                         else{
-                            var path = process.env.ROOTURL + "/api/" + meta.params.apiName + "?limit=" + meta.query.limit;
+                            var path = process.env.ROOTURL + "/data/" + meta.params.dataName + "?limit=" + meta.query.limit;
                         }
                     }
                     else{
-                        var path = process.env.ROOTURL + "/api/" + meta.params.apiName;
+                        var path = process.env.ROOTURL + "/data/" + meta.params.dataName;
                     }
                 }
                 else {
-                    var path = process.env.ROOTURL + "/api/" + meta.params.apiName;
+                    var path = process.env.ROOTURL + "/data/" + meta.params.dataName;
                 }
                 return path
             }
@@ -42,8 +42,8 @@ var handler = React.createClass({
     render: function() {
         var self = this;
 
-        var apirefIndex = _.findIndex(self.props.apiref, function(chr) {
-            return chr.name == self.props.meta.params.apiName;
+        var dataRefIndex = _.findIndex(self.props.dataRef, function(chr) {
+            return chr.name == self.props.meta.params.dataName;
         });
 
         console.log(self.props);
@@ -62,7 +62,7 @@ var handler = React.createClass({
                 { action: "/admin/change/cycle/form", method: "post" },
                 element(
                     'input',
-                    {type: "hidden", name: "api", value: self.props.meta.params.apiName,}
+                    {type: "hidden", name: "data", value: self.props.meta.params.dataName,}
                 ),
                 element(
                     'label',
@@ -123,7 +123,7 @@ var handler = React.createClass({
                 { action: "/admin/change/cycle/buttons", method: "post"},
                 element(
                     'input',
-                    {type: "hidden", name: "api", defaultValue: self.props.meta.params.apiName}
+                    {type: "hidden", name: "data", defaultValue: self.props.meta.params.dataName}
                 ),
                 element(
                     'input',
@@ -147,7 +147,7 @@ var handler = React.createClass({
                 { action: "/admin/change/cycle/buttons", method: "post" },
                 element(
                     'input',
-                    {type: "hidden", name: "api", defaultValue: self.props.meta.params.apiName}
+                    {type: "hidden", name: "data", defaultValue: self.props.meta.params.dataName}
                 ),
                 element(
                     'input',
@@ -174,9 +174,9 @@ var handler = React.createClass({
         /////////////////////////////////////////
 
         var items;
-        if (self.props.data.apiData){
+        if (self.props.data.adminData){
 
-            if (self.props.data.apiData.length === 0){
+            if (self.props.data.adminData.length === 0){
                 items = element(
                     'div',
                     {
@@ -205,7 +205,7 @@ var handler = React.createClass({
                 // Edit Items
                 /////////////////////////////////////////
 
-                items = self.props.data.apiData.map(function (object, index){
+                items = self.props.data.adminData.map(function (object, index){
 
                     console.log(" ")
                     console.log(" ")
@@ -240,7 +240,7 @@ var handler = React.createClass({
                         ),
                         element(
                             'input',
-                            {type: "hidden", name: "api", defaultValue: self.props.meta.params.apiName}
+                            {type: "hidden", name: "data", defaultValue: self.props.meta.params.dataName}
                         ),
                         element(
                             'input',
@@ -264,7 +264,7 @@ var handler = React.createClass({
 
                     var editItem = [];
 
-                    self.props.apiref[apirefIndex].fields.forEach(function(field, index2){
+                    self.props.dataRef[dataRefIndex].fields.forEach(function(field, index2){
 
                         if(field.type && field.type === "ObjectId"){
 
@@ -330,7 +330,7 @@ var handler = React.createClass({
                                     ),
                                     element(
                                         'input',
-                                        {type: "hidden", name: "api", defaultValue: self.props.meta.params.apiName}
+                                        {type: "hidden", name: "data", defaultValue: self.props.meta.params.dataName}
                                     ),
                                     element(
                                         'input',
@@ -402,10 +402,10 @@ var handler = React.createClass({
         ))
         addItemFields.push(element(
             'input',
-            {type: "hidden", name: "api", defaultValue: self.props.meta.params.apiName}
+            {type: "hidden", name: "data", defaultValue: self.props.meta.params.dataName}
         ))
 
-        self.props.apiref[apirefIndex].fields.forEach(function(field, index){
+        self.props.dataRef[dataRefIndex].fields.forEach(function(field, index){
 
             if(field.type && field.type === "ObjectId"){
 
@@ -463,7 +463,7 @@ var handler = React.createClass({
         })
 
         var addItem;
-        if (self.props.apiref[apirefIndex].type === "noEdit"){
+        if (self.props.dataRef[dataRefIndex].type === "noEdit"){
 
             addItem = element(
                 "div",
@@ -499,17 +499,25 @@ var handler = React.createClass({
 
         var navTopLinks = [];
 
-        self.props.apiref.forEach(function(ref, index){
+        self.props.dataRef.forEach(function(ref, index){
 
-            navTopLinks.push(element(
-                'li',
-                {className: "ne-admin-nav-top-link"},
-                element(
-                    'a',
-                    {href: ref.slug + "?limit=3&batch=1"},
-                    ref.name
-                )
-            ))
+            if(ref.name === "negulpdatatest"){
+
+                console.log("neAdmin naAdminApiEditHandler: datatest skipped on purpose")
+            }
+            else {
+                navTopLinks.push(element(
+                    'li',
+                    {className: "ne-admin-nav-top-link"},
+                    element(
+                        'a',
+                        {href: ref.slug + "?limit=3&batch=1"},
+                        ref.name
+                    )
+                ))
+            }
+
+
 
         })
 
@@ -544,7 +552,7 @@ var handler = React.createClass({
 
                 <div className="ne-ccol-3s ne-tcenter">
                     <div>
-                        <h2 className="zt4"> {self.props.meta.params.apiName} items </h2>
+                        <h2 className="zt4"> {self.props.meta.params.dataName} items </h2>
                         <p> {cycleCurrentLabel} </p>
                         <p className="ne-admin-message"> {self.props.meta.query.message && self.props.meta.query.message} </p>
 
@@ -577,7 +585,7 @@ var handler = React.createClass({
 
             <div className="ne-row-640 ne-tcenter">
 
-                <h2> add new {self.props.meta.params.apiName} item </h2>
+                <h2> add new {self.props.meta.params.dataName} item </h2>
 
                 {addItem}
 
