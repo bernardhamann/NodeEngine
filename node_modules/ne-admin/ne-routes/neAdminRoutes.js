@@ -19,73 +19,71 @@ var neLocalStrategyRoutes = function (server){
          */
         next();
 
-    })
+    });
 
     router.post('/change/cycle/form', function(req, res, next){
 
+        var redirectPath
         if (req.body.limit){
             if (req.body.batch){
-                var redirectPath = '/admin/' + req.body.api + "?limit=" + req.body.limit + "&batch=" + req.body.batch;
-                return res.redirect(redirectPath);
+                redirectPath = '/admin/' + req.body.data + "?limit=" + req.body.limit + "&batch=" + req.body.batch;
             }
             else {
-                var redirectPath = '/admin/' + req.body.api + "?limit=" + req.body.limit;
-                return res.redirect(redirectPath);
+                redirectPath = '/admin/' + req.body.data + "?limit=" + req.body.limit;
             }
         }
         else{
-            var redirectPath = '/admin/' + api + "?message=Error changing cycle";
-            return res.redirect(redirectPath);
+            redirectPath = '/admin/' + data + "?message=Error changing cycle";
         }
+        return res.redirect(redirectPath);
 
-    })
+    });
 
     router.post('/change/cycle/buttons', function(req, res, next){
 
+        var redirectPath
         if (req.body.limit){
             if (req.body.batch){
-                var redirectPath = '/admin/' + req.body.api + "?limit=" + req.body.limit + "&batch=" + req.body.batch;
-                return res.redirect(redirectPath);
+                redirectPath = '/admin/' + req.body.data + "?limit=" + req.body.limit + "&batch=" + req.body.batch;
             }
             else {
-                var redirectPath = '/admin/' + req.body.api + "?limit=" + req.body.limit;
-                return res.redirect(redirectPath);
+                redirectPath = '/admin/' + req.body.data + "?limit=" + req.body.limit;
             }
         }
         else{
-            var redirectPath = '/admin/' + api + "?message=Error changing cycle";
-            return res.redirect(redirectPath);
+            redirectPath = '/admin/' + data + "?message=Error changing cycle";
         }
+        return res.redirect(redirectPath);
 
-    })
+    });
 
     router.post('/change/delete/', function(req, res, next){
 
-        var apiPath = process.env.ROOTURL + '/api/' + req.body.api + "/" + req.body._id + "?token=" + req.cookies.token;
+        var dataPath = process.env.ROOTURL + '/data/' + req.body.data + "/" + req.body._id + "?token=" + req.cookies.token;
 
-        axios.delete(apiPath)
+        axios.delete(dataPath)
             .then(function (response) {
 
                 var redirectPath;
                 if (req.body.limit){
-                    redirectPath = '/admin/' + req.body.api + "?message=deleted" + "&limit=" + req.body.limit;
+                    redirectPath = '/admin/' + req.body.data + "?message=deleted" + "&limit=" + req.body.limit;
                     if (req.body.batch){
-                        redirectPath = '/admin/' + req.body.api + "?message=deleted" + "&limit=" + req.body.limit + "&batch=" + req.body.batch;
+                        redirectPath = '/admin/' + req.body.data + "?message=deleted" + "&limit=" + req.body.limit + "&batch=" + req.body.batch;
                     }
                 }
                 else{
-                    redirectPath = '/admin/' + req.body.api + "?message=deleted";
+                    redirectPath = '/admin/' + req.body.data + "?message=deleted";
                 }
                 return res.redirect(redirectPath);
 
             })
             .catch(function (response) {
 
-                var redirectPath = '/admin/' + req.body.api + '?message=' + "Error deleting ";
+                var redirectPath = '/admin/' + req.body.data + '?message=' + "Error deleting ";
                 return res.redirect(redirectPath);
             });
 
-    })
+    });
 
     router.post('/change/add/', function(req, res, next){
 
@@ -123,11 +121,11 @@ var neLocalStrategyRoutes = function (server){
 
             }
 
-            else if (item === "api"){
+            else if (item === "data"){
 
                 console.log(" ")
                 console.log(" ")
-                console.log("Skipped api on purpose")
+                console.log("Skipped data on purpose")
                 console.log(" ")
                 console.log(" ")
 
@@ -137,7 +135,7 @@ var neLocalStrategyRoutes = function (server){
                 postObject[item] = req.body[item]
             }
 
-        })
+        });
 
         console.log("==============================================================================");
         console.log("==============================================================================");
@@ -147,28 +145,28 @@ var neLocalStrategyRoutes = function (server){
         console.log("==============================================================================");
 
 
-        var apiPath = process.env.ROOTURL + '/api/' + req.body.api + "?token=" + req.cookies.token;
+        var dataPath = process.env.ROOTURL + '/data/' + req.body.data + "?token=" + req.cookies.token;
 
         console.log("==============================================================================");
         console.log("==============================================================================");
-        console.log("apiPath");
+        console.log("dataPath");
         console.log("==============================================================================");
         console.log("==============================================================================");
 
 
 
-        axios.post(apiPath, postObject)
+        axios.post(dataPath, postObject)
             .then(function (response) {
 
                 var redirectPath;
                 if (req.body.limit){
-                    redirectPath = '/admin/' + req.body.api + "?message=added" + "&limit=" + req.body.limit;
+                    redirectPath = '/admin/' + req.body.data + "?message=added" + "&limit=" + req.body.limit;
                     if (req.body.batch){
-                        redirectPath = '/admin/' + req.body.api + "?message=added" + "&limit=" + req.body.limit + "&batch=" + req.body.batch;
+                        redirectPath = '/admin/' + req.body.data + "?message=added" + "&limit=" + req.body.limit + "&batch=" + req.body.batch;
                     }
                 }
                 else{
-                    redirectPath = '/admin/' + req.body.api + "?message=added";
+                    redirectPath = '/admin/' + req.body.data + "?message=added";
                 }
                 return res.redirect(redirectPath);
 
@@ -178,36 +176,32 @@ var neLocalStrategyRoutes = function (server){
 
                 var redirectPath;
                 if (req.body.limit){
-                    redirectPath = '/admin/' + req.body.api + "?message=Error adding" + "&limit=" + req.body.limit;
+                    redirectPath = '/admin/' + req.body.data + "?message=Error adding" + "&limit=" + req.body.limit;
                     if (req.body.batch){
-                        redirectPath = '/admin/' + req.body.api + "?message=Error adding" + "&limit=" + req.body.limit + "&batch=" + req.body.batch;
+                        redirectPath = '/admin/' + req.body.data + "?message=Error adding" + "&limit=" + req.body.limit + "&batch=" + req.body.batch;
                     }
                 }
                 else{
-                    redirectPath = '/admin/' + req.body.api + "?message=Error adding";
+                    redirectPath = '/admin/' + req.body.data + "?message=Error adding";
                 }
                 return res.redirect(redirectPath);
 
             });
 
-    })
+    });
 
     router.post('/change/put/', function(req, res, next){
 
         console.log("==============================================================================");
         console.log("==============================================================================");
-        console.log("req.body");
+        console.log("neAdmin neAdminRoutes: req.body");
         console.log(req.body);
         console.log("==============================================================================");
         console.log("==============================================================================");
 
         console.log("neAdmin neAdminRoutes:  Post received");
-        var api = req.body.api;
-        console.log(api);
+        var data = req.body.data;
         var _id = req.body._id;
-        console.log(_id);
-        //var value = req.body.value;
-        //console.log(value);
         var limit = req.body.limit;
         var batch = req.body.batch;
 
@@ -237,11 +231,21 @@ var neLocalStrategyRoutes = function (server){
 
             }
 
-            else if (item === "api"){
+            else if (item === "data"){
 
                 console.log(" ")
                 console.log(" ")
-                console.log("neAdmin neAdminRoutes: Skipped api on purpose")
+                console.log("neAdmin neAdminRoutes: Skipped data on purpose")
+                console.log(" ")
+                console.log(" ")
+
+            }
+
+            else if (item === "_id"){
+
+                console.log(" ")
+                console.log(" ")
+                console.log("neAdmin neAdminRoutes: Skipped _id on purpose")
                 console.log(" ")
                 console.log(" ")
 
@@ -260,19 +264,18 @@ var neLocalStrategyRoutes = function (server){
 
             }
 
-        })
+        });
 
-        var apiPath = process.env.ROOTURL + '/api/' + api + "/" + _id + "?token=" + req.cookies.token;
+        var dataPath = process.env.ROOTURL + '/data/' + req.body.data + "/" + req.body._id + "?token=" + req.cookies.token;
 
         console.log('');
         console.log('');
-        console.log('neAdmin neAdminRoutes: apiPath');
-        console.log(apiPath);
+        console.log('neAdmin neAdminRoutes: dataPath');
+        console.log(dataPath);
         console.log('');
         console.log('');
 
-
-        axios.put(apiPath, postObject)
+        axios.put(dataPath, postObject)
             .then(function (response) {
 
                 console.log('');
@@ -285,14 +288,14 @@ var neLocalStrategyRoutes = function (server){
                 var redirectPath;
                 if (req.body.limit){
                     if (req.body.batch){
-                        redirectPath = '/admin/' + req.body.api + '?message=' + " updated" + "&limit=" + req.body.limit + "&batch=" + req.body.batch;
+                        redirectPath = '/admin/' + req.body.data + '?message=' + " updated" + "&limit=" + req.body.limit + "&batch=" + req.body.batch;
                     }
                     else{
-                        redirectPath = '/admin/' + req.body.api + '?message=' + " updated" + "&limit=" + req.body.limit;
+                        redirectPath = '/admin/' + req.body.data + '?message=' + " updated" + "&limit=" + req.body.limit;
                     }
                 }
                 else{
-                    redirectPath = '/admin/' + req.body.api + '?message=' + " updated to ";
+                    redirectPath = '/admin/' + req.body.data + '?message=' + " updated to ";
                 }
                 return res.redirect(redirectPath);
 
@@ -306,7 +309,7 @@ var neLocalStrategyRoutes = function (server){
                 console.log('');
                 console.log('');
 
-                var redirectPath = '/admin/' + req.body.api + '?message=' + "Error updating ";
+                var redirectPath = '/admin/' + req.body.data + '?message=' + "Error updating ";
                 return res.redirect(redirectPath);
             });
     });
