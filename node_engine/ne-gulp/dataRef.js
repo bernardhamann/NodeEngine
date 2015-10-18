@@ -2,7 +2,7 @@ var dataRef = [
 {
   name: "emails",
   slug: "/admin/emails",
-  apiSlug: "/api/emails",
+  apiSlug: "/data/emails",
   interfaceType: "default",
   cycleByDefault: false,
   batchSize: 10,
@@ -32,9 +32,19 @@ var dataRef = [
     }
   ]
 },{
+  name: "negulpdatatest",
+  slug: "/admin/negulpdatatest",
+  apiSlug: "/data/negulpdatatest",
+  fields: [
+    {
+      name: "p1",
+      data: "testField"
+    }
+  ]
+},{
   name: "page",
   slug: "/admin/page",
-  apiSlug: "/api/page",
+  apiSlug: "/data/page",
   interfaceType: "default",
   cycleByDefault: false,
   batchSize: 10,
@@ -57,7 +67,7 @@ var dataRef = [
 },{
   name: "people",
   slug: "/admin/people",
-  apiSlug: "/api/people",
+  apiSlug: "/data/people",
   interfaceType: "default",
   cycleByDefault: false,
   batchSize: 10,

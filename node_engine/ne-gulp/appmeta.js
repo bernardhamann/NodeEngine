@@ -31,9 +31,9 @@ var appmeta = [
       nerbName: "people",
       pathFunction: function pathFunction(meta) {
             if (meta.params._id) {
-                path = process.env.ROOTURL + "/api/people" + "/" + meta.params._id + "?token=" + meta.token;
+                path = process.env.ROOTURL + "/data/people" + "/" + meta.params._id + "?token=" + meta.token;
             } else {
-                var path = process.env.ROOTURL + "/api/people" + "?token=" + meta.token;
+                var path = process.env.ROOTURL + "/data/people" + "?token=" + meta.token;
             }
             return path;
         }
@@ -44,7 +44,7 @@ var appmeta = [
   title: "About Us",
   description: "This is About Us page"
 },{
-  path: "/admin/:apiName",
+  path: "/admin/:dataName",
   title: "Admin page",
   description: "Add, edit, delete and view content",
   css: [
@@ -53,20 +53,20 @@ var appmeta = [
   ],
   nerbArray: [
     {
-      nerbName: "apiData",
+      nerbName: "adminData",
       pathFunction: function pathFunction(meta) {
             if (meta.query) {
                 if (meta.query.limit) {
                     if (meta.query.batch) {
-                        var path = process.env.ROOTURL + "/api/" + meta.params.apiName + "?limit=" + meta.query.limit + "&batch=" + meta.query.batch;
+                        var path = process.env.ROOTURL + "/data/" + meta.params.dataName + "?limit=" + meta.query.limit + "&batch=" + meta.query.batch;
                     } else {
-                        var path = process.env.ROOTURL + "/api/" + meta.params.apiName + "?limit=" + meta.query.limit;
+                        var path = process.env.ROOTURL + "/data/" + meta.params.dataName + "?limit=" + meta.query.limit;
                     }
                 } else {
-                    var path = process.env.ROOTURL + "/api/" + meta.params.apiName;
+                    var path = process.env.ROOTURL + "/data/" + meta.params.dataName;
                 }
             } else {
-                var path = process.env.ROOTURL + "/api/" + meta.params.apiName;
+                var path = process.env.ROOTURL + "/data/" + meta.params.dataName;
             }
             return path;
         }
@@ -92,7 +92,7 @@ var appmeta = [
     {
       nerbName: "users",
       pathFunction: function pathFunction(meta) {
-            path = process.env.ROOTURL + "/api/users" + "/" + meta.claims.user + "?token=" + meta.token;
+            path = process.env.ROOTURL + "/data/users" + "/" + meta.claims.user + "?token=" + meta.token;
             return path;
         }
     }
@@ -109,7 +109,7 @@ var appmeta = [
     {
       nerbName: "users",
       pathFunction: function pathFunction(meta) {
-            path = process.env.ROOTURL + "/api/users/" + meta.params._id + "?token=" + meta.token;
+            path = process.env.ROOTURL + "/data/users/" + meta.params._id + "?token=" + meta.token;
             return path;
         }
     }
@@ -122,11 +122,15 @@ var appmeta = [
     {
       nerbName: "users",
       pathFunction: function pathFunction(meta) {
-            path = process.env.ROOTURL + "/api/users?token=" + meta.token;
+            path = process.env.ROOTURL + "/data/users?token=" + meta.token;
             return path;
         }
     }
   ]
+},{
+  path: "/negulphandlertest",
+  title: "negulphandlertest",
+  description: "negulphandlertest"
 }
 ]; 
 module.exports = appmeta;
