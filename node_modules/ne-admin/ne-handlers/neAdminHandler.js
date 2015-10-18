@@ -18,8 +18,8 @@ var handler = React.createClass({
     render: function() {
         var self = this;
 
-        var apirefIndex = _.findIndex(self.props.apiref, function(chr) {
-            return chr.name == self.props.meta.params.apiName;
+        var dataRefIndex = _.findIndex(self.props.dataRef, function(chr) {
+            return chr.name == self.props.meta.params.dataName;
         });
 
         console.log(self.props);
@@ -27,17 +27,23 @@ var handler = React.createClass({
         var navTopLinks = []
         var dataLinks = [];
 
-        self.props.apiref.forEach(function(ref, index){
+        self.props.dataRef.forEach(function(ref, index){
 
-            navTopLinks.push(element(
-                'li',
-                {className: "ne-admin-nav-top-link"},
-                element(
-                    'a',
-                    {href: ref.slug + "?limit=3&batch=1"},
-                    ref.name
-                )
-            ))
+            if(ref.name === "negulpdatatest"){
+
+                console.log("neAdmin naAdminApiEditHandler: datatest skipped on purpose")
+            }
+            else {
+                navTopLinks.push(element(
+                    'li',
+                    {className: "ne-admin-nav-top-link"},
+                    element(
+                        'a',
+                        {href: ref.slug + "?limit=3&batch=1"},
+                        ref.name
+                    )
+                ))
+            }
 
             dataLinks.push(element(
                 'div',
