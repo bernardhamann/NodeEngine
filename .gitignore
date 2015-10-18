@@ -6,6 +6,7 @@
 !/node_modules/ne-handler
 !/node_modules/ne-render
 !/node_modules/ne-server
+!/node_modules/ne-style
 /node_modules/*/node_modules
 .idea
 config-p.json
