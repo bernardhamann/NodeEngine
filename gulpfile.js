@@ -5,6 +5,7 @@ var env = require('gulp-env');
 
 // Style
 var stylus = require('gulp-stylus');
+
 //var nib = require('nib');
 var rupture = require('rupture');
 var postcss = require('gulp-postcss');
@@ -25,6 +26,8 @@ var fs = require('fs');
 var rename = require("gulp-rename");
 var wait = require('gulp-wait');
 // var next= require('gulp-next');
+
+var neGulp = require ('ne-gulp');
 
 
 //////////////////////
@@ -60,7 +63,7 @@ gulp.task('clear', function () {
 //  Style
 //////////////////////
 
-gulp.task('style', function () {
+gulp.task('style',['neBefore'], function () {
 
     gulp.watch('src/css/*.styl', [
         'style'
@@ -88,7 +91,7 @@ gulp.task('style', function () {
 //  Copy
 //////////////////////
 
-gulp.task('static', function() {
+gulp.task('static',['neBefore'], function() {
 
     gulp.watch('src/static/**/**/**/*.html', [
         'static'
@@ -104,7 +107,7 @@ gulp.task('static', function() {
 //  Babel
 //////////////////////
 
-gulp.task('babel', function() {
+gulp.task('babel',['neBefore'], function() {
 
     gulp.watch('src/**/**/**/*.js', [
         'babel'
@@ -121,20 +124,24 @@ gulp.task('babel', function() {
 //  Node Engine
 //////////////////////
 
-gulp.task('neCustom', function() {
+gulp.task('neBefore', function() {
 
-    // Run custom Node Engine modules here
-    var neAuth = require ('ne-auth');
-    neAuth.gulpCompileHandlers();
-    var neAdmin = require ('ne-admin');
-    neAdmin.gulpCompileHandlers();
-    neAdmin.gulpCompileComponents();
-    neAdmin.gulpCompileCss();
+    neGulp.doImports();
+
     return undefined;
 
 });
 
-gulp.task('neGulp',['neCustom', 'babel'], function() {
+gulp.task('neCustom', function() {
+
+    neGulp.compileHandlers();
+    neGulp.compileComponents();
+
+    return undefined;
+
+});
+
+gulp.task('neCompile',['neCustom', 'babel'], function() {
 
     // Compile the routes.js and the appmeta.js files
     var compileNow = function(){
@@ -145,9 +152,9 @@ gulp.task('neGulp',['neCustom', 'babel'], function() {
         console.log('======================================');
         console.log('======================================');
 
-        var neGulp = require ('ne-gulp');
         var dirName = __dirname;
-        neGulp(dirName);
+        neGulp.compile(dirName);
+        neGulp.compileStyl();
 
         console.log('======================================');
         console.log('======================================');
@@ -165,7 +172,7 @@ gulp.task('neGulp',['neCustom', 'babel'], function() {
 //  Webpack
 //////////////////////
 
-gulp.task('webpack',['neGulp'], function(){
+gulp.task('webpack',['neCompile'], function(){
 
     gulp.src('src/client.js')
         .pipe(webpack( require('./webpack.js') ))
@@ -197,11 +204,12 @@ gulp.task('nodemon', function () {
 
 
 gulp.task('default', [
+    'neBefore',
     'style',
     'static',
     'babel',
     'neCustom',
-    'neGulp',
+    'neCompile',
     'webpack',
     'nodemon'
 ]);
