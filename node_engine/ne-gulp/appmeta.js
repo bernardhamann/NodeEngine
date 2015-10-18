@@ -49,7 +49,7 @@ var appmeta = [
   description: "Add, edit, delete and view content",
   css: [
     "/ne-style.css",
-    "/ne-admin/css/style.css"
+    "/ne-admin/ne-css/style.css"
   ],
   nerbArray: [
     {
@@ -78,7 +78,7 @@ var appmeta = [
   description: "Add, edit, delete and view content",
   css: [
     "/ne-style.css",
-    "/ne-admin/css/style.css"
+    "/ne-admin/ne-css/style.css"
   ]
 },{
   path: "/login",
