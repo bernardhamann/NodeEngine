@@ -14,11 +14,11 @@ class Head extends React.Component {
         }
 
 
-
         return (
             <head>
                 <title>{`${this.props.meta.title} - ${this.props.meta.appname}`}</title>
                 <meta name="description" content={this.props.meta.description}/>
+                <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css"/>
                 <link rel='stylesheet' href='/style.css' />
                 {css}
                 <meta charSet="UTF-8" />
