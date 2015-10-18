@@ -13,9 +13,9 @@ var meta = {
             nerbName: 'people',
             pathFunction: function (meta) {
                 if (meta.params._id){
-                    path = process.env.ROOTURL + "/api/people" + "/" + meta.params._id +"?token="+ meta.token;
+                    path = process.env.ROOTURL + "/data/people" + "/" + meta.params._id +"?token="+ meta.token;
                 }else {
-                    var path = process.env.ROOTURL + "/api/people"+"?token="+ meta.token;
+                    var path = process.env.ROOTURL + "/data/people"+"?token="+ meta.token;
                 }
                 return path
             }

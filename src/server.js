@@ -4,10 +4,10 @@
 // Create the Server
 ////////////////////////
 
-var nodeEngineServer = require('ne-server');
+var neServer = require('ne-server');
 
 var port = process.env.PORT;
-var server = nodeEngineServer.init(port);
+var server = neServer.init(port);
 
 
 ////////////////////////
@@ -26,8 +26,7 @@ server.use(morgan('dev'));
 var dirNameStatic = __dirname;
 var cacheTime = 100;
 
-nodeEngineServer.static(server, dirNameStatic, cacheTime);
-
+neServer.static(server, dirNameStatic, cacheTime);
 
 ///////////////
 // Mongo
@@ -80,8 +79,18 @@ neData.routesConfig(server, dirNameNeData);
 // Admin Api
 ///////////////
 
+/*
 var neAdmin = require('ne-admin');
 neAdmin.routes(server);
+*/
+
+
+//////////////////////
+// Routes
+//////////////////////
+
+var dirNameRoutes = __dirname;
+neServer.routes(server, dirNameRoutes);
 
 
 //////////////////////////////

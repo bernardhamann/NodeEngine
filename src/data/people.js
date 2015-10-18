@@ -15,7 +15,7 @@ var modelSchema = new Schema({
 var dataRefOld = {
     "name": "people",
     "slug": "/admin/people",
-    "apiSlug": "/api/people",
+    "apiSlug": "/data/people",
     "interfaceType": "default",
     "cycleByDefault": false,
     "batchSize": 10,
@@ -27,7 +27,7 @@ var dataRefOld = {
 var dataRef = {
     "name": "people",
     "slug": "/admin/people",
-    "apiSlug": "/api/people",
+    "apiSlug": "/data/people",
     "interfaceType": "default",
     "cycleByDefault": false,
     "batchSize": 10,
@@ -63,7 +63,7 @@ var Model = mongoose.model(
 
 var routes = function (router, passport, strategyName){
 
-    var permissionsArray = ['reader'];
+    var permissionsArray = ['reader', 'admin'];
 
     neData.get(router, Model);
     neData.putWithPermissions(router, Model, permissionsArray);

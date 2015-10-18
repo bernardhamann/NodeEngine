@@ -13,7 +13,7 @@ var handler = React.createClass({
     render: function() {
         var self = this;
 
-        var text = this.props.apiref.map(function(item, index){
+        var text = this.props.dataRef.map(function(item, index){
             return (
                 <li key={index}><a href={item.slug}>{item.name}</a>  </li>
                 )

@@ -93,12 +93,14 @@ gulp.task('style',['neBefore'], function () {
 
 gulp.task('static',['neBefore'], function() {
 
-    gulp.watch('src/static/**/**/**/*.html', [
+    gulp.watch('src/static/**/**/**/*', [
         'static'
     ]);
 
-    return gulp.src('src/static/**/**/**/*.html')
+    gulp.src('src/static/**/**/**/*')
         .pipe(gulp.dest('./app/static/'));
+
+    return undefined
 
 });
 
@@ -126,7 +128,7 @@ gulp.task('babel',['neBefore'], function() {
 
 gulp.task('neBefore', function() {
 
-    neGulp.doImports();
+    neGulp.before();
 
     return undefined;
 
@@ -134,8 +136,7 @@ gulp.task('neBefore', function() {
 
 gulp.task('neCustom', function() {
 
-    neGulp.compileHandlers();
-    neGulp.compileComponents();
+    neGulp.custom();
 
     return undefined;
 
@@ -146,21 +147,9 @@ gulp.task('neCompile',['neCustom', 'babel'], function() {
     // Compile the routes.js and the appmeta.js files
     var compileNow = function(){
 
-        console.log('======================================');
-        console.log('======================================');
-        console.log('neGulp Compile: START');
-        console.log('======================================');
-        console.log('======================================');
-
         var dirName = __dirname;
-        neGulp.compile(dirName);
-        neGulp.compileStyl();
+        neGulp.compileMain(dirName);
 
-        console.log('======================================');
-        console.log('======================================');
-        console.log('neGulp Compile: END');
-        console.log('======================================');
-        console.log('======================================');
         return undefined
     };
     setTimeout(compileNow, 2000);
@@ -221,7 +210,6 @@ gulp.task('default', [
 //////////////////////
 
 
-
 // run a server to help with reloads etc
 /*
  gulp.task('browserSync', function() {
@@ -236,46 +224,6 @@ gulp.task('default', [
 
 /*
 var nodemon = require('gulp-nodemon');
-
-
-
-
-
-gulp.task('neMeta',['babel'], function() {
-
-    var dirName = __dirname;
-    var handlersFolder = "app/handlers/";
-
-    return gulp.src('node_engine/blank.js')
-        .pipe(rename('appmeta.js'))
-        .pipe(wait(1000))
-        .pipe(neMeta(dirName, handlersFolder))
-        .pipe(gulp.dest('./node_engine/gulp-ne-meta/'));
-        //.pipe(next(function(){
-        //    console.log('neMeta done');
-        //    gulp.start('neRoutes');
-        //}));
-
-});
-
-
-gulp.task('neRoutes',['babel'], function() {
-
-    var dirName = __dirname;
-    var handlersFolder = "app/handlers/";
-
-    return gulp.src('node_engine/blank.js')
-        .pipe(rename('routes.js'))
-        .pipe(wait(1000))
-        .pipe(neRoutes(dirName, handlersFolder))
-        .pipe(gulp.dest('./node_engine/gulp-ne-routes/'));
-        //.pipe(next(function(){
-        //    console.log('neRoutes done');
-        //    gulp.start('webpack');
-        //}));
-
-});
-
 
 
 */

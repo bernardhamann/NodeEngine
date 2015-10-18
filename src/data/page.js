@@ -14,7 +14,7 @@ var modelSchema = new Schema({
 var dataRef = {
     "name": "page",
     "slug": "/admin/page",
-    "apiSlug": "/api/page",
+    "apiSlug": "/data/page",
     "interfaceType": "default",
     "cycleByDefault": false,
     "batchSize": 10,

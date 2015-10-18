@@ -13,7 +13,7 @@ var modelSchema = new Schema({
 var dataRef = {
     "name": "emails",
     "slug": "/admin/emails",
-    "apiSlug": "/api/emails",
+    "apiSlug": "/data/emails",
     "interfaceType": "default",
     "cycleByDefault": false,
     "batchSize": 10,
