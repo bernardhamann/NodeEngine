@@ -1,40 +1,17 @@
 var gulp = require('gulp');
-var del = require('del');
-var nodemon = require('gulp-nodemon');
+var neGulp = require ('ne-gulp');
 var env = require('gulp-env');
-
-// Style
-var stylus = require('gulp-stylus');
-
-//var nib = require('nib');
-var rupture = require('rupture');
-var postcss = require('gulp-postcss');
-//var csswring = require('csswring');
-var autoprefixer = require('autoprefixer');
-var precss = require('precss');
-var lost = require('lost');
-var rucksack = require('rucksack-css');
+var nodemon = require('gulp-nodemon');
 
 // JS
-var babel = require('gulp-babel');
 var webpack = require('webpack-stream');
-
 // var browserSync = require('browser-sync');
-
-// Node Engine
-var fs = require('fs');
-var rename = require("gulp-rename");
-var wait = require('gulp-wait');
-// var next= require('gulp-next');
-
-var neGulp = require ('ne-gulp');
-
 
 //////////////////////
 //    Hello World   //
 //////////////////////
 
-gulp.task('hello', function() {
+gulp.task('hello',['webpack'], function() {
     console.log('            __                                          ');
     console.log('           /..\\___   Hello, You need to check up on me ');
     console.log('          /       \\            I crash your gulp watch ');
@@ -51,11 +28,8 @@ gulp.task('hello', function() {
 //////////////////////
 
 gulp.task('clear', function () {
-    del([
-        // 'dist/report.csv',
-        // here we use a globbing pattern to match everything inside app folder
-        'app/**/*'
-    ]);
+
+    return neGulp.autoClear();
 });
 
 
@@ -69,21 +43,7 @@ gulp.task('style',['neBefore'], function () {
         'style'
     ]);
 
-    return gulp.src('src/css/*.styl')
-        .pipe(stylus({
-            use: [
-                rupture()
-            ]
-        }))
-        .pipe(postcss([
-            precss({}),
-            lost(),
-            autoprefixer({}),
-            rucksack
-            //csswring
-        ]))
-        .pipe(gulp.dest('./app/css/'));
-
+    return neGulp.autoStyl();
 });
 
 
@@ -97,10 +57,7 @@ gulp.task('static',['neBefore'], function() {
         'static'
     ]);
 
-    gulp.src('src/static/**/**/**/*')
-        .pipe(gulp.dest('./app/static/'));
-
-    return undefined
+    return neGulp.autoStatic();
 
 });
 
@@ -115,9 +72,7 @@ gulp.task('babel',['neBefore'], function() {
         'babel'
     ]);
 
-    return gulp.src('src/**/**/**/*.js')
-        .pipe(babel())
-        .pipe(gulp.dest('./app/'));
+    return neGulp.autoBabel();
 
 });
 
@@ -128,29 +83,22 @@ gulp.task('babel',['neBefore'], function() {
 
 gulp.task('neBefore', function() {
 
-    neGulp.before();
-
-    return undefined;
+    return neGulp.before();
 
 });
 
 gulp.task('neCustom', function() {
 
-    neGulp.custom();
-
-    return undefined;
+    return neGulp.custom();
 
 });
 
 gulp.task('neCompile',['neCustom', 'babel'], function() {
 
-    // Compile the routes.js and the appmeta.js files
     var compileNow = function(){
 
         var dirName = __dirname;
-        neGulp.compileMain(dirName);
-
-        return undefined
+        return neGulp.compileMain(dirName);
     };
     setTimeout(compileNow, 2000);
 
@@ -200,6 +148,7 @@ gulp.task('default', [
     'neCustom',
     'neCompile',
     'webpack',
+    'hello',
     'nodemon'
 ]);
 

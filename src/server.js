@@ -10,6 +10,8 @@ var port = process.env.PORT;
 var server = neServer.init(port);
 
 var dirName = __dirname;
+console.log('dirName');
+console.log(dirName);
 
 var serverOptions = {};
 serverOptions.cacheTime = 10000;
