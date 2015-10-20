@@ -1,3 +1,5 @@
+var express = require('express');
+var debug = require('debug')('express:server');
 
 var serverInit = function(PORT){
 
