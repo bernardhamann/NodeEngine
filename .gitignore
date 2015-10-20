@@ -11,6 +11,8 @@ node_modules/ne-auto/node_modules/body-parser
 node_modules/ne-auto/node_modules/mongoose
 node_modules/ne-auto/node_modules/morgan
 node_modules/ne-auto/node_modules/passport
+node_modules/ne-auto/node_modules/react
+node_modules/ne-auto/node_modules/react-router
 node_modules/ne-auto/node_modules/*/node_modules/
 .idea
 config-p.json
