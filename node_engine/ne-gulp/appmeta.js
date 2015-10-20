@@ -81,53 +81,6 @@ var appmeta = [
     "/ne-admin/ne-css/style.css"
   ]
 },{
-  path: "/login",
-  title: "Login",
-  description: "Login page"
-},{
-  path: "/profile",
-  title: "Profile Page",
-  description: "User profile page",
-  nerbArray: [
-    {
-      nerbName: "users",
-      pathFunction: function pathFunction(meta) {
-            path = process.env.ROOTURL + "/data/users" + "/" + meta.claims.user + "?token=" + meta.token;
-            return path;
-        }
-    }
-  ]
-},{
-  path: "/signup",
-  title: "Signup",
-  description: "Signup page"
-},{
-  path: "/admin/users/:_id",
-  title: "Edit User",
-  description: "Editing user",
-  nerbArray: [
-    {
-      nerbName: "users",
-      pathFunction: function pathFunction(meta) {
-            path = process.env.ROOTURL + "/data/users/" + meta.params._id + "?token=" + meta.token;
-            return path;
-        }
-    }
-  ]
-},{
-  path: "/admin/users",
-  title: "Users",
-  description: "This is Users page",
-  nerbArray: [
-    {
-      nerbName: "users",
-      pathFunction: function pathFunction(meta) {
-            path = process.env.ROOTURL + "/data/users?token=" + meta.token;
-            return path;
-        }
-    }
-  ]
-},{
   path: "/negulphandlertest",
   title: "negulphandlertest",
   description: "negulphandlertest"
