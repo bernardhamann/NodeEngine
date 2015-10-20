@@ -1,7 +1,6 @@
-//var router = require('express').Router();
-var mongoose = require('mongoose');
+var mongoose = require('ne-auto').mongoose;
 var Schema = mongoose.Schema;
-var neData = require('ne-data');
+var neData = require('ne-auto').neData;
 
 var modelSchema = new Schema({
     path:{type: String, required: true},
