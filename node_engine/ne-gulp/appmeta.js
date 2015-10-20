@@ -44,43 +44,6 @@ var appmeta = [
   title: "About Us",
   description: "This is About Us page"
 },{
-  path: "/admin/:dataName",
-  title: "Admin page",
-  description: "Add, edit, delete and view content",
-  css: [
-    "/ne-style.css",
-    "/ne-admin/ne-css/style.css"
-  ],
-  nerbArray: [
-    {
-      nerbName: "adminData",
-      pathFunction: function pathFunction(meta) {
-            if (meta.query) {
-                if (meta.query.limit) {
-                    if (meta.query.batch) {
-                        var path = process.env.ROOTURL + "/data/" + meta.params.dataName + "?limit=" + meta.query.limit + "&batch=" + meta.query.batch;
-                    } else {
-                        var path = process.env.ROOTURL + "/data/" + meta.params.dataName + "?limit=" + meta.query.limit;
-                    }
-                } else {
-                    var path = process.env.ROOTURL + "/data/" + meta.params.dataName;
-                }
-            } else {
-                var path = process.env.ROOTURL + "/data/" + meta.params.dataName;
-            }
-            return path;
-        }
-    }
-  ]
-},{
-  path: "/admin",
-  title: "Admin page",
-  description: "Add, edit, delete and view content",
-  css: [
-    "/ne-style.css",
-    "/ne-admin/ne-css/style.css"
-  ]
-},{
   path: "/negulphandlertest",
   title: "negulphandlertest",
   description: "negulphandlertest"
