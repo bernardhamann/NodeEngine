@@ -12,11 +12,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var neAuto;
 if (process.env.NE_AUTO) {
-    var React = require(process.env.NE_AUTO).react;
+    neAuto = process.env.NE_AUTO;
 } else {
-    var React = require("react");
+    neAuto = "ne-auto-off";
 }
+
+var React = require(neAuto).react || require('react');
 
 var Footer = (function (_React$Component) {
     _inherits(Footer, _React$Component);

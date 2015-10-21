@@ -1,12 +1,14 @@
 'use strict';
 
+var neAuto;
 if (process.env.NE_AUTO) {
-    var React = require(process.env.NE_AUTO).react;
-    var Router = require(process.env.NE_AUTO).reactRouter;
+    neAuto = process.env.NE_AUTO;
 } else {
-    var React = require("react");
-    var Router = require('react-router');
+    neAuto = "ne-auto-off";
 }
+
+var React = require(neAuto).react || require('react');
+var Router = require(neAuto).reactRouter || require('react-router');
 
 var RouteHandler = Router.RouteHandler;
 

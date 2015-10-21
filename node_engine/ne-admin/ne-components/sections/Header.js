@@ -8,15 +8,18 @@ var _createClass = (function () { function defineProperties(target, props) { for
 
 var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var _react = require('react');
+var neAuto;
+if (process.env.NE_AUTO) {
+    neAuto = process.env.NE_AUTO;
+} else {
+    neAuto = "ne-auto-off";
+}
 
-var _react2 = _interopRequireDefault(_react);
+var React = require(neAuto).react || require('react');
 
 var Header = (function (_React$Component) {
     _inherits(Header, _React$Component);
@@ -35,40 +38,40 @@ var Header = (function (_React$Component) {
             var user;
             if (self.props.meta && self.props.meta.claims && self.props.meta.claims.user) {
                 var text = self.props.meta.claims.displayName;
-                user = _react2["default"].createElement(
+                user = React.createElement(
                     "ul",
                     null,
-                    _react2["default"].createElement(
+                    React.createElement(
                         "li",
                         null,
-                        _react2["default"].createElement(
+                        React.createElement(
                             "a",
                             { href: "/profile" },
                             text
                         )
                     ),
-                    _react2["default"].createElement(
+                    React.createElement(
                         "li",
                         null,
-                        _react2["default"].createElement(
+                        React.createElement(
                             "a",
                             { href: "/admin" },
                             "Admin"
                         )
                     ),
-                    _react2["default"].createElement(
+                    React.createElement(
                         "li",
                         null,
-                        _react2["default"].createElement(
+                        React.createElement(
                             "a",
                             { href: "/admin/users" },
                             "Users"
                         )
                     ),
-                    _react2["default"].createElement(
+                    React.createElement(
                         "li",
                         null,
-                        _react2["default"].createElement(
+                        React.createElement(
                             "a",
                             { href: "/auth/logout" },
                             "Logout"
@@ -76,13 +79,13 @@ var Header = (function (_React$Component) {
                     )
                 );
             } else {
-                user = _react2["default"].createElement(
+                user = React.createElement(
                     "ul",
                     null,
-                    _react2["default"].createElement(
+                    React.createElement(
                         "li",
                         null,
-                        _react2["default"].createElement(
+                        React.createElement(
                             "a",
                             { href: "/login" },
                             "Login"
@@ -91,54 +94,54 @@ var Header = (function (_React$Component) {
                 );
             }
 
-            return _react2["default"].createElement(
+            return React.createElement(
                 "header",
                 { className: "section", id: "section-header" },
-                _react2["default"].createElement(
+                React.createElement(
                     "div",
                     { id: "section-header-inner" },
-                    _react2["default"].createElement(
+                    React.createElement(
                         "h1",
                         null,
                         "This is the Header"
                     ),
-                    _react2["default"].createElement(
+                    React.createElement(
                         "div",
                         null,
-                        _react2["default"].createElement(
+                        React.createElement(
                             "ul",
                             null,
-                            _react2["default"].createElement(
+                            React.createElement(
                                 "li",
                                 null,
-                                _react2["default"].createElement(
+                                React.createElement(
                                     "a",
                                     { href: "/" },
                                     "Home"
                                 )
                             ),
-                            _react2["default"].createElement(
+                            React.createElement(
                                 "li",
                                 null,
-                                _react2["default"].createElement(
+                                React.createElement(
                                     "a",
                                     { href: "/about", id: "about-link" },
                                     "About"
                                 )
                             ),
-                            _react2["default"].createElement(
+                            React.createElement(
                                 "li",
                                 null,
-                                _react2["default"].createElement(
+                                React.createElement(
                                     "a",
                                     { href: "/contact" },
                                     "Contact"
                                 )
                             ),
-                            _react2["default"].createElement(
+                            React.createElement(
                                 "li",
                                 null,
-                                _react2["default"].createElement(
+                                React.createElement(
                                     "a",
                                     { href: "/people" },
                                     "People"
@@ -146,7 +149,7 @@ var Header = (function (_React$Component) {
                             )
                         )
                     ),
-                    _react2["default"].createElement(
+                    React.createElement(
                         "div",
                         null,
                         user
@@ -157,7 +160,7 @@ var Header = (function (_React$Component) {
     }]);
 
     return Header;
-})(_react2["default"].Component);
+})(React.Component);
 
 exports["default"] = Header;
 module.exports = exports["default"];

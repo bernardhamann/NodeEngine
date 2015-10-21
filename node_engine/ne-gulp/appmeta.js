@@ -44,6 +44,90 @@ var appmeta = [
   title: "About Us",
   description: "This is About Us page"
 },{
+  path: "/admin/:dataName",
+  title: "Admin page",
+  description: "Add, edit, delete and view content",
+  css: [
+    "/ne-style.css",
+    "/neAdminStyle.css"
+  ],
+  nerbArray: [
+    {
+      nerbName: "adminData",
+      pathFunction: function pathFunction(meta) {
+            if (meta.query) {
+                if (meta.query.limit) {
+                    if (meta.query.batch) {
+                        var path = process.env.ROOTURL + "/data/" + meta.params.dataName + "?limit=" + meta.query.limit + "&batch=" + meta.query.batch;
+                    } else {
+                        var path = process.env.ROOTURL + "/data/" + meta.params.dataName + "?limit=" + meta.query.limit;
+                    }
+                } else {
+                    var path = process.env.ROOTURL + "/data/" + meta.params.dataName;
+                }
+            } else {
+                var path = process.env.ROOTURL + "/data/" + meta.params.dataName;
+            }
+            return path;
+        }
+    }
+  ]
+},{
+  path: "/admin",
+  title: "Admin page",
+  description: "Add, edit, delete and view content",
+  css: [
+    "/ne-style.css",
+    "/neAdminStyle.css"
+  ]
+},{
+  path: "/login",
+  title: "Login",
+  description: "Login page"
+},{
+  path: "/profile",
+  title: "Profile Page",
+  description: "User profile page",
+  nerbArray: [
+    {
+      nerbName: "users",
+      pathFunction: function pathFunction(meta) {
+            path = process.env.ROOTURL + "/data/users" + "/" + meta.claims.user + "?token=" + meta.token;
+            return path;
+        }
+    }
+  ]
+},{
+  path: "/signup",
+  title: "Signup",
+  description: "Signup page"
+},{
+  path: "/admin/users/:_id",
+  title: "Edit User",
+  description: "Editing user",
+  nerbArray: [
+    {
+      nerbName: "users",
+      pathFunction: function pathFunction(meta) {
+            path = process.env.ROOTURL + "/data/users/" + meta.params._id + "?token=" + meta.token;
+            return path;
+        }
+    }
+  ]
+},{
+  path: "/admin/users",
+  title: "Users",
+  description: "This is Users page",
+  nerbArray: [
+    {
+      nerbName: "users",
+      pathFunction: function pathFunction(meta) {
+            path = process.env.ROOTURL + "/data/users?token=" + meta.token;
+            return path;
+        }
+    }
+  ]
+},{
   path: "/negulphandlertest",
   title: "negulphandlertest",
   description: "negulphandlertest"
