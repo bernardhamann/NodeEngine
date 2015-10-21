@@ -117,7 +117,7 @@ var serverConfig = function(dirName, optionsObject){
     //////////////////////
 
     // Must be after auth
-    neServer.routes(server, dirName);
+    neServer.routes(server, dirName, optionsObject);
 
     ////////////////////////////////////////////////////////////
     // Rendering React with React-Router on the server with Pre-Render Data from API's
