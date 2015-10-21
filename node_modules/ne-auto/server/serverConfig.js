@@ -1,6 +1,5 @@
 var fs = require("fs");
 var path = require('path');
-var debug = require('debug')('express:server');
 
 var express = require('express');
 var bodyParser = require("body-parser");
