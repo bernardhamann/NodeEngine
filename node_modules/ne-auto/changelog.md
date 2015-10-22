@@ -19,6 +19,16 @@ Dependencies
 - DU Update Dependency: A dependency is updated in the package
 
 
+
+
+## 1.3.2
+
+Release date : 20151021
+
+[BF]
+Fixed neServer.routes() paths.
+
+
 ## 1.3.1
 
 Release date : 20151021
