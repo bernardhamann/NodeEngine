@@ -6,5 +6,6 @@ var optionsObject = {};
 optionsObject.cacheTime = 10000;
 optionsObject.pathToHandlers = "";
 optionsObject.pathToData = "";
-optionsObject.pathToRoutes = "../../../../app/routes/";
+optionsObject.pathToRoutes = "../../app/routes/";
+//optionsObject.pathToRoutes = "../../../../app/routes/";
 neAuto.server(dirName, optionsObject);
