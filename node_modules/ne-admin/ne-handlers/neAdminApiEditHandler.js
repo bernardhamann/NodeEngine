@@ -20,7 +20,12 @@ var meta = {
                 if(meta.query){
                     if(meta.query.limit){
                         if(meta.query.batch){
-                            var path = process.env.ROOTURL + "/data/" + meta.params.dataName + "?limit=" + meta.query.limit + "&batch=" + meta.query.batch;
+                            if(meta.query.token){
+                                var path = process.env.ROOTURL + "/data/" + meta.params.dataName + "?limit=" + meta.query.limit + "&batch=" + meta.query.batch + "&token=" + meta.query.token;
+                            }
+                            else{
+                                var path = process.env.ROOTURL + "/data/" + meta.params.dataName + "?limit=" + meta.query.limit + "&batch=" + meta.query.batch;
+                            }
                         }
                         else{
                             var path = process.env.ROOTURL + "/data/" + meta.params.dataName + "?limit=" + meta.query.limit;
@@ -64,7 +69,11 @@ var handler = React.createClass({
                 { action: "/admin/change/cycle/form", method: "post" },
                 element(
                     'input',
-                    {type: "hidden", name: "data", value: self.props.meta.params.dataName,}
+                    {type: "hidden", name: "data", defaultValue: self.props.meta.params.dataName,}
+                ),
+                element(
+                    'input',
+                    {type: "hidden", name: "token", defaultValue: self.props.meta.token,}
                 ),
                 element(
                     'label',
@@ -73,7 +82,7 @@ var handler = React.createClass({
                 ),
                 element(
                     'input',
-                    {type: "text", name: "limit", value: self.props.meta.query.limit}
+                    {type: "text", name: "limit", defaultValue: self.props.meta.query.limit}
                 ),
                 element(
                     'label',
@@ -82,7 +91,7 @@ var handler = React.createClass({
                 ),
                 element(
                     'input',
-                    {type: "text", name: "batch", value: self.props.meta.query.batch,}
+                    {type: "text", name: "batch", defaultValue: self.props.meta.query.batch,}
                 ),
                 element(
                     "input",
@@ -129,6 +138,10 @@ var handler = React.createClass({
                 ),
                 element(
                     'input',
+                    {type: "hidden", name: "token", defaultValue: self.props.meta.token,}
+                ),
+                element(
+                    'input',
                     {type: "hidden", name: "limit", defaultValue: self.props.meta.query.limit}
                 ),
                 element(
@@ -150,6 +163,10 @@ var handler = React.createClass({
                 element(
                     'input',
                     {type: "hidden", name: "data", defaultValue: self.props.meta.params.dataName}
+                ),
+                element(
+                    'input',
+                    {type: "hidden", name: "token", defaultValue: self.props.meta.token,}
                 ),
                 element(
                     'input',
@@ -246,6 +263,10 @@ var handler = React.createClass({
                         ),
                         element(
                             'input',
+                            {type: "hidden", name: "token", defaultValue: self.props.meta.token,}
+                        ),
+                        element(
+                            'input',
                             {type: "hidden", name: "_id", defaultValue: object._id,}
                         ),
                         element(
@@ -336,6 +357,10 @@ var handler = React.createClass({
                                     ),
                                     element(
                                         'input',
+                                        {type: "hidden", name: "token", defaultValue: self.props.meta.token,}
+                                    ),
+                                    element(
+                                        'input',
                                         {type: "hidden", name: "_id", defaultValue: flatObject._id}
                                     ),
                                     element(
@@ -385,7 +410,13 @@ var handler = React.createClass({
             }
         }
         else {
-            items = "Error"
+            items = element(
+                "div",{},
+                element(
+                    "a",{href: "?limit=100&batch=1" + "&token=" + self.props.meta.token},
+                    "This content is protected, if you have access click here to load the content"
+                )
+            )
         }
 
         /////////////////////////////////////////
@@ -405,6 +436,10 @@ var handler = React.createClass({
         addItemFields.push(element(
             'input',
             {type: "hidden", name: "data", defaultValue: self.props.meta.params.dataName}
+        ))
+        addItemFields.push(element(
+            'input',
+            {type: "hidden", name: "token", defaultValue: self.props.meta.token}
         ))
 
         self.props.dataRef[dataRefIndex].fields.forEach(function(field, index){
@@ -501,28 +536,47 @@ var handler = React.createClass({
 
         var navTopLinks = [];
 
-        self.props.dataRef.forEach(function(ref, index){
+        if(self.props.meta && self.props.meta.token){
 
-            if(ref.name === "negulpdatatest"){
+            self.props.dataRef.forEach(function(ref, index){
+                if(ref.name === "negulpdatatest"){
 
-                console.log("neAdmin naAdminApiEditHandler: datatest skipped on purpose")
-            }
-            else {
-                navTopLinks.push(element(
-                    'li',
-                    {className: "ne-admin-nav-top-link"},
-                    element(
-                        'a',
-                        {href: ref.slug + "?limit=3&batch=1"},
-                        ref.name
-                    )
-                ))
-            }
+                    console.log("neAdmin naAdminApiEditHandler: datatest skipped on purpose")
+                }
+                else {
+                    navTopLinks.push(element(
+                        'li',
+                        {className: "ne-admin-nav-top-link"},
+                        element(
+                            'a',
+                            {href: ref.slug + "?limit=3&batch=1" + "&token=" + self.props.meta.token },
+                            ref.name
+                        )
+                    ))
+                }
+            })
+        }
+        else{
 
+            self.props.dataRef.forEach(function(ref, index){
 
+                if(ref.name === "negulpdatatest"){
 
-        })
-
+                    console.log("neAdmin naAdminApiEditHandler: datatest skipped on purpose")
+                }
+                else {
+                    navTopLinks.push(element(
+                        'li',
+                        {className: "ne-admin-nav-top-link"},
+                        element(
+                            'a',
+                            {href: ref.slug + "?limit=3&batch=1"},
+                            ref.name
+                        )
+                    ))
+                }
+            })
+        }
 
         return (
             <body>

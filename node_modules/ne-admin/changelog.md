@@ -18,6 +18,15 @@ Dependencies
 - DR Remove Dependency: A  dependency is removed from the package
 - DU Update Dependency: A dependency is updated in the package
 
+
+# 1.4.3
+
+Release date: 20151024
+
+[BF]
+Fixed the getWithPermissions bug
+
+
 # 1.4.2
 
 Release date: 20151021

@@ -27,7 +27,12 @@ var neLocalStrategyRoutes = function (server){
         var redirectPath
         if (req.body.limit){
             if (req.body.batch){
-                redirectPath = '/admin/' + req.body.data + "?limit=" + req.body.limit + "&batch=" + req.body.batch;
+                if (req.body.token){
+                    redirectPath = '/admin/' + req.body.data + "?limit=" + req.body.limit + "&batch=" + req.body.batch + "&token=" + req.body.token;
+                }
+                else {
+                    redirectPath = '/admin/' + req.body.data + "?limit=" + req.body.limit + "&batch=" + req.body.batch;
+                }
             }
             else {
                 redirectPath = '/admin/' + req.body.data + "?limit=" + req.body.limit;
@@ -45,7 +50,12 @@ var neLocalStrategyRoutes = function (server){
         var redirectPath
         if (req.body.limit){
             if (req.body.batch){
-                redirectPath = '/admin/' + req.body.data + "?limit=" + req.body.limit + "&batch=" + req.body.batch;
+                if (req.body.token){
+                    redirectPath = '/admin/' + req.body.data + "?limit=" + req.body.limit + "&batch=" + req.body.batch + "&token=" + req.body.token;
+                }
+                else {
+                    redirectPath = '/admin/' + req.body.data + "?limit=" + req.body.limit + "&batch=" + req.body.batch;
+                }
             }
             else {
                 redirectPath = '/admin/' + req.body.data + "?limit=" + req.body.limit;
@@ -69,7 +79,12 @@ var neLocalStrategyRoutes = function (server){
                 if (req.body.limit){
                     redirectPath = '/admin/' + req.body.data + "?message=deleted" + "&limit=" + req.body.limit;
                     if (req.body.batch){
-                        redirectPath = '/admin/' + req.body.data + "?message=deleted" + "&limit=" + req.body.limit + "&batch=" + req.body.batch;
+                        if (req.body.token){
+                            redirectPath = '/admin/' + req.body.data + "?limit=" + req.body.limit + "&batch=" + req.body.batch + "&token=" + req.body.token;
+                        }
+                        else {
+                            redirectPath = '/admin/' + req.body.data + "?message=deleted" + "&limit=" + req.body.limit + "&batch=" + req.body.batch;
+                        }
                     }
                 }
                 else{
@@ -163,7 +178,12 @@ var neLocalStrategyRoutes = function (server){
                 if (req.body.limit){
                     redirectPath = '/admin/' + req.body.data + "?message=added" + "&limit=" + req.body.limit;
                     if (req.body.batch){
-                        redirectPath = '/admin/' + req.body.data + "?message=added" + "&limit=" + req.body.limit + "&batch=" + req.body.batch;
+                        if (req.body.token){
+                            redirectPath = '/admin/' + req.body.data + "?limit=" + req.body.limit + "&batch=" + req.body.batch + "&token=" + req.body.token;
+                        }
+                        else {
+                            redirectPath = '/admin/' + req.body.data + "?message=added" + "&limit=" + req.body.limit + "&batch=" + req.body.batch;
+                        }
                     }
                 }
                 else{
@@ -179,7 +199,12 @@ var neLocalStrategyRoutes = function (server){
                 if (req.body.limit){
                     redirectPath = '/admin/' + req.body.data + "?message=Error adding" + "&limit=" + req.body.limit;
                     if (req.body.batch){
-                        redirectPath = '/admin/' + req.body.data + "?message=Error adding" + "&limit=" + req.body.limit + "&batch=" + req.body.batch;
+                        if (req.body.token){
+                            redirectPath = '/admin/' + req.body.data + "?limit=" + req.body.limit + "&batch=" + req.body.batch + "&token=" + req.body.token;
+                        }
+                        else {
+                            redirectPath = '/admin/' + req.body.data + "?message=Error adding" + "&limit=" + req.body.limit + "&batch=" + req.body.batch;
+                        }
                     }
                 }
                 else{
@@ -289,7 +314,12 @@ var neLocalStrategyRoutes = function (server){
                 var redirectPath;
                 if (req.body.limit){
                     if (req.body.batch){
-                        redirectPath = '/admin/' + req.body.data + '?message=' + " updated" + "&limit=" + req.body.limit + "&batch=" + req.body.batch;
+                        if (req.body.token){
+                            redirectPath = '/admin/' + req.body.data + "?limit=" + req.body.limit + "&batch=" + req.body.batch + "&token=" + req.body.token;
+                        }
+                        else {
+                            redirectPath = '/admin/' + req.body.data + '?message=' + " updated" + "&limit=" + req.body.limit + "&batch=" + req.body.batch;
+                        }
                     }
                     else{
                         redirectPath = '/admin/' + req.body.data + '?message=' + " updated" + "&limit=" + req.body.limit;
