@@ -289,7 +289,7 @@ var handler = React.createClass({
 
                     self.props.dataRef[dataRefIndex].fields.forEach(function(field, index2){
 
-                        if(field.type && field.type === "ObjectId"){
+                        if(field.editType && field.editType === "noEdit"){
 
                             editItem.push(element(
                                 'div',
@@ -312,24 +312,111 @@ var handler = React.createClass({
 
                         }
 
-                        else if(field.type && field.type === "noEdit"){
+                        else if(field.editType && field.editType === "select"){
+
+                            var selectOptions = field.selectOptions.map(function(option, index3){
+
+                                return element(
+                                    "option",{value: option, key: index3},
+                                    option
+                                )
+
+                            })
 
                             editItem.push(element(
                                 'div',
                                 {id: index2, key: index2, className: "ne-admin-item-field-edit-form"},
                                 element(
-                                    'label',
-                                    {},
-                                    field.data + " -> "
-                                ),
+                                    "form", { action: "/admin/change/put/", method: "post"},
+                                    element(
+                                        'input', {type: "hidden", name: "limit", defaultValue: self.props.meta.query.limit}
+                                    ),
+                                    element(
+                                        'input', {type: "hidden", name: "batch", defaultValue: self.props.meta.query.batch}
+                                    ),
+                                    element(
+                                        'input',
+                                        {type: "hidden", name: "data", defaultValue: self.props.meta.params.dataName}
+                                    ),
+                                    element(
+                                        'input', {type: "hidden", name: "token", defaultValue: self.props.meta.token,}
+                                    ),
+                                    element(
+                                        'input', {type: "hidden", name: "_id", defaultValue: flatObject._id}
+                                    ),
+                                    element(
+                                        'label', {},
+                                        field.label + " -> "
+                                    ),
+                                    element(
+                                        'br', {}
+                                    ),
+                                    element(
+                                        "label", {},
+                                        flatObject[field.data]
+                                    ),
+                                    element(
+                                        'br', {}
+                                    ),
+                                    element(
+                                        "select", { type: "text", name: field.data, placeholder: flatObject[field.data]},
+                                        selectOptions
+                                    ),
+                                    element(
+                                        'br', {}
+                                    ),
+                                    element(
+                                        "button", { type: "submit" , className: "ne-admin-btn ne-admin-item-field-edit-button" },
+                                        "Change " + field.label
+                                    )
+                                )
+                            ))
+
+
+                        }
+
+                        else if(field.editType && field.editType === "textarea"){
+
+
+                            editItem.push(element(
+                                'div',
+                                {id: index2, key: index2, className: "ne-admin-item-field-edit-form"},
                                 element(
-                                    'br',
-                                    {}
-                                ),
-                                element(
-                                    "label",
-                                    {},
-                                    flatObject[field.data]
+                                    "form", {action: "/admin/change/put/", method: "post"},
+                                    element(
+                                        'input', {type: "hidden", name: "limit", defaultValue: self.props.meta.query.limit}
+                                    ),
+                                    element(
+                                        'input', {type: "hidden", name: "batch", defaultValue: self.props.meta.query.batch}
+                                    ),
+                                    element(
+                                        'input', {type: "hidden", name: "data", defaultValue: self.props.meta.params.dataName}
+                                    ),
+                                    element(
+                                        'input', {type: "hidden", name: "token", defaultValue: self.props.meta.token,}
+                                    ),
+                                    element(
+                                        'input', {type: "hidden", name: "_id", defaultValue: flatObject._id}
+                                    ),
+                                    element(
+                                        'label', {},
+                                        field.label + " -> "
+                                    ),
+                                    element(
+                                        'br', {}
+                                    ),
+                                    element(
+                                        "textarea",
+                                        {name: field.data},
+                                        flatObject[field.data]
+                                    ),
+                                    element(
+                                        'br', {}
+                                    ),
+                                    element(
+                                        "button", {type: "submit" , className: "ne-admin-btn ne-admin-item-field-edit-button" },
+                                        "Change " + field.label
+                                    )
                                 )
                             ))
 
@@ -341,49 +428,39 @@ var handler = React.createClass({
                                 'div',
                                 {id: index2, key: index2, className: "ne-admin-item-field-edit-form"},
                                 element(
-                                    "form",
-                                    { action: "/admin/change/put/", method: "post"},
+                                    "form", {action: "/admin/change/put/", method: "post"},
                                     element(
-                                        'input',
-                                        {type: "hidden", name: "limit", defaultValue: self.props.meta.query.limit}
+                                        'input', {type: "hidden", name: "limit", defaultValue: self.props.meta.query.limit}
                                     ),
                                     element(
-                                        'input',
-                                        {type: "hidden", name: "batch", defaultValue: self.props.meta.query.batch}
+                                        'input', {type: "hidden", name: "batch", defaultValue: self.props.meta.query.batch}
                                     ),
                                     element(
-                                        'input',
-                                        {type: "hidden", name: "data", defaultValue: self.props.meta.params.dataName}
+                                        'input', {type: "hidden", name: "data", defaultValue: self.props.meta.params.dataName}
                                     ),
                                     element(
-                                        'input',
-                                        {type: "hidden", name: "token", defaultValue: self.props.meta.token,}
+                                        'input', {type: "hidden", name: "token", defaultValue: self.props.meta.token,}
                                     ),
                                     element(
-                                        'input',
-                                        {type: "hidden", name: "_id", defaultValue: flatObject._id}
+                                        'input', {type: "hidden", name: "_id", defaultValue: flatObject._id}
                                     ),
                                     element(
-                                        'label',
-                                        {},
-                                        field.data + " -> "
+                                        'label', {},
+                                        field.label + " -> "
                                     ),
                                     element(
-                                        'br',
-                                        {}
+                                        'br', {}
                                     ),
                                     element(
                                         "input",
-                                        { type: "text", name: field.data, placeholder: flatObject[field.data]}
+                                        {type: "text", name: field.data, placeholder: flatObject[field.data]}
                                     ),
                                     element(
-                                        'br',
-                                        {}
+                                        'br', {}
                                     ),
                                     element(
-                                        "button",
-                                        { type: "submit" , className: "ne-admin-btn ne-admin-item-field-edit-button" },
-                                        "Change " + field.data
+                                        "button", {type: "submit" , className: "ne-admin-btn ne-admin-item-field-edit-button" },
+                                        "Change " + field.label
                                     )
                                 )
                             ))
