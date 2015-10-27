@@ -2,6 +2,8 @@ var React = require('react');
 var Header = require('../components/sections/Header');
 var Footer = require('../components/sections/Footer');
 
+// todo consider renaming ne-sample to ne-lab becuase that is actually what it is.
+
 var meta = {
     path: "/",
     title: "Home",
