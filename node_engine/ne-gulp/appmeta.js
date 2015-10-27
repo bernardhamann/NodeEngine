@@ -58,7 +58,11 @@ var appmeta = [
             if (meta.query) {
                 if (meta.query.limit) {
                     if (meta.query.batch) {
-                        var path = process.env.ROOTURL + "/data/" + meta.params.dataName + "?limit=" + meta.query.limit + "&batch=" + meta.query.batch;
+                        if (meta.query.token) {
+                            var path = process.env.ROOTURL + "/data/" + meta.params.dataName + "?limit=" + meta.query.limit + "&batch=" + meta.query.batch + "&token=" + meta.query.token;
+                        } else {
+                            var path = process.env.ROOTURL + "/data/" + meta.params.dataName + "?limit=" + meta.query.limit + "&batch=" + meta.query.batch;
+                        }
                     } else {
                         var path = process.env.ROOTURL + "/data/" + meta.params.dataName + "?limit=" + meta.query.limit;
                     }
