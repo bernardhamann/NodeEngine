@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "start": "node app/server.js",
-    "dev": "gulp"
   },
   "dependencies": {
     "ne-gulp": "^1.7.4"
