@@ -1,0 +1,25 @@
+{
+  "name"               : "saaac-coza",
+  "cwd"                : "/home/ubuntu/apps/saaac-coza/app/",
+  "script"             : "server.js",
+  "log_date_format"    : "YYYY-MM-DD HH:mm Z",
+  "error_file"         : "/home/ubuntu/logs/apps/error.log",
+  "out_file"           : "/home/ubuntu/logs/apps/output.log",
+  "instances"          : 1,
+  "min_uptime"         : "1000s",
+  "max_restarts"       : 9999999,
+  "max_memory_restart" : "200M",
+  "watch"              : true,
+  "ignore_watch"       : ["[\\/\\\\]\\./", "node_modules"],
+  "merge_logs"         : true,
+  "exec_interpreter"   : "node",
+  "exec_mode"          : "fork",
+  "autorestart"        : true,
+  "env": {
+    "NODE_ENV"                    : "production",
+    "APPNAME"                     : "SAAAC - SA Academy of Applied Competence",
+    "DESCRIPTION"                 : "Colleges",
+    "ROOTURL"                     : "http://saaac.co.za",
+    "PORT"                        : 3004,
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "NODE_ENV"                    : "development",
+  "APPNAME"                     : "SAAAC - SA Academy of Applied Competence",
+  "DESCRIPTION"                 : "Colleges",
+  "ROOTURL"                     : "http://localhost:3004",
+  "PORT"                        : 3004,
+}
